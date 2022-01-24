@@ -1,0 +1,39 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\allowdisplaybreaks
+\AddToHook{cmd/section/before}{\clearpage}
+\newcommand{\fallfac}[2]{{#1}^{\underline{#2}}}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\usepackage[sexy]{evan}
+
+\usepackage{blindtext}
+
+\usepackage{subfiles} % Best loaded last in the preamble
+
+\title{Jarvis}
+\author{MK Hu}
+\date{November 2021}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\subfile{sections/intro}
+
+\section{Algebra}
+\subfile{sections/algebra}
+
+\section{Calculus}
+\subfile{sections/calculus}
+
+\section{Linear Algebra}
+\subfile{sections/linalg}
+
+\section{Solutions to Selected Problems}
+\subfile{sections/sols}
+
+\end{document}

@@ -1,0 +1,92 @@
+\documentclass[../main.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+
+\begin{document}
+We end off this handout with a selected spread of challenging problems that aim to cover most of the techniques seen previously. These are mostly classical problems that should be attempted casually and not for the sake of completing - it's much more satisfying that way!
+
+\problem *** The function $f(x)=x\cot{x}$ is closely relevant to the so-called \textbf{Bernoulli numbers} - named of course after Bernoulli. We denote the Bernoulli numbers by $b_n$.
+\begin{enumerate}
+    \item Show that the Maclaurin expansion for $f(z)=\frac{e^z-1}{z}$ is
+    $$1+\frac{z}{2!}+\frac{z^2}{3!}+\cdots.$$
+    Deduce that $$\frac{z}{e^z-1}=\sum_{n=0}^{\infty}\frac{b_n}{n!}z^n.$$
+    \item State the value of $b_0$ and show also the result
+    $$\frac{z}{e^z-1}=-\frac{z}{2}-\frac{z}{2}\cdot\frac{e^{-z}+1}{e^{-z}-1}.$$
+    Deduce that $b_1=-\frac{1}{2}$ and that $b_n=0$ for all odd $n \neq 1$.
+    \item Deduce that 
+    $$z=\left(\sum_{n=k}^{\infty}\frac{b_k}{k!}\right)\left(z+\frac{z^2}{2!}+\frac{z^3}{3!}+\cdots\right).$$
+    By considering the coefficient of $z^n$, show that $$\sum_{i=0}^{n-1}\binom{n-1}{i}b_i=0$$
+    for $n>1$.
+    \item Find $b_2$, $b_4$ and $b_6$.
+    \item ** By using the above results, prove that 
+    $$\sum_{i=0}^{\infty}\frac{b_{2n}}{(2n!)}z^{2n}=\frac{z}{2}\frac{e^z+1}{e^z-1}=\frac{z}{2}\frac{e^{\frac{z}{2}}+e^{-\frac{z}{2}}}{e^{\frac{z}{2}}-e^{-\frac{z}{2}}}.$$
+    
+    Replace $z$ by $2iz$ and show that 
+    $$z\cot{z}=\sum_{n=0}^{\infty}\frac{b_{2n}}{(2n)!}(-1)^n2^{2n}z^{2n}.$$
+\end{enumerate}
+\begin{remark}
+With this result, deduce the value of $$\Gamma(n)=\sum_{k=0}^{\infty}\frac{1}{n^k}$$
+for even $n$.
+\end{remark}
+
+\problem *** This problem showcases the application of the shady (umbral) side of calculus on a shady theorem, "best introduced by some notational nonsense", as aptly put by Spivak.
+
+Let $D$ be the differential operator $\frac{d}{dx}$, so that $Df=f'$, and $D^{k}f=f^{(k)}$ and $e^{D}f=\sum_{n=0}^{\infty}\frac{f^{(n)}}{n!}$ if $f$ is a polynomial. To this end, let $\Delta f(x)=f(x+1)-f(x)$, and so by Taylor's theorem,
+$$f(x+1)-f(x)=\sum_{n=0}^{\infty}\frac{f^{(n)}(x)}{n!},$$
+which we write symbolically as $\Delta f(x)=(e^D-1)f$. More succinctly, $\Delta=e^D-1$, whence shady dark magic tells us
+$$D &=\frac{D}{e^D-1}\Delta \Longrightarrow \sum_{k=0}^{\infty}\frac{b_k}{k!} D^k\Delta$$ 
+\begin{equation}\label{problem0.8-umbraleq}
+    f'(x)&= \sum_{k=0}^{\infty}\frac{b_k}{k!} [f^{(k)}(x+1)-f^{(k)}(x)]
+\end{equation}
+Vibe check! As it turns out, this voodoo magic nonsense works!
+
+\begin{enumerate}
+    \item* Prove that \eqref{problem0.8-umbraleq} is true if $f$ is a polynomial.
+    \item Deduce that $$f'(0)+f'(1)+\cdots+f'(n)=\sum_{k=0}^{\infty}\frac{b_k}{k!} [f^{(k)}(n+1)-f^{(k)}(0)].$$
+    \item Show further that for any polynomial $g$, 
+    $$g(0)+g(1)+\cdots+g(n)=\int_{0}^{n+1}g(t)\,dt+\sum_{k=1}^{\infty}\frac{b_k}{k!} [g^{(k)}(n+1)-g^{(k)}(0)].$$
+    \item By a suitable choice of $g$, prove the Faulhaber's sum
+    $$\sum_{k=1}^n k^p=\frac{n^{p+1}}{p+1}+\frac{n^p}{2}+\sum_{k=2}^n\frac{b_k}{k}\binom{p}{k-1}n^{p-k+1}.$$
+    \item Verify these two identities:
+    \begin{align*}
+        1^2+2^2+\cdots+n^2&=\frac{n(n+1)(2n+1)}{6} \\
+        1^3+2^3+\cdots+n^3&=\left(\frac{n(n+1)}{2}\right)^2
+    \end{align*}
+\end{enumerate}
+\begin{remark}
+This formula was first found (without proof) in Bernoulli's \textit{Ars Conjectandi} published posthumously in 1713. In fact, it was exactly that - he had guessed this formula and put forth the series $\{b_k\}$ as the coefficients of the expansion of $\frac{z}{e^z-1}$.
+\end{remark}
+
+As in the last part of the question, we first consider the imaginary parts:
+\begin{proposition}\label{prop-0.13}
+$$\prod_{k=1}^{\frac{p-1}{2}}\Im(\zeta^{2k-1})^2=\prod_{k=1}^{\frac{p-1}{2}}(\zeta^{2k-1}-\zeta^{-(2k-1)})^2=(-1)^{\frac{p-1}{2}}p.$$
+\end{proposition}
+\begin{proof}
+From the definition of the roots of unity, $x^p-1=(x-1)\prod_{k=1}^{p-1}(x-\zeta^k)$, giving
+$$\frac{x^p-1}{x-1}=\prod_{k=1}^{p-1}(x-\zeta^k) \Longrightarrow 1+x+x^2+\cdots+x^{p-1}=\prod_{k=1}^{p-1}(x-\zeta^k).$$
+Evaluating at $x=1$ gives $p=\prod_{k=1}^{p-1}(1-\zeta^k).$
+
+Now, taking the product over $k=1,2,\cdots,\frac{p-1}{2}$, observe that
+\begin{align*}
+    p&=\prod(1-\zeta^{4k-2})(1-\zeta^{-(4k-2)}) \\
+    &=\prod(\zeta^{-(2k-1)}-\zeta^{2k-1})\prod(\zeta^{(2k-1)}-\zeta^{-(2k-1)}) \\
+    &=(-1)^{\frac{p-1}{2}}\prod(\zeta^{(2k-1)}-\zeta^{-(2k-1)})
+\end{align*}
+as needed.
+\end{proof}
+\begin{proposition}
+$$\prod_{k=1}^{\frac{p-1}{2}}\zeta^{2k-1}-\zeta^{-(2k-1)}=
+\begin{cases}
+\sqrt{p} \text{ if $i \equiv 1$ (mod 4)} \\
+i\sqrt{p} \text{ if $i \equiv 3$ (mod 4)}
+\end{cases}$$
+\end{proposition}
+\begin{proof}
+This \textit{almost} follows from \nameref{prop-0.13}. We just need to determine the sign of the product:
+$$\prod_{k=1}^{\frac{p-1}{2}}\zeta^{2k-1}-\zeta^{-(2k-1)}=i^{\frac{p-1}{2}}\prod_{k=1}^{\frac{p-1}{2}}2\sin{\frac{(4k-2)\pi}{p}}.$$
+\end{proof}
+but for $\frac{p+2}{4} < k \leq \frac{p-1}{2}$, $\sin{\frac{(4k-2)\pi}{p}} < 0$, so there are $\frac{p-1}{2}-\frac{p+2}{4}=
+\begin{cases}
+\frac{p-1}{4} \text{ if $i\equiv 1$ (mod 4)} \\
+\frac{p-3}{4} \text{ if $i\equiv 3$ (mod 4)}
+\end{cases}$ negative terms.
+\end{document}
