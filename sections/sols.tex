@@ -49,5 +49,26 @@ The first inequality follows from the claim that $\cos{x} \leq e^{-\frac{x^2}{2}
 \end{enumerate}
 The second inequality follows by symmetry(!), and the last equality follows from the normal distribution $N(\mu, \sigma^2)$:
 $$\frac{1}{\sigma\sqrt{2\pi}}\int_{-\infty}^{\infty}e^{-\frac{(x-\mu)^2}{2\sigma^2}} \,dx = 1$$ for the choice $\mu = 0$, $ \sigma=\frac{1}{\sqrt{2n}}$.
+Hmm... cube roots again. It might be tempting to immediately cube the entire equation, but it shouldn't take more than half a minute to see that it will turn out gory. Maybe we should find another way to get rid of the cube roots.
+
+\begin{proof}
+    Let $a=\sqrt[3]{x-110}$, $b=\sqrt[3]{x-381}$, with $a\geq b$ so that
+    $$\begin{cases}
+        a-b=1 \\
+        a^3-b^3=271
+    \end{cases}
+    \Longrightarrow 
+    \begin{cases}
+        a^2+ab+b^2=(a-b)^2+3ab=1+3ab=271 \Longrightarrow ab=90 \\
+        a^2+ab+b^2=(a+b)^2-ab=(a+b)^2-90=271 \Longrightarrow a+b=\pm 19
+    \end{cases}$$
+Now, it's clear that we should get 2 different values of $a,b$. We shall do so using a quick trick. Suppose for now that $a+b=19$ and $ab=90$, then $a, b$ are roots of the quadratic $$x^2-19x+90=(x-9)(x-10)=0$$.
+
+Since $a\geq b$, $a=10$ gives $x=1110$ (the reader should check that $b=9$ also gives this value of $x$). Similarly, if $a+b=-19$, then $a=-9$ gives $x=-619$.
+
+To this end, we have exhausted all the possible cases, and so there are no more solutions. Moreover, it is easy to verify (if you know your cubes!) that both solutions satisfy the original equation.
+
+Thus, our solutions are \boxed{\text{$x=1110$ and $x=-619$}}.
+\end{proof}
 
 \end{document}
