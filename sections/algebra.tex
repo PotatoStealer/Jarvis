@@ -10,158 +10,6 @@ As it turns out, there's more to algebra than pure uninspiring symbol pushing. I
     \caption{Comic from https://xkcd.wtf/135/}
 \end{figure}
 
-\subsection{Proving and Thinking}
-\subsubsection{Proof by Contradiction}
-Our first question showcases the powerful \textit{proof by contradiction}. It is mostly used when a direct proof is less feasible, and so is an indirect approach to a problem.
-
-The main idea is to begin with an (absurd) assumption and working towards deriving a contradiction. In other words, we are establishing the truth of a claim by assuming that the claim is false, and then showing that this leads to a contradiction. Also known as \textit{reductio ad absurdum}.
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{xkcd_proofs.png}
-    \caption{Comic from https://xkcd.wtf/1724/}
-\end{figure}
-
-\begin{example}[Classic]
-Let $a, b$ be integers. We say that an integer is \textit{tasty} if it is expressible in the form $a^2+ab+b^2$. Prove that 2 is not tasty.
-\end{example}
-Classically, $a^2+ab+b^2$ is a so-called quadratic form. This suggests a direct proof is not feasible: enter the realm of contradictions.
-
-\begin{proof}
-We first suppose for the sake of contradiction that $2$ is expressible in this form. Then we have, for some $a,b$: 
-$$a^2+ab+b^2=2 \implies (2a+b)^2+3b^2=8.$$
-
-Now, the problem falls to simple casework: neither $b^2=0$, $b^2=1$ nor $b^2=4$ is possible, but we assumed initially that $2$ is tasty! Since a wrong assumption resulted in an absurd conclusion, this means that our initial assumption must be wrong. In other words, $2$ is not tasty.
-\end{proof}
-
-Another classical example is on the irrationality of $\sqrt{2}$. 
-\begin{example}[Classic]
-    Prove that $\sqrt{2}$ is irrational.
-\end{example}
-\begin{proof}
-As again, we suppose on the contrary that $\sqrt{2}$ is rational, so $\sqrt{2}=\frac{m}{n}$ where $\gcd(m,n)=1$ (this just means that $\sqrt{2}$ can be expressed as a fraction in simplest terms).
-
-Squaring, $$2=\frac{m^2}{n^2} \implies 2n^2=m^2.$$ Hence, $2|m \implies 4|m^2$ and so $2|n^2$. However, this is a contradiction because we initially defined $\gcd(m,n)=1$! 
-
-This means that our initial assumption that $\sqrt{2}$ is rational was wrong. In other words, $\sqrt{2}$ is irrational.
-\end{proof}
-\subsubsection{Induction}
-Formally, for a proposition $P(n)$, $n\in\mathbb{Z}^+$, if $P(1)$ is true and $P(k)$ is true $\implies$ $P(k+1)$ is true for some $k$ $\in\mathbb{Z}^+$, then $P(n)$ is true $\forall$ $n\in\mathbb{Z}^+$.
-\begin{figure}[H]
-    \centering
-    \includegraphics[scale=0.5]{xkcd_win_by_induction.png}
-    \caption{Comic from https://xkcd.wtf/1516 - Win by Induction}
-\end{figure}
-Intuitively, this can be think of as a chain effect in a dominoes setup: if an arbitrary proposition being true implies the succeeding tile proposition is true, then the corresponding tile topples its succeeding tile, which in turn topples the next tile, and so on - except we have infinitely many domino tiles.
-
-All of these toppling, however, is subject to a condition: the base case must be true. That is, the first tile must be knocked over for this chain effect of tiles toppling over each other to start. This is the so-called \textit{base case}.
-
-Suppose we wish to prove that the proposition $P(n)$ is true for all $n$ $\in\mathbb{Z}^+$, then the corresponding inductive proof follows a structure.
-\begin{enumerate}
-    \item Base case: Establish that $P(1)$ is true.
-    \item Inductive hypothesis/assumption: Suppose that $P(k)$ is true for some arbitrary $k$ $\in\mathbb{Z}^+$. 
-    \item Inductive step: Prove that $P(k)$ being true implies $P(k+1)$ is true. 
-    \item Conclude: Since $P(1)$ is true and $P(k)$ being true implies $P(k+1)$ is true, then $P(n)$ is true for all $n$ (this is called the Principle of Mathematical Induction).
-\end{enumerate}
-This structure holds for most cases, although care must be taken in establishing the base case. If the given proposition holds over a different domain, say $n\geq 2$ instead of $n\geq 1$, then the base case will be $P(2)$ instead of $P(1)$.
-
-Let us now showcase some applications of the induction technique. In general, most textbook proofs by induction do not follow this strict structure and merely outline the inductive step. For starters, we shall follow closely the structure given above.
-\begin{example}[Classic]
-    Prove that $1+2+\cdots+n=\frac{n(n+1)}{2}$ for all $n\in\mathbb{Z}^+$.
-\end{example}
-\begin{proof}
-    Let $P(n)$ denote the proposition that $1+2+\cdots+n=\frac{n(n+1)}{2}$ for $n\in\mathbb{Z}^+$.
-
-    \begin{enumerate}
-        \item Base case: LHS of $P(1)$=1 and $RHS$ of $P(1)=\frac{1(1+1)}{2}=1$, so $P(1)$ is true.
-        \item Inductive hypothesis: Suppose that $P(k)$ is true for some $k\geq 0$. That is, assume that $1+2+\cdots+k=\frac{k(k+1)}{2}$.
-        \item Inductive step: To prove $P(k+1)$ is true, we begin with the LHS. This is because we can easily make use of the inductive hypothesis (keep an eye out for whenever you can use it!)
-        \begin{align*}
-            1+2+\cdots+k+(k+1) &= \frac{k(k+1)}{2}+(k+1) &\text{by inductive hypothesis} \\
-            &=\frac{(k+1)(k+2)}{2} =\text{RHS of $P(k+1)$.}
-        \end{align*} 
-    \end{enumerate}
-\end{proof}
-\begin{example}[Classic]
-    Prove that, for all integers $n \geq 0$ and real $x$, $|\sin{nx}|\leq n|\sin{x}|$.
-\end{example}
-\begin{proof}
-    Let $P(n)$ denote the proposition that $|\sin{nx|}\leq n|\sin{x}|$ for integers $n\geq 0$. Note that now, the base case is $n=0$ instead of $n=1$!
-
-    \begin{enumerate}
-        \item Base case: LHS of $P(0)$=0 and $RHS$ of $P(0)=0\sin{0\cdot x}$=0, so $P(1)$ is true.
-        \item Inductive hypothesis: Suppose that $P(k)$ is true for some $k \geq 0$. That is, assume that $|\sin{kx}|\leq k|\sin{x}|$
-        \item Inductive step: To prove $P(k+1)$ is true, we again begin with the LHS.
-        \begin{align*}
-            |\sin{(k+1)x}| &= |\sin{kx}\cos{x}+\cos{kx}\sin{x}| \\
-            &\leq |\sin{kx}\cos{x}|+|\cos{kx}\sin{x}| &\text{by triangle inequality}\\
-            &=|\sin{kx}||\cos{x}|+|\cos{kx}||\sin{x}| \\
-            &\leq k|\sin{x}||\cos{x}|+|\cos{kx}||\sin{x}| &\text{by inductive hypothesis} \\
-            &\leq k|\sin{x}|+|\sin{x}| \\
-            &= (k+1)|\sin{x}|=\text{RHS of $P(k+1)$}
-        \end{align*} 
-    \end{enumerate}
-\end{proof}
-To end off the section on induction, we show an unorthodox way to finish the inductive step. It's not always the case that we can simply move from LHS to RHS!
-\begin{example}[2021 H2 Further Math P1 Q4]
-For real $x$ and any positive integer $n$, the function $F_n$ is defined by
-    $$F_n(x)=\frac{x(x+1)(x+2)\cdots(x+n-1)}{n!}.$$
-Prove by induction that, for all positive integers $n$, $F_n\left(\frac{1}{2}\right) < \frac{1}{\sqrt{2n+1}}$.
-\end{example}
-    The base case is simple, so we focus on the inductive assumption first. For the moment, write $x=\frac{1}{2}$ and assume that $F_k(x)<\frac{1}{\sqrt{2k+1}}$ (this is our inductive hypothesis!).
-    
-    We have
-    \begin{align*}
-        F_{k+1}(x)&=\frac{x(x+1)(x+2)\cdots(x+k-1)}{k!} \cdot \frac{x+k}{k+1} &\text{by inductive hypothesis}\\
-        &< \frac{1}{\sqrt{2k+1}} \cdot \frac{2k+1}{2(k+1)} \\
-        &= \frac{2k+1}{2(k+1)\sqrt{2k+1}} \\
-    \end{align*}
-    How do we proceed? To start, we know that $\frac{2k+1}{2(k+1)} < 1$, but that gives $F_{k+1}(x) < \frac{1}{\sqrt{2k+1}}$, no good. On the other hand, our required form is $F_{k+1}(x) < \frac{1}{\sqrt{2k+3}}$, so the naive student may attempt to claim $\frac{1}{\sqrt{2k+1}} < \frac{1}{\sqrt{2k+3}}$, but this is not true!!
-    
-    To this end, we try the most obvious thing possible: we want $F_{k+1}(x) < \frac{1}{\sqrt{2k+3}}$, so it would be great if we have $\frac{2k+1}{2(k+1)\sqrt{2k+1}}<\frac{1}{\sqrt{2k+3}}$. Trying our luck:
-    \begin{align*}
-        \frac{2k+1}{2(k+1)\sqrt{2k+1}} < \frac{1}{\sqrt{2k+3}}
-        &\Longleftrightarrow (2k+1)\sqrt{2k+3} < 2(k+1)\sqrt{2k+1} \\
-        &\Longleftrightarrow (4k^2+4k+1)(2k+3) < (4k^2+8k+4)(2k+1) \\
-        &\Longleftrightarrow 3(4k^2)+4k(2k+3)+(2k+3) < 4k^2+8k(2k+1)+4(2k+1) \\
-        &\Longleftrightarrow 14k+3 < 16k+4 \Longleftrightarrow k > \frac{1}{2}
-    \end{align*}
-    Miraculously, our high power terms cancel off! The astute reader will realise that we used "left-right" arrows instead of the usual "right" arrow. This "left-right" arrow indicates that the preceding line implies the next line, and the next line implies the preceding line. This means that our steps are \textbf{reversible}, so we can simply retrace our steps from the last line all the way back to the first line. This completes our induction proof, since the domain of our proposition is $k > 1$.
-
-    The reader is encouraged to furnish a cleaned induction proof, unlike the one we have just shown. It is, however, the case that most induction proofs are found in this form, where only the inductive step is shown.
-    \paragraph{Tangent: Central Binomial Coefficient}\label{algebra-cbc}
-    We should probably be suspicious about why the cubic and quadratic terms in our inequalities cancel. Although, we should be equally suspicious about the choice of $x=\frac{1}{2}$. The function is defined for all real $x$, so why this specific rational number?
-    
-    We start by expanding $$F_n\left(\frac{1}{2}\right)=\frac{\frac{1}{2}\frac{3}{2}\frac{5}{2}\cdots\frac{2(n-1)+1}{2}}{n!}=\frac{1\cdot3\cdot5\cdots(2n-1)}{2^nn!}.$$
-    Moreover, the product of the even integers: $2\cdot4\cdots2n=\frac{(2n)!}{2^n}$, so $$F_n\left(\frac{1}{2}\right)=\frac{1}{2^{2n}}\frac{(2n)!}{n!n!}=\frac{1}{2^{2n}}\binom{2n}{n}.$$
-    
-    As it turns out, $\binom{2n}{n}$ is the so-called \textbf{central binomial coefficient} (why?).
-    
-    The bound in the question asserts that $\binom{2n}{n} < \frac{4^n}{\sqrt{2n+1}}$, however Erdos argues that the best (asymptotic) bound is $\binom{2n}{n} < \frac{4^n}{\sqrt{\pi n}}$, as we will derive.
-    
-    The binomial coefficient arises in binomial expansions, so we shall consider a suitable one. For this, we look to the related binomial expansion for cosine. In particular, letting $z=e^{it}$, we have $\cos{t} = \frac{1}{2}\left(z+\frac{1}{z}\right)$, and \begin{align*}
-        \cos^{2n} t &= \frac{1}{2^{2n}}\sum_{k=0}^{2n} \binom{2n}{k}z^{2n-2k} \\
-        &= \frac{1}{2^{2n}}\sum_{k=0}^{2n} \binom{2n}{k}\cos{(2n-2k)t}+\frac{i}{2^{2n}}\sum_{k=0}^2n \binom{2n}{k}\sin{(2n-2k)t}
-    \end{align*}
-    Note that since $\cos^{2n}{t}$ is real, the imaginary part vanishes. Moreover, $$\binom{2n}{k}\cos{(2n-2k)t}+\binom{2n}{2n-k}\cos{(2k-2n)t}=2\binom{2n}{k}\cos{(2n-2k)t}\text{ by symmetry}.$$
-    Hence,
-    \begin{align*}
-        \cos^{2n} t &= \frac{1}{2^{2n}}\sum_{k=0}^{2n} \binom{2n}{k}z^{2n-2k} \\
-        &= \frac{1}{2^{2n}}\sum_{k=0}^{2n} \binom{2n}{k}\cos{(2n-2k)t}+\frac{i}{2^{2n}}\sum_{k=0}^{2n} \binom{2n}{k}\sin{(2n-2k)t} && \text{by de Moivre's theorem}\\
-        &= \frac{1}{2^{2n}}\sum_{k=0}^{2n} \binom{2n}{k}\cos{(2n-2k)t} \\
-        &= \frac{1}{2^{2n}}\left(\binom{2n}{n}+2\sum_{k=1}^{n-1}\binom{2n}{k}\cos{(2n-2k)t}\right)
-    \end{align*}
-    The substitution $j=n-k$ gives
-    $$
-        \cos^{2n} t = \frac{1}{2^{2n}}\left(\binom{2n}{n}+2\sum_{j=1}^{n}\binom{2n}{n-j}\cos{2jt}\right)
-    \implies
-        \int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\cos^{2n} t \,dt = \frac{\pi}{2^{2n}}\binom{2n}{n}.
-    $$
-    Thus, we have the chain of bounds:
-    \begin{align}
-        \binom{2n}{n}&=\frac{4^n}{\pi}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}\cos^{2n}{x} \,dx < \frac{4^n}{\pi}\int_{-\frac{\pi}{2}}^{\frac{\pi}{2}}e^{-nx^2} \,dx \label{5.1-tangent-ineq}\\
-        &< \frac{4^n}{\pi}\int_{-\infty}^{\infty}e^{-nx^2} \,dx = \frac{4^n}{\sqrt{\pi n}} \label{5.1-tangent-eq}
-    \end{align}
-
 \subsection{Polynomials}
 Outside of quadratic polynomials, there are also cubics, quartics, quintics, sextics..., that most students assume are extinct. However, they can be found in a select number of natural hideouts!
 
@@ -234,9 +82,7 @@ Let us show some examples of Vieta's theorem in action.
 
 First of all... yikes! Cube roots and cubes. However, it seems that the three cube roots look arbitrary: while the answer depends on their values, we can find an expression for $r^3+s^3+t^3$ in terms of these cube roots without caring about their values just yet. 
 \begin{proof}
-    We make the substitution $\alpha=\sqrt[3]{13}$, $\beta=\sqrt[3]{53}$, $\gamma=\sqrt[3]{103}$.
-
-Now our equation is transformed into $(x-\alpha)(x-\beta)(x-\gamma)-\frac{1}{3}=0$. By Vieta's theorem, 
+    We make the substitution $a=\sqrt[3]{13}$, $b=\sqrt[3]{53}$, $c=\sqrt[3]{103}$, so that our equation is transformed into $$(x-a)(x-b)(x-c)-\frac{1}{3}=0$$. By Vieta's theorem, 
 \begin{align*}
     r+s+t&=a+b+c \\
     rs+st+rt&=ab+bc+ca \\
@@ -298,6 +144,8 @@ At this point, it's only complete if we also derive some common algebraic identi
         In general, $$\left(\sum x_i\right)^2=\sum x_i^2-2\left(\sum_{1\leq i\leq q\leq n}x_ix_j\right).$$
 
         \item $x^3+y^3+z^3-3xyz=\frac{1}{2}(x+y+z)[(x-y)^2+(y-z)^2+(z-x)^2]$.
+        This also implies $$x^3+y^3+z^3 \geq 3xyz$$, because
+        $(x-y)^2+(y-z)^2+(z-x)^2\geq 0$.
         \item Sophie-Germain Identity: $a^4+4b^4=(a^2+2b^2+2ab)(a^2+2b^2-2ab)$.
         \item Lagrange's Identity: $(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2=(ac+bd)^2+(ad-bc)^2$
         \item $(a+b)^3-(a^3+b^3)=3ab(a+b)$.
@@ -306,6 +154,27 @@ At this point, it's only complete if we also derive some common algebraic identi
         \item My personal favourite: $\frac{(a^2+bc)(b^2+ac)}{(a+c)(b+c)}+\frac{(a^2+bc)(c^2+ab)}{(a+b)(b+c)}+\frac{(b^2+ac)(c^2+ab)}{(a+b)(a+c)}=a^2+b^2+c^2$
     \end{enumerate}
 \end{proposition}
+\begin{example}[2016 SMO(O) P15]
+    Let $p,q$ be integers such that the roots of the polynomial $f(x)=x^3+px^2+qx-343$ are real. Find the minimum value of $|p^2-2q|$.
+\end{example}
+This question reeks of Vieta's theorem... With some foresight, we first derive a corollary of the AM-GM inequality for three variables. From identity 2, we know that
+    $$x^3+y^3+z^3 \geq 3xyz.$$
+
+    Now take $x=a^{\frac{2}{3}}, y=b^{\frac{2}{3}}, z=c^{\frac{2}{3}}$ so that
+    $$a^2+b^2+c^2\geq 3\sqrt[3]{(abc)^2}.$$
+    \textit{(whispers) This is a secret tool that will help us later!}
+\begin{proof}
+    
+    Let $a,b,c$ be the real roots of $f$, then by Vieta's theorem, $p=-(a+b+c), q=ab+bc+ca, 343=abc$.
+    Thus,
+    \begin{align*}
+        |p^2-2q|&=|(a+b+c)^2-2(ab+bc+ca)| \\
+        &=|a^2+b^2+c^2| \\
+        &\geq |3\sqrt[3]{(abc)^2}| = |3\sqrt[3]{343^2}| \\
+        &=\boxed{147}
+    \end{align*}
+\end{proof}
+
 For the final problem of this chapter, we shall prove identity 7.
 \begin{example}[Classic]
     Factorise $(a+b)^7-(a^7+b^7)$.
@@ -337,16 +206,6 @@ For the final problem of this chapter, we shall prove identity 7.
     \end{align*}
     whence $$(a+b)^7-(a^7+b^7)=7ab(a+b)(a^2+ab+b^2)^2.$$
 \end{proof}
-
-Sometimes a polynomial is also hard to factorise, but the Rational Root Theorem is extremely useful to help us discover any potential linear factors and rational roots.
-\begin{proposition}[Rational Root Theorem]
-For a polynomial $P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ with real coefficients $\{a_n\}=0$, if $P(x)$ \textit{has a rational root} $x=\frac{p}{q}$ where $\gcd(p,q)=1$, then
-\begin{itemize}
-    \item $p$ is an integer factor of the constant term $a_0$, and
-    \item $q$ is an integer factor of the leading coefficient $a_n$.
-\end{itemize}
-It is important to point out that this \textbf{does not} guarantee that $P(x)$ has a rational root. It merely proposes that there are candidates.
-\end{proposition}
 
 \subsection{Some Solving}
 Many questions will demand you to "find all X satisfying condition Y", the keyword being \textbf{find all}. These problems come in solving equations, functional equations, inequalities, etc. This implies that there are two parts to the problem: 
@@ -384,6 +243,17 @@ Notice the use of proof by contradiction here! We assumed that $x=\sqrt{5}$ is a
 Similarly, suppose $a=x=\sqrt{6}$, then $a^9=1296\sqrt{6}=216\sqrt{6}+1080\sqrt{6}$, which is consistent. Hence, $a=\sqrt{6}$ is the solution we're after. Having exhausted all cases, and verified that our solution was correct, we can now confidently say that the only solutions to the original equation are $$\boxed{\text{$x=0$, $\sqrt{6}$ and $-\sqrt{6}$}}.$$
 \end{proof}
 
+Before we go further, we note that sometimes a polynomial is  hard to factorise, especially if it has high degrees or have large coefficients. The Rational Root Theorem is extremely useful to help us discover any potential linear factors and rational roots.
+\begin{proposition}[Rational Root Theorem]
+For a polynomial $P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ with real coefficients $\{a_n\}=0$, if $P(x)$ \textit{has a rational root} $x=\frac{p}{q}$ where $\gcd(p,q)=1$, then
+\begin{itemize}
+    \item $p$ is an integer factor of the constant term $a_0$, and
+    \item $q$ is an integer factor of the leading coefficient $a_n$.
+\end{itemize}
+It is important to point out that this \textbf{does not} guarantee that $P(x)$ has a rational root. It merely proposes that there are candidates.
+\end{proposition}
+
+Let's see it in action:
 \begin{example}[2021 SMO(S) P22]
 Find all real solutions $(x,y)$ to the system
 \begin{align}
@@ -408,6 +278,34 @@ where the quadratic factor has no real solutions to it. Thus, having exhausted a
 $$\boxed{(x,y)=(0,0), (0,-1), (0,-\frac{1}{2})}.$$
 \end{proof}
 
+This next problem showcases the mixing of algebra and a string of divisibility arguments. Keep an eye out for these, especially if we are solving over the integers!
+\begin{example}[2018 SMO(O) P9]
+    Let $p(x)=x^3+ax^2+bx+c$ be a polynomial where $a,b,c$ are distinct non-zero integers. Suppose $p(a)=a^3$ and $p(b)=b^3$. Find $p(13)$.
+\end{example}
+Hmm, somehow we are apparently able to determine the cubic with only 2 given points. Perhaps the distinct and integer condition will come into play somehow. (For the astute reader, this matches the four degrees of restriction we need to determine a cubic - just as we need four points to determine a cubic as well.)
+\begin{proof}
+    Given $p(a)=a^3$ and $p(b)=b^3$, we have 
+    \begin{align*}
+        a^3+ab+c&=0\\
+        (a+1)b^2+c&=0
+    \end{align*}
+    Eliminating $c$,
+    we have $(a+1)b^2-ab-a^3=0$, which is a quadratic in $b$.
+    
+    Using the quadratic formula,
+    \begin{align*}
+        b&=\frac{a\pm \sqrt{a^2+4a^3(a+1)}}{2(a+1)}\\
+        &=\frac{a\pm a\sqrt{4a^2+4a+1}}{2(a+1)}=\frac{a\pm a(2a+1)}{2(a+1)} \\
+        &=a \quad \textbf{or} \quad -\frac{a^2}{a+1}
+    \end{align*}
+    Since $a,b$ are distinct, we must have $b=-\frac{a^2}{a+1}.$
+    Moreover, since $b$ is an integer, 
+    $$b=-\frac{a^2}{a+1}=-(a-1)-\frac{1}{a+1}$$
+    is also an integer. This means $a+1|1 \implies a+1=\pm 1$, giving $a=-2$ only. Thereafter, $b=4$ and $c=16$ follows easily, whence the answer is 
+    $$p(13)=13^3-2\cdot 13^2+4\cdot 13+16=\boxed{1927}$$
+\end{proof}
+
+While more involved in nature, this next problem showcases just how powerful a string of divisibility arguments can be.
 \begin{example}[USAMO 2015 P1, JMO P2]
 Solve in integers the equation
 $$x^2+xy+y^2=\left(\frac{x+y}{3}+1\right)^3.$$
@@ -434,38 +332,8 @@ Is that all? Not quite! Don't forget that we are told to solve the given equatio
 $$\boxed{x=n^3+3n^2-1\quad\text{and}\quad y=-n^3+3n+1},$$
 and permutations (note that the equation is symmetric in $x$ and $y$!).
 \end{proof}
-\begin{example}[2018 SMO(S) P25]
-    Suppose $R$ is a real number such that
-    $$\floor{R-\frac{1}{200}}+\floor{R-\frac{2}{200}}+\cdots+\floor{R-\frac{99}{200}}=2018.$$
-    Find $\floor{20R}$.
-\end{example}
-\begin{proof}
-    By definition of the floor function,
-    $$\floor{R-\frac{k}{200}}\leq R-\frac{k}{200} < \left(R-\frac{k}{200}\right)+1.$$
-    
-    Thus, $\floor{R-\frac{1}{200}}$ and $\floor{R-\frac{99}{200}}$ differ by at most $1$. Define $M=\min_{1\leq k\leq 99}\floor{R-\frac{k}{200}}$, then I claim that $M\geq 20$.
 
-    Suppose otherwise, then $M < 20$. Thus, 
-    $$\floor{R-\frac{1}{200}}+\floor{R-\frac{2}{200}}+\cdots+\floor{R-\frac{99}{200}} < 99\cdot 20 = 1980 < 2018,$$
-    a contradiction.
-
-    Thus, $M \geq 20$. Let $a, b$ denote the number of $\floor{R-\frac{k}{200}}$ attaining the values 20 and 21 respectively such that
-    $$\begin{cases}
-        a+b=99 \\
-        20a+21b=2018
-    \end{cases}
-    \implies a=61, b=38.$$
-
-    Hence, we seek 
-    $$\begin{cases}
-        R-\frac{38}{200} \geq 21 \\
-        R-\frac{39}{200}\leq 21
-    \end{cases}
-    \implies 21.19 \leq R \leq 21.195 \implies \boxed{\floor{20R}=438}$$.
-\end{proof}
-
-\subsection{A Buffet Spread}
-This question is really a test of fundamentals: in essence, the number theory starter leads to an algebra finish.
+Finally, we end off with this problem: still on divisibility arguments, but this time it's on the unique prime factorisations!
 \begin{example}[2021 H3 Math P1 Q4]
 Let $a,b,c,d$ be positive integers such that
 \begin{equation}\label{5.3-det}
@@ -486,7 +354,6 @@ $$mn = {p_1}^{e_1}\cdot{p_2}^{e_2}\cdots{q_1}^{f_1}\cdot{q_2}^{f_2}\cdots.$$
 Since $mn$ is a perfect square, all $e_i$ and $f_j$ are even, which implies that $m$ and $n$ are both perfect squares.
 
 Now, we may write $m=x^2$, $n=y^2$ for some coprime $x,y$ since $m, n$ are coprime. Plugging this back into our original definition, we have $a+b=x^2z, c+d=y^2z$, as required.
-\newpage
 \begin{example}[cont.]
 Find a quadratic equation that $\frac{y}{x}$ satisfies, and hence prove that $4ac+1$ is a perfect square.
 \end{example}
@@ -524,6 +391,37 @@ The discriminant is $\Delta=4ac+1$. Since $\frac{y}{x}$ is a rational root, $\De
 \begin{moral}
 The main challenge was discovering the quadratic equation, but we are motivated by the term $4ac+1$, which reminded us of the quadratic discriminant. Finally, the treatment of $\Delta$ required us to recall the definition of the discriminant and to argue that it must be a rational square, which implied that it is also a perfect square given that $a,b,c,d$ are all integers.
 \end{moral}
+
+\subsection{Floors and Ceilings}
+\begin{example}[2018 SMO(S) P25]
+    Suppose $R$ is a real number such that
+    $$\floor{R-\frac{1}{200}}+\floor{R-\frac{2}{200}}+\cdots+\floor{R-\frac{99}{200}}=2018.$$
+    Find $\floor{20R}$.
+\end{example}
+\begin{proof}
+    By definition of the floor function,
+    $$\floor{R-\frac{k}{200}}\leq R-\frac{k}{200} < \left(R-\frac{k}{200}\right)+1.$$
+    
+    Thus, $\floor{R-\frac{1}{200}}$ and $\floor{R-\frac{99}{200}}$ differ by at most $1$. Define $M=\min_{1\leq k\leq 99}\floor{R-\frac{k}{200}}$, then I claim that $M\geq 20$.
+
+    Suppose otherwise, then $M < 20$. Thus, 
+    $$\floor{R-\frac{1}{200}}+\floor{R-\frac{2}{200}}+\cdots+\floor{R-\frac{99}{200}} < 99\cdot 20 = 1980 < 2018,$$
+    a contradiction.
+
+    Thus, $M \geq 20$. Let $a, b$ denote the number of $\floor{R-\frac{k}{200}}$ attaining the values 20 and 21 respectively such that
+    $$\begin{cases}
+        a+b=99 \\
+        20a+21b=2018
+    \end{cases}
+    \implies a=61, b=38.$$
+
+    Hence, we seek 
+    $$\begin{cases}
+        R-\frac{38}{200} \geq 21 \\
+        R-\frac{39}{200}\leq 21
+    \end{cases}
+    \implies 21.19 \leq R \leq 21.195 \implies \boxed{\floor{20R}=438}$$.
+\end{proof}
 
 \subsection{Complex Numbers}
 To start off the section, we showcase a trick on evaluating (suspiciously convenient) trigonometric sums through the lenses of the \textbf{roots of unity}.
