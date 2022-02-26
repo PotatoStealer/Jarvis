@@ -10,6 +10,176 @@ As it turns out, there's more to algebra than pure uninspiring symbol pushing. I
     \caption{Comic from https://xkcd.wtf/135/}
 \end{figure}
 
+\subsection{Many Manipulations}
+\subsubsection{Factorising and Re-expressing}
+Starting off easy, we will explore some funny-looking problems that solve themselves after some smart rearranging and rewriting.
+
+\begin{example}[2013 SMO(J) P15]
+    If $a=1.69$, $b=1.73$ and $c=0.48$, find the value of
+    $$\frac{1}{a^2-ac-ab+bc}+\frac{2}{b^2-ab-bc+ac}+\frac{1}{c^2-ac-bc+ab}.$$
+\end{example}
+Of course, a good calculator can do this in seconds (although typing it in may take longer...), but what if you had to do this by hand? Substituting may not be smart...
+
+However, we note that each of the denominators are suspiciously factorisable. For example,
+$$a^2-ac-ab+bc=a(a-c)-b(a-c)=(a-b)(a-c).$$
+
+\begin{proof}
+    Hence,
+\begin{align*}
+    & \frac{1}{a^2-ac-ab+bc}+\frac{1}{b^2-ab-bc+ac}+\frac{1}{c^2-ac-bc+ab}\\
+    &=\frac{1}{(a-b)(a-c)}+\frac{2}{(b-c)(b-a)}+\frac{1}{(c-b)(c-a)} \\
+    &=\frac{(b-c)-2(a-c)+(a-b)}{(a-b)(a-c)(b-c)} \\
+    &=-\frac{1}{(a-b)(b-c)} = -\frac{1}{(-0.04)(1.25)} = \boxed{20}
+\end{align*}
+\end{proof}
+
+
+\begin{example}[2013 SMO(J) P32]
+    If $a$ and $b$ are positive integers such that $a^2+2ab-3b^2-41=0$, find $a^2+b^2$.
+\end{example}
+The constant "$41$" seems irrelevant to the equation at this point, except that it's a prime number (this may be important!). For now, let us write the equation as $a^2+2ab-3b^2=41$.
+
+\begin{proof}
+    Notice that the coefficients of the LHS sum to $(1+2-3=)0$(!), so this tells us that we should factorise:
+$$a^2+2ab-3b^2=a^2-ab+3ab-3b^2=a(a-b)+3b(a-b)=(a+3b)(a-b)=41.$$
+
+Now, it becomes apparent why $41$ was chosen: because it is a prime number, and $a,b$ are integers, $a+3b$ and $a-b$ are each either $1$ or $41$. Moreover, $a+3b \geq a-b$ so we have
+$$
+\begin{cases}
+    a+3b&=41 \\
+    a-b&=1
+\end{cases} \implies a=11, b=10.
+$$
+Thus, $a^2+b^2=11^2+10^2=\boxed{221}$.
+\end{proof}
+
+
+\begin{example}[2017 SMO(J) P20]
+    Let $a$, $b$ and $c$ be positive integers such that
+    $$a^2+bc=257\quad\text{and}\quad ab+bc=101.$$
+
+    Find the value of $a$, $b$ and $c$.
+\end{example}
+\begin{proof}
+    Armed with the idea from the previous problem, we see again that $101$ is a prime number, so $b(a+c)=101$. Moreover, $b+c\geq a$ so that $b=1$ and $a+c=101$. Thus, $$a^2+bc=a^2+c=a^2+(101-a)=257 \implies a(a-1)=156.$$
+
+    With some guess and check (since $a$ is a positive integer), $a=13$, $b=1$ and $c=88$.
+\end{proof}
+
+
+\begin{example}[2016 SMO(J) P24]
+    If $\frac{a}{2b}=\frac{2b}{3c}=\frac{3c}{8a}$, find the value of $\frac{ac+cb}{cb-ba}.$
+\end{example}
+The given condition tells us that $a$, $b$ and $c$ are all connected, so we should express $a$ and $b$ in terms of $c$.
+
+\begin{proof}
+    Let $\frac{a}{2b}=\frac{2b}{3c}=\frac{3c}{8a}=k$ for some real $k$. We have
+$$ 
+\begin{cases}
+    a=2kb \\
+    2b=3kc \\
+    3c=8ka
+\end{cases}
+\implies
+\begin{cases}
+    a=3k^2c \\
+    2b=8k^2a \\
+\end{cases}
+\implies
+\begin{cases}
+    a=24k^5c \\
+    b=12k^4c    
+\end{cases} 
+.$$
+By the given condition, we have $\frac{2b}{3c}=\frac{24k^4c}{3c}=8k^4=k \implies 8k^3=1 \implies k=\frac{1}{2}$, $k^5=\frac{1}{32}$
+
+Hence,
+\begin{align*}
+    \frac{ac+cb}{cb-ba}
+    &= \frac{24k^5c^2+12k^4c^2}{12k^4c^2-288k^9c^2} \\
+    &= \frac{2k+1}{1-24k^5} \\
+    &= \frac{2\cdot\frac{1}{2}+1}{1-24\cdot\frac{1}{32}} = \boxed{8}
+\end{align*}
+\end{proof}
+
+For the first substantial technique of this section, we introduce the trick of \textit{counting degrees}.
+
+\begin{proposition}[Counting degrees]
+    We say that an expression or equation is \textit{homogenous} (or homogenised) if there is no loose constant terms remaining. For example, $x^3+2022x^2y+2021$ is non-homogenous because of the constant $2021$, while $x^3+2022xy^3+xy$ is homogenous because there is no loose constant. 
+
+    We \textit{want} to work with homogenous expressions because degrees cancel nicely, and expressions are usually neat. 
+\end{proposition}
+\begin{example}
+    If $x$ and $y$ are real numbers such that $x+y=2$ and that
+    $$\frac{(1-x)^2}{x}+\frac{(1-y)^2}{y}=-4,$$
+    find the value of $xy$.
+\end{example}
+
+Consider the term $\frac{(1-x)^2}{x}$. The numerator is a quadratic (degree $2$) while the denominator is linear (degree $1$), so we say that this term is of degree $1$. The term $\frac{(1-y)^2}{y}$ is also similarly of degree $1$, and so the LHS is of degree $1$. 
+
+On the other hand, the RHS is a constant (degree $0$), which makes the equation \textit{non-homogenous}. Fortunately, we are given that $x+y=2$. 
+
+\begin{proof}
+    We begin by writing
+$$\frac{(1-x)^2}{x}+\frac{(1-y)^2}{y}=-2(x+y).$$ Now, our equation is homogenous, and as we shall see, this equation now resolves itself very cleanly. Clearing denominators (since $x,y \neq 0$), we have
+\begin{align*}
+    \frac{(1-x)^2}{x}+\frac{(1-y)^2}{y}=-2(x+y) &\implies x(1-y)^2+y(1-x)^2=-2xy(x+y) \\
+    &\implies (xy^2-2xy+x)+(x^2y-2xy+y)=-2x^2y-2xy^2 \\
+    &\implies 3x^2y+3xy^2-4xy+(x+y)=0 \\
+    &\implies 3xy(x+y)-4xy+(x+y)=0 \\
+    &\implies 2xy+2=0 \implies xy=\boxed{-1}
+\end{align*}
+\end{proof}
+
+\subsubsection{Substitutions}
+Sometimes scary expressions are just expanded versions of simpler expressions! A smart substitution reduces a large amount of gruntwork, and simplifies things nicely.
+
+To start off, we showcase an application of a nifty substitution, without which, the problem may be untractable to the unsuspecting student.
+\begin{example}[2013 SMO(J) P11]
+    Find the value of $\sqrt{9999^2+19999}.$
+\end{example}
+Certainly, we are not expected to multiply out and then take the square root of this monstrous expression! However, we do note that the choice of $9999$ is completely arbitrary, so it may be wise to make a substitution for $9999$ and express $19999$ in terms of $a$.
+
+\begin{proof}
+    Let $a=9999$, then $19999=2\cdot 9999+1=2a+1$. Aha! We now know
+\begin{align*}
+    \sqrt{9999^2+19999}&=\sqrt{a^2+(2a+1)} \\
+    &=\sqrt{(a+1)^2}=a+1 \\
+    &=\boxed{10000}.
+\end{align*}
+How nice!
+\end{proof}
+
+\begin{example}[2014 SMO(J) P16]
+    Let $m$ and $n$ be positive real numbers satisfying the equation
+    $$m+4\sqrt{mn}-2\sqrt{m}-4\sqrt{n}+4n=3.$$
+    Find the value of $$\frac{\sqrt{m}+2\sqrt{n}+2014}{4-\sqrt{m}-2\sqrt{n}}.$$
+\end{example}
+The required value is just as grizzly as the given equation. To start, we should be somewhat suspicious of the term $4\sqrt{mn}$: this is a term of degree $1$, since $\sqrt{m}$ and $\sqrt{n}$ both have degree $\frac{1}{2}$. Yet, it's mixed in an expression containing terms of degree $\frac{1}{2}$ like $2\sqrt{m}$ and $4\sqrt{n}$, as well as degree $1$ terms like $m$ and $4n$.
+
+This strongly suggests the substitutions $x=\sqrt{m}, y=\sqrt{n}$, so we want the value of 
+$$\frac{\sqrt{m}+2\sqrt{n}+2014}{4-\sqrt{m}-2\sqrt{n}}=\frac{x+2y+2014}{4-(x+2y)}.$$
+
+The given equation gives $$x^2+4xy-2x-4y+4y^2=3. \implies (x+2y)^2-2(x+2y)=3 \implies (x+2y)(x+2y-2)=3.$$ Setting $z=x+2y$, $z(z-2)=3 \implies z^2-2z-3=0 \implies z=3$ only since $z=x+2y>0$. 
+
+Hence, the required value is \boxed{4}.
+
+\begin{example}[2015 SMO(J) P21]
+    Find the value of $$\sqrt{(98\cdot 100+2)(100\cdot 102+2)+(100\cdot 2)^2}.$$
+\end{example}
+Once again, this is a monstrous expression, but fortunately the individual parts in the expression are broken down slightly for us. For now, let us focus on the term $98\cdot 100+2$. 
+
+It may be tempting to simply substitute $a=98$ (or $a=100$), but the expression $a(a+2)+2=a^2+2a+2$ is cumbersome to work with. Perhaps we should compromise and let $a=99$ instead!
+
+Then, $98\cdot 100+2= (a-1)(a+1)+2=a^2+1=99^2+1$, and similarly, $100\cdot 102+2 = 101^2+1$. The desired expression is now
+$\sqrt{(99^2+1)(101^2+1)+(100\cdot 2)^2}$, and it is apparent why $100\cdot 2$ was written instead of $200$. Letting $b=100$, we have
+\begin{align*}
+    \sqrt{(99^2+1)(101^2+1)+(100\cdot 2)^2}&=\sqrt{((b-1)^2+1)((b+1)^2+1)+4b^2}\\
+    &=\sqrt{(b^2-2b+2)(b^2+2b+2)+4b^2}=\sqrt{((b^2+2)-2b)((b^2+2)+2b)+4b^2} \\
+    &=\sqrt{(b^2+2)^2-(2b)^2+4b^2} \\
+    &= b^2+2=\boxed{10002}
+\end{align*}
+
 \subsection{Polynomials}
 Outside of quadratic polynomials, there are also cubics, quartics, quintics, sextics..., that most students assume are extinct. However, they can be found in a select number of natural hideouts!
 
@@ -192,8 +362,7 @@ For the final problem of this chapter, we shall prove identity 7.
     \end{cases},$$
     whence the cubic is $$x^3+Bx-C=(x-a)(x-b)(x-c).$$
     
-    This gives $a^2+b^2+c^2=(a+b+c)^2-2(ab+bc+ca)=-2B$
-    We now "lift" the power up to $x^7$. Suppose $t$ is one of $a,b,c$. Thus, we have
+    This gives $a^2+b^2+c^2=(a+b+c)^2-2(ab+bc+ca)=-2B$. We now "lift" the power up to $x^7$. Suppose $t$ is one of $a,b,c$. Thus, we have
     \begin{align}
         t^7&=t(C-Bt)^2=B^2t^3-2BCt^2+C^2t \\
         &=B^2(C-Bt)-2BCt^2+C^2t \\
@@ -323,7 +492,7 @@ At this point, surely the cubic must factor. Indeed, we miraculously see
 $$b^2=(k-2)^2(4k+1) \implies 4k+1=m^2,$$
 for odd $m$ (see the problem above for a similar reasoning).
 
-Now, we are done, since by backsubstituting, we have:
+Now, we are done, since by back-substituting, we have:
 $$a=3k=\frac{3}{4}(m^2-1), \quad b^2=(k-2)^2(4k+1)=\left(\frac{m^2-9}{4}\right)^2m^2 \implies b=\pm \frac{m^3-9m}{4}.$$
 Hence,
 $$x=\frac{1}{8}\left(3(m^2-1)\pm(m^3-9m)\right)\quad\text{and}\quad y=\frac{1}{8}\left(3(m^2-1)\mp(m^3-9m)\right).$$
@@ -384,7 +553,7 @@ As again, proofs should be written in the forwards direction, and we present so 
 I claim that the quadratic equation is $au^2-u-c=0$ if $ad-bc > 0$ and $au^2+u-c=0$ if $ad-bc < 0$.
 
 We have $$\frac{y^2}{x^2}=\frac{c+d}{a+b} \quad\text{and}\quad \frac{y}{x}=\frac{ad-bc}{a+b},$$
-Thus, $$\frac{a(c+d)}{a+b}-\frac{ad-bc}{a+b}-c=\frac{a(c+d)-(ad-bc)-c(a+b)}{a+b}=0.$$
+Thus, $$a\left(\frac{c+d}{a+b}\right)-\left(\frac{ad-bc}{a+b}\right)-c=\frac{a(c+d)-(ad-bc)-c(a+b)}{a+b}=0.$$
 
 The discriminant is $\Delta=4ac+1$. Since $\frac{y}{x}$ is a rational root, $\Delta$ is a rational square. Moreover, $4ac+1$ is a positive integer, and so it is a perfect square.
 \end{proof}
@@ -393,6 +562,8 @@ The main challenge was discovering the quadratic equation, but we are motivated 
 \end{moral}
 
 \subsection{Floors and Ceilings}
+In what follows, and in most modern texts, $\floor{x}$ denotes the greatest integer less than or equal to $x$. For example, $\floor{\pi}=3$ and $\floor{-1.414}=-2$. 
+Similarly, $\ceiling{x}$ denotes the least integer greater than or equal to $x$. For example, $\ceiling{\pi}=4$ and $\ceiling{-1.414}=-1$.
 \begin{example}[2018 SMO(S) P25]
     Suppose $R$ is a real number such that
     $$\floor{R-\frac{1}{200}}+\floor{R-\frac{2}{200}}+\cdots+\floor{R-\frac{99}{200}}=2018.$$
@@ -400,11 +571,10 @@ The main challenge was discovering the quadratic equation, but we are motivated 
 \end{example}
 \begin{proof}
     By definition of the floor function,
-    $$\floor{R-\frac{k}{200}}\leq R-\frac{k}{200} < \left(R-\frac{k}{200}\right)+1.$$
+    $$\floor{R-\frac{k}{200}}\leq R-\frac{k}{200} < \left(R-\frac{k}{200}\right)+1,$$ 
+    thus, $\floor{R-\frac{1}{200}}$ and $\floor{R-\frac{99}{200}}$ differ by at most $1$ (this is the key idea!). 
     
-    Thus, $\floor{R-\frac{1}{200}}$ and $\floor{R-\frac{99}{200}}$ differ by at most $1$. Define $M=\min_{1\leq k\leq 99}\floor{R-\frac{k}{200}}$, then I claim that $M\geq 20$.
-
-    Suppose otherwise, then $M < 20$. Thus, 
+    Define $M=\max_{1\leq k\leq 99}\floor{R-\frac{k}{200}}$, then I claim that $M\geq 20$. Suppose otherwise, then $M < 20$. Thus, 
     $$\floor{R-\frac{1}{200}}+\floor{R-\frac{2}{200}}+\cdots+\floor{R-\frac{99}{200}} < 99\cdot 20 = 1980 < 2018,$$
     a contradiction.
 
@@ -420,7 +590,7 @@ The main challenge was discovering the quadratic equation, but we are motivated 
         R-\frac{38}{200} \geq 21 \\
         R-\frac{39}{200}\leq 21
     \end{cases}
-    \implies 21.19 \leq R \leq 21.195 \implies \boxed{\floor{20R}=438}$$.
+    \implies 21.19 \leq R \leq 21.195 \implies \boxed{\floor{20R}=423}$$.
 \end{proof}
 
 \subsection{Complex Numbers}
