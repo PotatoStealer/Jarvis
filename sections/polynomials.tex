@@ -1,0 +1,199 @@
+\documentclass[../jarvis.tex]{subfiles}
+\graphicspath{{\subfix{../images/}}}
+\begin{document}
+\subsection{Polynomials \med}
+Outside of quadratic polynomials, there are also cubics, quartics, quintics, sextics..., that most students assume are extinct. However, they can be found in a select number of natural hideouts!
+
+\subsubsection{Quadratics}
+In this section, we will revisit the common quadratic polynomials.
+The techniques for quadratics aren't many. The usual few are the discriminant and completing the square, none of which are totally unexpected or inspiring. However, they are still useful-ish in extracting information from a given problem. We hope it suffices!
+\begin{example}[2010-2011 Mandelbrot]
+    Let $P(x)=x^3+ax^2+bx+c$ be a polynomial with three distinct roots. The polynomial P(Q(x)), where $Q(x)=x^2+x+2001$, has no real roots. Prove that $P(2001)>\frac{1}{64}$.
+\end{example}
+This is a strange idea: given the number of roots of a polynomial, what can we deduce about it's value?
+
+\begin{proof}
+    For starters, let $p,q,r$ be the three distinct roots of $P$, then $P(x)=(x-p)(x-q)(x-r)$ and let $z$ be a complex root of $P(Q(x))$ so that $P(Q(z))=0$. 
+
+Hence, $Q(z)=\text{$p$ or $q$ or $r$}$. Without loss of generality, $$Q(z)=p \implies z^2+z+(2001-p)=0.$$
+
+However, there are no real values of $z$ that satisfy this condition! This next step would be glaring: by considering the discriminant,
+$$\Delta=1-4(2001-p) < 0 \implies p < \frac{8003}{4}.$$
+
+Since we initially assumed without loss of generality that $Q(z)=p$, this conclusion should also hold for $q, r$, that is $p,q,r < \frac{8003}{4}$.
+
+Finally, \begin{align*}
+    P(2001)=(2001-p)(2001-q)(2001-r) &> \frac{1}{4}\cdot\frac{1}{4}\cdot\frac{1}{4} \\
+    &=\frac{1}{64}
+\end{align*}
+\end{proof}
+Next, we consider a quadratic with coefficients that form an arithmetic progression. As it turns out, if the quadratic has a unique root, then we can uniquely determine this root!
+\begin{example}[2013 AMC 10B P19]
+    Let $c,b,a$ be real numbers form an arithmetic progression with $a\geq b\geq c\geq 0$. The quadratic $ax^2+bx+c=0$ has exactly one root. Find this root.
+\end{example}
+First step! The discriminant: $\Delta=b^2-4ac=0$, implying that the only root is $x=\frac{-b}{2a}$ by considering the quadratic formula.
+
+\begin{proof}
+    Since $c,b,a$ have common differences with $b$ being the median element, we may write $c=b+(b-a)=2b-a$ so that 
+$$b^2-4ac=b^2-4a(2b-a)=b^2-8ab+4a^2=0 \implies b=4a\pm2a\sqrt{3}.$$
+Yet, we are given that $a\geq b$, so surely $b=4a-2a\sqrt{3}$, giving $x=-\frac{b}{2a}=\boxed{-2+\sqrt{3}}.$
+\end{proof}
+
+\subsubsection{The Rare Types}
+Contrary to popular belief, there are higher degree polynomials in the wild. We first consider some identities associated with the coefficients of a general polynomial.
+
+Consider a general polynomial $$P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$$ with real coefficients $\{a_n\}$. Then, the
+\begin{enumerate}
+    \item constant term is $P(0)$,
+    \item sum of coefficients is $P(1)$,
+    \item sum of \textit{odd-power} coefficients is $\frac{P(1)-P(-1)}{2}$,
+    \item sum of \textit{even-power} coefficients is $\frac{P(1)+P(-1)}{2}$.
+\end{enumerate}
+
+The reader is strongly encouraged to derive the four properties above!
+
+For the other coefficients, there are other higher-powered techniques (pun fully intended) to deal with them, but we will not introduce them here (for the interested, see the roots of unity filter).
+
+We are guessing the student is familiar with the so-called "sum and product of roots" for a quadratic, and here, we introduce a generalisation - we have similar relations for higher-degree polynomials! This is given by Vieta's Theorem.
+
+\begin{proposition}[Vieta's Theorem]
+    A general polynomial $P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ with real coefficients $\{a_n\}$ and real and complex roots $r_1, r_2, \cdots r_n$ has the following relations:
+    \begin{align*}
+        r_1+r_2+\cdots+r_n&=-\frac{a_{n-1}}{a_n}\\
+        (r_1r_2+r_1r_3+\cdots+r_1r_n)+(r_2r_3+r_2r_4+\cdots+r_2r_n)+\cdots+r_{n-1}r_n&=\frac{a_{n-2}}{a_n} \\
+        r_1r_2\cdots r_n=(-1)^n\frac{a_0}{a_n}
+    \end{align*}
+    In general, the \textit{sum of roots taken k at a time} is given by $(-1)^k\frac{a_{n-k}}{a_n}.$ Each of these sums are also known as \textit{elementary symmetric polynomials}.
+\end{proposition}
+
+Let us show some examples of Vieta's theorem in action. 
+\begin{example}[2001 All-Russian Olympiad]
+    The equation $(x-\sqrt[3]{13})(x-\sqrt[3]{53})(x-\sqrt[3]{103})=\frac{1}{3}$ has three distinct roots $r,s,t$. Find the value of $r^3+s^3+t^3$.
+\end{example}
+
+First of all... yikes! Cube roots and cubes. However, it seems that the three cube roots look arbitrary: while the answer depends on their values, we can find an expression for $r^3+s^3+t^3$ in terms of these cube roots without caring about their values just yet. 
+\begin{proof}
+    We make the substitution $a=\sqrt[3]{13}$, $b=\sqrt[3]{53}$, $c=\sqrt[3]{103}$, so that our equation is transformed into $$(x-a)(x-b)(x-c)-\frac{1}{3}=0$$. By Vieta's theorem, 
+\begin{align*}
+    r+s+t&=a+b+c \\
+    rs+st+rt&=ab+bc+ca \\
+    rst&=abc-\frac{1}{3}.
+\end{align*}
+Now, how do we use this to our advantage to find $r^3+s^3+t^3$? For starters, we may expand
+$$(r+s+t)^3=r^3+s^3+t^3+3r^2s+3r^2t+3rs^2+3rt^2+3s^2t+3st^2+6rst.$$
+We're close to finding something substantial - if we can simplify the sum of the terms in the form $m^2n$. A natural way to do this is to expand
+$$(r+s+t)(rs+st+rt)=r^2s+r^2t+rs^2+rt^2+s^2t+st^2+3rst.$$
+
+Aha! Now our expression simplifies nicely:
+$$(r+s+t)^3=r^3+s^3+t^3+3(r+s+t)(rs+st+rt)-3rst,$$
+whence upon arranging, we have
+\begin{align*}
+    r^3+s^3+t^3
+    &=(\alpha+\beta+\gamma)^3-3(\alpha+\beta+\gamma)(\alpha\beta+\beta\gamma+\gamma\alpha)+3(\alpha+\beta+\gamma+\frac{1}{3})\\
+    &=(\alpha+\beta+\gamma)^3-3(\alpha+\beta+\gamma)(\alpha\beta+\beta\gamma+\gamma\alpha)+3(\alpha+\beta+\gamma)+1 \\
+    &=\alpha^3+\beta^3+\gamma^3+1 \\
+    &=\boxed{170}
+\end{align*}
+\end{proof}
+
+\begin{example}[2019 AIME I P10]
+For complex numbers $z_1, z_2,\cdots z_{673}$, the polynomial
+$$(x-z_1)^3(x-z_2)^3\cdots(x-z_673)^3$$
+can be expressed as $x^{2019}+20x^{2018}+19x^{2017}+g(x)$ where $g(x)$ is a polynomial with complex polynomials and of degree \textit{at most} $2016$. Find the value of 
+$$\sum_{1\leq j\leq k\leq 673}z_jz_k.$$
+\end{example}
+The sum requested of us is an elementary symmetric polynomial, so we would expect to use Vieta's theorem in some way.
+
+Let $S, P$ denote the sum of roots one and twice at a time respectively and let $Q(x)$ denote the given polynomial. Note that the required sum is $P$. Since it's weird that the given polynomial is cubed throughout, we shall consider
+$$p(x)=(x-z_1)(x-z_2)\cdots(x-z_{673})=x^{673}-Sx^{672}+Px^{671}+\cdots$$
+
+Thus, $Q(x)=[p(x)]^3$. To find $S$ and $P$, we shall expand this to find the coefficients of $x^{2018}$ and $x^{2017}$. To do this quickly, we consider how terms in 3 products can be multiplied together to give the relevant terms.
+
+To wit, 
+\begin{enumerate}
+    \item $x^{2019}$ can only be formed by multiplying all three $x^{673}$, and there is only 1 way to do this.
+    \item $x^{2018}$ can be formed by multiplying two $x^{673}$ and one $Sx^{672}$, and there are $\binom{3}{1}=3$ ways to do this.
+    \item $x^{2017}$ can be formed by multiplying two $x^{673}$ and one $Px^{671}$, and there are $\binom{3}{1}=3$ ways to do this. It can also be formed by multiplying one $x^{673}$ and two $Sx^{672}$, giving $3$ ways as well.
+\end{enumerate}
+\begin{proof}
+    We now have,
+\begin{align*}
+    Q(x)=[p(x)]^3&=(x^{673}-Sx^{672}+Px^{671}+\cdots)(x^{673}-Sx^{672}+Px^{671}+\cdots)(x^{673}-Sx^{672}+Px^{671}+\cdots) \\
+    &= x^{2019}-3Sx^{2018}+3(P+S^2)x^{2017}+g(x),
+\end{align*}
+and thus
+$$\begin{cases} -3S=20 \\ 3(P+S^2)=19 \end{cases}\Rightarrow \begin{cases} S=-\frac{20}{3} \\ P=-\frac{343}{9}\end{cases}.$$
+
+Hence, $\boxed{P=-\frac{343}{9}}$.
+\end{proof}
+
+At this point, it's only complete if we also derive some common algebraic identities and factorisations. 
+\begin{proposition}[Classic]
+    In what follows, assume the summation run over $x_1,x_2,\cdots,x_n$.
+    \begin{enumerate}
+        \item For the bivariate $x^2+y^2=(x+y)^2-2xy$, we also have the three-variable relation $$x^2+y^2+z^2=(x+y+z)^2-2(xy+yz+zx).$$
+        In general, $$\left(\sum x_i\right)^2=\sum x_i^2-2\left(\sum_{1\leq i\leq q\leq n}x_ix_j\right).$$
+
+        \item $x^3+y^3+z^3-3xyz=\frac{1}{2}(x+y+z)[(x-y)^2+(y-z)^2+(z-x)^2]$.
+        This also implies $$x^3+y^3+z^3 \geq 3xyz$$, because
+        $(x-y)^2+(y-z)^2+(z-x)^2\geq 0$.
+        \item Sophie-Germain Identity: $a^4+4b^4=(a^2+2b^2+2ab)(a^2+2b^2-2ab)$.
+        \item Lagrange's Identity: $(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2=(ac+bd)^2+(ad-bc)^2$
+        \item $(a+b)^3-(a^3+b^3)=3ab(a+b)$.
+        \item $(a+b)^5-(a^5+b^5)=5ab(a+b)(a^2+ab+b^2)$.
+        \item $(a+b)^7-(a^7+b^7)=7ab(a+b)(a^2+ab+b^2)^2$.
+        \item My personal favourite: $\frac{(a^2+bc)(b^2+ac)}{(a+c)(b+c)}+\frac{(a^2+bc)(c^2+ab)}{(a+b)(b+c)}+\frac{(b^2+ac)(c^2+ab)}{(a+b)(a+c)}=a^2+b^2+c^2$
+    \end{enumerate}
+\end{proposition}
+\begin{example}[2016 SMO(O) P15]
+    Let $p,q$ be integers such that the roots of the polynomial $f(x)=x^3+px^2+qx-343$ are real. Find the minimum value of $|p^2-2q|$.
+\end{example}
+This question reeks of Vieta's theorem... With some foresight, we first derive a corollary of the AM-GM inequality for three variables. From identity 2, we know that
+    $$x^3+y^3+z^3 \geq 3xyz.$$
+
+    Now take $x=a^{\frac{2}{3}}, y=b^{\frac{2}{3}}, z=c^{\frac{2}{3}}$ so that
+    $$a^2+b^2+c^2\geq 3\sqrt[3]{(abc)^2}.$$
+    \textit{(whispers) This is a secret tool that will help us later!}
+\begin{proof}
+    
+    Let $a,b,c$ be the real roots of $f$, then by Vieta's theorem, $p=-(a+b+c), q=ab+bc+ca, 343=abc$.
+    Thus,
+    \begin{align*}
+        |p^2-2q|&=|(a+b+c)^2-2(ab+bc+ca)| \\
+        &=|a^2+b^2+c^2| \\
+        &\geq |3\sqrt[3]{(abc)^2}| = |3\sqrt[3]{343^2}| \\
+        &=\boxed{147}
+    \end{align*}
+\end{proof}
+
+For the final problem of this chapter, we shall prove identity 7.
+\begin{example}[Classic]
+    Factorise $(a+b)^7-(a^7+b^7)$.
+\end{example}
+\begin{proof}
+    Certainly we need some observations to reduce this problem into a more tractable form. We note that $a=0$ or $b=0$ make the expression vanish, so $ab$ is a factor of the expression. Moreover, since the degrees on $a, b$ are odd, $a=-b$ also causes the expression to vanish. Thus, $a+b$ is also a factor.
+
+    Thus, the expression is a polynomial that readily decomposes into the factor $ab(a+b)$ of degree $3$ and another factor of degree $4$ (or possibly more factors).
+
+    Let $a,b,c$ be roots of the cubic with $c=-(a+b)$ such that
+    $$\begin{cases}
+        A&=a+b+c=0 \\
+        B&=ab+bc+ca=-(a^2+b^2+ab) \\
+        C&=abc=-ab(a+b)
+    \end{cases},$$
+    whence the cubic is $$x^3+Bx-C=(x-a)(x-b)(x-c).$$
+    
+    This gives $a^2+b^2+c^2=(a+b+c)^2-2(ab+bc+ca)=-2B$. We now "lift" the power up to $x^7$. Suppose $t$ is one of $a,b,c$. Thus, we have
+    \begin{align}
+        t^7&=t(C-Bt)^2=B^2t^3-2BCt^2+C^2t \\
+        &=B^2(C-Bt)-2BCt^2+C^2t \\
+        &=-2BCt^2+(C^2-B^3)t+B^2C \label{12-seventh}
+    \end{align}
+    Summing \eqref{12-seventh} over $t=a,b,c$,
+    \begin{align*}
+        a^7+b^7-(a+b)^7&=-2BC(-2B)+3B^2C\\
+        &=7B^2C=-7ab(a+b)(a^2+ab+b^2)^2
+    \end{align*}
+    whence $$(a+b)^7-(a^7+b^7)=7ab(a+b)(a^2+ab+b^2)^2.$$
+\end{proof}
+\end{document}

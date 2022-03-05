@@ -5,6 +5,11 @@
 \allowdisplaybreaks
 \AddToHook{cmd/section/before}{\clearpage}
 \newcommand{\fallfac}[2]{{#1}^{\underline{#2}}}
+\newcommand{\diff}{\includegraphics[width=1em, height=0.9em]{images/star.jpg}}
+\newcommand{\ez}{(\diff)}
+\newcommand{\med}{(\diff\diff)}
+\newcommand{\hard}{(\diff\diff\diff)}
+
 \usepackage{graphicx}
 \graphicspath{{images/}}
 \usepackage[sexy]{evan}
@@ -20,20 +25,5 @@
 \begin{document}
 
 \maketitle
-
-\section{Introduction}
-\subfile{sections/intro}
-
-\section{Algebra}
-\subfile{sections/algebra}
-
-\section{Calculus}
-\subfile{sections/calculus}
-
-\section{Linear Algebra}
-\subfile{sections/linalg}
-
-\section{Solutions to Selected Problems}
-\subfile{sections/sols}
 
 \end{document}
