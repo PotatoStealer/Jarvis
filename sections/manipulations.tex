@@ -10,8 +10,8 @@ As it turns out, there's more to algebra than pure uninspiring symbol pushing. I
     \caption{Comic from https://xkcd.wtf/135/}
 \end{figure}
 
-\subsection{Many Manipulations \ez}
-\subsubsection{Factorising and Re-expressing}
+\section{Many Manipulations \ez}
+\subsection{Factorising and Re-expressing}
 Starting off easy, we will explore some funny-looking problems that solve themselves after some smart rearranging and rewriting.
 
 \begin{example}[2013 SMO(J) P15]
@@ -102,7 +102,7 @@ Hence,
 \end{align*}
 \end{proof}
 
-\subsubsection{Homogenisation}
+\subsection{Homogenisation}
 For our first concept of the handout, we introduce the trick of counting degrees, or \textit{homogenisation}. We only illustrate as such with a simple problem, and further applications of this idea will follow in a later.
 
 \begin{proposition}[Counting degrees]
@@ -132,7 +132,7 @@ $$\frac{(1-x)^2}{x}+\frac{(1-y)^2}{y}=-2(x+y).$$ Now, our equation is homogenous
 \end{align*}
 \end{proof}
 
-\subsubsection{Substitutions and Identities}
+\subsection{Substitutions and Identities}
 Sometimes scary expressions are just expanded versions of simpler expressions! A smart substitution will help simplify things nicely. Certainly, knowing some basic identities will help reduce the problem. Here, we list the necessary few.
 
 \begin{proposition}[Basic Identities]
@@ -236,7 +236,7 @@ Solving for $x$, we have $$x=\frac{1}{\cbrt{9}-1}.$$ We make the substitution $a
     &=\frac{\cbrt{81}+\cbrt{9}+1}{8}.
 \end{align*}
 
-\subsection{Some Solving}
+\section{ Solving}
 Many questions will demand you to "find all X satisfying condition Y", the keyword being \textbf{find all}. These problems come in solving equations, functional equations, inequalities, etc. This implies that there are two parts to the problem: 
 \begin{enumerate}
     \item Find the solutions and show that no other solutions exist.
@@ -362,62 +362,97 @@ $$\boxed{x=n^3+3n^2-1\quad\text{and}\quad y=-n^3+3n+1},$$
 and permutations (note that the equation is symmetric in $x$ and $y$!).
 \end{proof}
 
-Finally, we end off with this problem: still on divisibility arguments, but this time it's on the unique prime factorisations!
-\begin{example}[2021 H3 Math P1 Q4]
-Let $a,b,c,d$ be positive integers such that
-\begin{equation}\label{5.3-det}
-    (ad-bc)^2=(a+b)(c+d)
-\end{equation}
-Show that there exists coprime positive $x,y$ and a positive integer $z$ such that
-$$a+b=x^2z, c+d=y^2z.$$
-\end{example}
-Here, we say that two integers $r,s$ are \textbf{coprime} (or \textbf{relatively prime}) \textit{if and only if} $\gcd(r,s)=1$, meaning that their greatest common factor is $1$. The readers more familiar with number theory will quickly recall that the problem implies that $\gcd(a+b, c+d)=z$.
-
-Indeed, we may claim as such, since the problem only asks of us to prove the existence of \textit{a} positive integer $z$. We begin by defining $z=\gcd(a+b, c+d)$, whence $a+b=mz$, $c+d=nz$ for some coprime $m, n$. Our goal is now to show that $m$ and $n$ are both perfect squares.
-
-From \eqref{5.3-det}, $(ad-bc)^2=mnz^2$, so $mn$ is a perfect square. Now, consider the prime decompositions:
-    $$m = \prod {p_i}^{e_i}, \;n = \prod {q_j}^{f_j}$$
-Since $m$ and $n$ are coprime, no $p_i$ and $q_j$ are equal.
-Moreover,
-$$mn = {p_1}^{e_1}\cdot{p_2}^{e_2}\cdots{q_1}^{f_1}\cdot{q_2}^{f_2}\cdots.$$
-Since $mn$ is a perfect square, all $e_i$ and $f_j$ are even, which implies that $m$ and $n$ are both perfect squares.
-
-Now, we may write $m=x^2$, $n=y^2$ for some coprime $x,y$ since $m, n$ are coprime. Plugging this back into our original definition, we have $a+b=x^2z, c+d=y^2z$, as required.
-\begin{example}[cont.]
-Find a quadratic equation that $\frac{y}{x}$ satisfies, and hence prove that $4ac+1$ is a perfect square.
-\end{example}
-We have
-$$\frac{y^2}{x^2}=\frac{c+d}{a+b}.$$
-Square-rooting this term is slightly obstructive, so we should find another way to express $\frac{y}{x}$. Since we have not used $\eqref{5.3-det}$, this might be the time. Dividing across by $(a+b)^2$ (since it is non-zero), we have
-$$\frac{(ad-bc)^2}{(a+b)^2}=\frac{c+d}{a+b}=\frac{y^2}{x^2} \implies \frac{ad-bc}{a+b}=\frac{y}{x}$$
-since $\frac{y}{x}$ is positive.
-
-Our quadratic is
+\section{Exercises}
+\subsection{Warmup}
+\problem[2015 SMO(J) P9]Find the value of $\left(4\sqrt{4+2\sqrt{3}}-\sqrt{49+8\sqrt{3}}\right)^2.$
+\problem[2014 SMO(J) P13]Let $A$ be the solution of the equation
+$$\frac{x-7}{x-8}-\frac{x-8}{x-9}=\frac{x-10}{x-11}-\frac{x-11}{x-12}.$$
+\problem[2016 SMO(J) P11]If the sum and product of two positive real numbers are both equal to $13$, find the sum of the squares of these two numbers.
+\problem[2014 SMO(J) P23]Let $a,b,c$ be non-zero reals satisfying $a+2b+3c=2014$ and $2a+3b+2c=2014$, find the value of 
+$$\frac{a^2+b^2+c^2}{ab+bc+ca}.$$
+\problem[2014 SMO(J) P26]Let $x$ be such that $\left(x+\frac{1}{x}\right)^2=3$. Evaluate $x^3+\frac{1}{x^3}.$
+\problem[2014/15 SDML 2A/P5]Let $a,b,c,d,e$ be five consecutive positive integers such that $a<b<c<d<e$. If $b+c+d$ is a perfect cube and $a+b+c+d+e$ is a perfect square, find the smallest possible value of $e$.
+\problem[2008 SMO(J) P23]Evaluate 
+$$\frac{(2020^2-20100)(20100^2-100^2)(2000^2+20100)}{2010^6-10^6}.$$
+\problem[2014 SMO(S) P23]Let $n$ be a positive integer and let
+$$x=\frac{\sqrt{n+2}-\sqrt{n}}{\sqrt{n+2}+\sqrt{n}},\quad y=\frac{\sqrt{n+2}+\sqrt{n}}{\sqrt{n+2}-\sqrt{n}}.$$
+If $14x^2+26xy+14y^2=2014$, find the value of $n$.
+\problem[2014 SMO(S) P29]Solve the following system in real numbers:
 \begin{align*}
-   &\frac{py^2}{x^2}+\frac{qy}{x}+r=\frac{p(c+d)}{a+b}+\frac{q(ad-bc)}{a+b}+r=0 \\
-   \Longleftrightarrow &p(c+d)+q(ad-bc)+r(a+b)=0
+    x^2&=4y+4 \\
+    y^2&=4z+4 \\
+    z^2&=4x+4.
+\end{align*}
+\problem[2018 SMO(J) P2]Find the value of \begin{align*}
+    &\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right) \\
+    &-\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right).
 \end{align*}
 
-This means we should make a choice for $p, q$ and $r$. Let us investigate this observation: if we choose $p=a, r=-c$,
+\subsection{Problems}
+\problem[2016 SMO(J) P34]Let $x,y,z$ be positive reals such that $x+y+z=1$ and $xy+yz+zx=\frac{1}{3}$. Find the value of
+$$\frac{4x}{y+1}+\frac{16y}{z+1}+\frac{64z}{x+1}.$$
+\problem[2019 SMO(O)]Let $a,b,c$ be three fixed real values not exceeding $\frac{1}{2}$. Suppose that $(-1,0)$ is a point on the curve $y=ax^2+bx+c$. If the inequality 
+$$x\leq ax^2+bx+c\leq\frac{1}{2}(x^2+1)$$ holds for all real $x$, find the values of $a,b,c$.
+\problem[2014 SMO(J) P29]Let $x,y$ be real values with $xy<0$, such that
+$$x+y=\frac{1}{3}\quad\text{and}\quad\frac{1}{x^2}+\frac{1}{y^2}=40.$$
+Find the value of $\frac{1}{x^4}+\frac{1}{y^4}$.
+\problem[2014 SMO(S) P20]Let $x=\sqrt{37-20\sqrt{3}}$. Find the value of 
+$$\frac{x^4-9x^3+5x^2-7x+68}{x^2-10x+19}.$$
+\problem[2017 SMO(S) P29]Find the least positive integer $n$ such that
+$$5(3^2+2^2)(3^4+2^4)\cdots(3^{2^n}+2^{2^n})>9^{256}.$$
+\problem[2005 AIME II/7]Let 
+$$x=\frac{4}{(\sqrt{5}+1)(\sqrt[4]{5}+1)(\sqrt[8]{5}+1)(\sqrt[16]{5}+1)}.$$
+Find $(x+1)^{48}.$
+\begin{remark}
+    This problem and the above are solved by a similar idea. What is this idea?
+\end{remark}
+\problem[2017 SMO(J) P24]Let $a$ be an integer such that $a+2$ and $a+79$ are both perfect squares. Find the largest possible value of $a$.
+\problem[2020 SMO(J) P25]Let $x$ be a positive integer satisfying the equation
+$$\sqrt[5]{x+76638}-\sqrt[5]{x-76637}=5.$$
+Find the value of $x$.
+\problem[2014 SMO(J) P32]For $a\geq\frac{1}{8}$, define
+$$g(a)=\sqrt[3]{a+\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}+\sqrt[3]{a-\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}.$$
+Find the maximum value of $g(a)$.
+\problem[2016 SMO(J) P28]Let $x,y,z$ be positive integers such that
+$$x^2+y-z=124\quad\text{and}\quad x+y^2-z=100.$$
+Find the value of $x+y+z$.
+\problem[2014 SMO(S) R2/2]Find all positive real numbers $a,b,c$ satisfying the system of equations:
+$$a\sqrt{b}=a+c,\quad b\sqrt{c}=b+a,\quad c\sqrt{a}=c+b.$$
+\problem[2020 SMO(J) P24]Let $m>n$ be positive integers satisfying
+$$(m^2-n^2)^2=1+80n.$$
+Find the smallest possible value of $mn$.
+\problem[2014 SMO(J) P30]Find the following sum
 \begin{align*}
-    a(c+d)+q(ad-bc)-c(a+b)&=ac+ad+q(ad-bc)-ac-bc\\
-    &=ad+q(ad-bc)-bc=0,
+    \left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\cdots+\frac{1}{29}\right)&+\left(\frac{2}{3}+\frac{2}{4}+\frac{2}{5}+\cdots+\frac{2}{29}\right) \\
+    &+\left(\frac{3}{4}+\frac{3}{5}+\cdots+\frac{3}{29}\right) \\
+    &+\cdots \\
+    &+\left(\frac{27}{28}+\frac{27}{29}\right) \\
+    &+\frac{28}{29}.
 \end{align*}
-almost as if it's forcing $q=-1$!
-Thus, a possible quadratic equation is $au^2-u-c=0$ with $u=\frac{y}{x}$.
+\problem[2018 SMO(S) P25]Suppose $x,y,z$ are positive reals satisfying the following system of equations:
+\begin{align*}
+    \frac{\sqrt{xyz}}{x+y}&=3,\\
+    \frac{\sqrt{xyz}}{y+z}&=\frac{5}{2},\\
+    \frac{\sqrt{xyz}}{z+x}&=\frac{15}{7}.
+\end{align*}
+Find the value of $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}.$
 
-Now, if $x$ is a rational root, then we realise that $\Delta$ needs to be a rational square, that is the square of a rational number, and that this condition also implies that $x$ is a rational root. We say that this bi-directional relationship is a \textbf{necessary and sufficient} condition. In this problem, $\frac{y}{x}$ is a rational root to our quadratic, so $4ac+1$ is a rational square. However, $4ac+1$ is also a positive integer, and so it must be a perfect square!
-
-As again, proofs should be written in the forwards direction, and we present so succinctly.
-\begin{proof}
-I claim that the quadratic equation is $au^2-u-c=0$ if $ad-bc > 0$ and $au^2+u-c=0$ if $ad-bc < 0$.
-
-We have $$\frac{y^2}{x^2}=\frac{c+d}{a+b} \quad\text{and}\quad \frac{y}{x}=\frac{ad-bc}{a+b},$$
-Thus, $$a\left(\frac{c+d}{a+b}\right)-\left(\frac{ad-bc}{a+b}\right)-c=\frac{a(c+d)-(ad-bc)-c(a+b)}{a+b}=0.$$
-
-The discriminant is $\Delta=4ac+1$. Since $\frac{y}{x}$ is a rational root, $\Delta$ is a rational square. Moreover, $4ac+1$ is a positive integer, and so it is a perfect square.
-\end{proof}
-\begin{moral}
-The main challenge was discovering the quadratic equation, but we are motivated by the term $4ac+1$, which reminded us of the quadratic discriminant. Finally, the treatment of $\Delta$ required us to recall the definition of the discriminant and to argue that it must be a rational square, which implied that it is also a perfect square given that $a,b,c,d$ are all integers.
-\end{moral}
+\subsection{Challenges}
+\problem[1990 AIME P15]Let $a,b,x,y$ be real numbers satisfying
+\begin{align*}
+    ax+by&=3 \\
+    ax^2+by^2&=7 \\
+    ax^3+by^3&=16 \\
+    ax^4+by^4&=42.
+\end{align*}
+Find the value of $ax^5+by^5$.
+\problem[2019 SMO(S) P16]Suppose $x,y,z$ are positive integers satisfying the following system of equations:
+\begin{align*}
+    x^2z+y^2z+8xy&=200,\\
+    2x^2+2y^2+xyz&=50.
+\end{align*}
+Find the maximum possible value of $x+y+z$.
+\problem[2019 SMO(S) P25]Let $a,b$ be positive integers satisfying
+$$a^2-2b^2=1.$$
+If $500<a+b<1000,$ find the value of $a$ and of $b$.
 \end{document}
