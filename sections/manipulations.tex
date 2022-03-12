@@ -1,4 +1,6 @@
 \documentclass[../jarvis.tex]{subfiles}
+\usepackage{scrambledenvs}
+\newscrambledenv{hint}
 \graphicspath{{\subfix{../images/}}}
 
 \begin{document}
@@ -6,7 +8,7 @@ As it turns out, there's more to algebra than pure uninspiring symbol pushing. I
 
 \begin{figure}[H]
     \centering
-    \includegraphics[scale=0.5]{xkcd_substitute.png}
+    \includegraphics[scale=0.6]{xkcd_substitute.png}
     \caption{Comic from https://xkcd.wtf/135/}
 \end{figure}
 
@@ -236,7 +238,7 @@ Solving for $x$, we have $$x=\frac{1}{\cbrt{9}-1}.$$ We make the substitution $a
     &=\frac{\cbrt{81}+\cbrt{9}+1}{8}.
 \end{align*}
 
-\section{ Solving}
+\section{Solving \ez}
 Many questions will demand you to "find all X satisfying condition Y", the keyword being \textbf{find all}. These problems come in solving equations, functional equations, inequalities, etc. This implies that there are two parts to the problem: 
 \begin{enumerate}
     \item Find the solutions and show that no other solutions exist.
@@ -299,11 +301,11 @@ Thus, we immediately have the solutions $(0,0)$, $(0,-1)$ and $(0, -\frac{1}{2})
 $$x(1+y)+y^2=0 \implies x=-\frac{y^2}{1+y}.$$
 
 Putting this into \eqref{13-sys-1}, 
-$$-\frac{y^6}{(1+y)^3}+y^2(1+y)=0 \implies \frac{-y^6+y^2(1+y)^3}{(1+y)^4}=0 \implies 4y^3+6y^2+4y+1=0.$$
+$$-\frac{y^6}{(1+y)^3}+y^2(1+y)=0 \implies \frac{-y^6+y^2(1+y)^4}{(1+y)^3}=0 \implies 4y^3+6y^2+4y+1=0.$$
 
 To factorise this, we use the rational root theorem. The potential roots are thus $y=\pm 1, \pm \frac{1}{2}, \pm\frac{1}{4}$, and from our scouting, we know $y=-\frac{1}{2}$ is a root. Thus,
 $$4y^3+6y^2+4y+1=0=(2y+1)(2y^2+2y+1)=0,$$
-where the quadratic factor has no real solutions to it. Thus, having exhausted all cases, we have recovered the solutions
+where the quadratic factor has no real solutions to it. Having exhausted all cases, we have recovered the solutions
 $$\boxed{(x,y)=(0,0), (0,-1), (0,-\frac{1}{2})}.$$
 \end{proof}
 
@@ -365,8 +367,18 @@ and permutations (note that the equation is symmetric in $x$ and $y$!).
 \section{Exercises}
 \subsection{Warmup}
 \problem[2015 SMO(J) P9]Find the value of $\left(4\sqrt{4+2\sqrt{3}}-\sqrt{49+8\sqrt{3}}\right)^2.$
+\begin{hints}
+    \begin{hint}
+        Simplify the square roots.
+    \end{hint}
+\end{hints}
 \problem[2014 SMO(J) P13]Let $A$ be the solution of the equation
 $$\frac{x-7}{x-8}-\frac{x-8}{x-9}=\frac{x-10}{x-11}-\frac{x-11}{x-12}.$$
+\begin{hints}
+    \begin{hint}
+        Each numerator isn't \textit{that} different from it's denominator.
+    \end{hint}
+\end{hints}
 \problem[2016 SMO(J) P11]If the sum and product of two positive real numbers are both equal to $13$, find the sum of the squares of these two numbers.
 \problem[2014 SMO(J) P23]Let $a,b,c$ be non-zero reals satisfying $a+2b+3c=2014$ and $2a+3b+2c=2014$, find the value of 
 $$\frac{a^2+b^2+c^2}{ab+bc+ca}.$$
@@ -376,23 +388,41 @@ $$\frac{a^2+b^2+c^2}{ab+bc+ca}.$$
 $$\frac{(2020^2-20100)(20100^2-100^2)(2000^2+20100)}{2010^6-10^6}.$$
 \problem[2014 SMO(S) P23]Let $n$ be a positive integer and let
 $$x=\frac{\sqrt{n+2}-\sqrt{n}}{\sqrt{n+2}+\sqrt{n}},\quad y=\frac{\sqrt{n+2}+\sqrt{n}}{\sqrt{n+2}-\sqrt{n}}.$$
+
 If $14x^2+26xy+14y^2=2014$, find the value of $n$.
+\begin{hints}
+    \begin{hint}
+        What is the relationship between $x$ and $y$?
+    \end{hint}
+\end{hints}
 \problem[2014 SMO(S) P29]Solve the following system in real numbers:
 \begin{align*}
     x^2&=4y+4 \\
     y^2&=4z+4 \\
     z^2&=4x+4.
 \end{align*}
+\begin{hints}
+    \begin{hint}
+        We really hope to bring the the same variables together.
+    \end{hint}
+    \begin{hint}
+        Sum all three equations.
+    \end{hint}
+    \begin{hint}
+        Complete the square.
+    \end{hint}
+\end{hints}
 \problem[2018 SMO(J) P2]Find the value of \begin{align*}
     &\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right) \\
     &-\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right).
 \end{align*}
+\begin{hints}
+    \begin{hint}
+        Find two good substitutions to make.
+    \end{hint}
+\end{hints}
 
 \subsection{Problems}
-\problem[2016 SMO(J) P34]Let $x,y,z$ be positive reals such that $x+y+z=1$ and $xy+yz+zx=\frac{1}{3}$. Find the value of
-$$\frac{4x}{y+1}+\frac{16y}{z+1}+\frac{64z}{x+1}.$$
-\problem[2019 SMO(O)]Let $a,b,c$ be three fixed real values not exceeding $\frac{1}{2}$. Suppose that $(-1,0)$ is a point on the curve $y=ax^2+bx+c$. If the inequality 
-$$x\leq ax^2+bx+c\leq\frac{1}{2}(x^2+1)$$ holds for all real $x$, find the values of $a,b,c$.
 \problem[2014 SMO(J) P29]Let $x,y$ be real values with $xy<0$, such that
 $$x+y=\frac{1}{3}\quad\text{and}\quad\frac{1}{x^2}+\frac{1}{y^2}=40.$$
 Find the value of $\frac{1}{x^4}+\frac{1}{y^4}$.
@@ -418,9 +448,34 @@ $$x^2+y-z=124\quad\text{and}\quad x+y^2-z=100.$$
 Find the value of $x+y+z$.
 \problem[2014 SMO(S) R2/2]Find all positive real numbers $a,b,c$ satisfying the system of equations:
 $$a\sqrt{b}=a+c,\quad b\sqrt{c}=b+a,\quad c\sqrt{a}=c+b.$$
+\begin{hints}
+    \begin{hint}
+        Factorise each equation in the system.
+    \end{hint}
+    \begin{hint}
+        The system is symmetric, so we may assume $a\geq b\geq c$.
+    \end{hint}
+    \begin{hint}
+        Consider equation 1 and 3. What relation should apply to $b$ so that our assumption holds? 
+    \end{hint}
+    \begin{hint}
+        There aren't many possible values for $a,b,c$ anymore. Find them systematically?
+    \end{hint}
+\end{hints}
 \problem[2020 SMO(J) P24]Let $m>n$ be positive integers satisfying
 $$(m^2-n^2)^2=1+80n.$$
 Find the smallest possible value of $mn$.
+\begin{hints}
+    \begin{hint}
+        LHS has degree $4$ while RHS is linear. This means that $m^2-n^2$ can't be \textit{too} big, otherwise LHS will outgrow RHS.
+    \end{hint}
+    \begin{hint}
+        Consider $m-n=d$.
+    \end{hint}
+    \begin{hint}
+        This is a quadratic in terms of some variable. Solve the quadratic in terms of this variable.
+    \end{hint}
+\end{hints}
 \problem[2014 SMO(J) P30]Find the following sum
 \begin{align*}
     \left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\cdots+\frac{1}{29}\right)&+\left(\frac{2}{3}+\frac{2}{4}+\frac{2}{5}+\cdots+\frac{2}{29}\right) \\
@@ -429,6 +484,14 @@ Find the smallest possible value of $mn$.
     &+\left(\frac{27}{28}+\frac{27}{29}\right) \\
     &+\frac{28}{29}.
 \end{align*}
+\begin{hints}
+    \begin{hint}
+        Write the sums in a nicer way... They really should resemble a triangular pyramid.
+    \end{hint}
+    \begin{hint}
+        How many times are fractions with the same denominator summed?
+    \end{hint}
+\end{hints}
 \problem[2018 SMO(S) P25]Suppose $x,y,z$ are positive reals satisfying the following system of equations:
 \begin{align*}
     \frac{\sqrt{xyz}}{x+y}&=3,\\
@@ -436,6 +499,17 @@ Find the smallest possible value of $mn$.
     \frac{\sqrt{xyz}}{z+x}&=\frac{15}{7}.
 \end{align*}
 Find the value of $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}.$
+\begin{hints}
+    \begin{hint}
+        Take the reciprocal across each equation.
+    \end{hint}
+    \begin{hint}
+        Find $\frac{x}{\sqrt{xyz}}$ and the like.
+    \end{hint}
+    \begin{hint}
+        What do we know about $\frac{x}{y}$ and the like?
+    \end{hint}
+\end{hints}
 
 \subsection{Challenges}
 \problem[1990 AIME P15]Let $a,b,x,y$ be real numbers satisfying
@@ -446,13 +520,125 @@ Find the value of $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}.$
     ax^4+by^4&=42.
 \end{align*}
 Find the value of $ax^5+by^5$.
+\begin{hints}
+    \begin{hint}
+        Consider $(ax+by)(x+y)$.
+    \end{hint}
+\end{hints}
 \problem[2019 SMO(S) P16]Suppose $x,y,z$ are positive integers satisfying the following system of equations:
 \begin{align*}
     x^2z+y^2z+8xy&=200,\\
     2x^2+2y^2+xyz&=50.
 \end{align*}
 Find the maximum possible value of $x+y+z$.
+\begin{hints}
+    \begin{hint}
+        The system is linear in terms of a variable. Perhaps make this variable the subject of both equations.
+    \end{hint}
+\end{hints}
 \problem[2019 SMO(S) P25]Let $a,b$ be positive integers satisfying
 $$a^2-2b^2=1.$$
 If $500<a+b<1000,$ find the value of $a$ and of $b$.
+\begin{hints}
+    \begin{hint}
+        The bound given is very artificial. We should expect many many solutions for $a$ and $b$ in general.
+    \end{hint}
+    \begin{hint}
+        Find a few solutions for $a$ and $b$ (two or three will do, but they sure grow quickly!).
+    \end{hint}
+    \begin{hint}
+        I realise that the values of $a$ and $b$ are quite close to each other. Maybe we should expect that $a$ and $b$ behave linearly. 
+    \end{hint}
+    \begin{hint}
+        Let $(a,b)$ be a solution to the equation. Find values $m,n,p,q$ such that if $(a,b)$ is a solution, then so is $(ma+nb,pa+qb)$.
+    \end{hint}
+    \begin{hint}
+        Recursively generate the solutions. Note that $(3,2)$ is the smallest one!
+    \end{hint}
+\end{hints}
+\section{Hints to Selected Problems}
+\printhint
+\subsection{Tangent: Pell's Equation}
+I'll admit, the last challenge is slightly gimmicky in the sense that it is a focus in number theory. In general, for a positive integer $n$ such that $n$ is not a perfect square,
+the equation $$a^2-nb^2=1$$
+is called the \textbf{Pell's Equation}.
+
+We focus on the equation given in the challenge:
+$$a^2-2b^2=1,$$ and we show how we can expect to generate infinitely many solutions righteously.
+
+Squaring,
+\begin{align*}
+    a^2-2b^2=1&\implies (a^2-2b^2)^2=1 \\
+    &\implies (a^2+2b^2)^2-8a^2b^2=1\\
+    &\implies (a^2+2b^2)^2-2(2ab)^2=1.
+\end{align*}
+Hence, if $(a,b)$ is a solution, then so is $(a^2+2b^2,2ab)$. We note that $(a,b)=(3,2)$ is the smallest positive solution to the given equation, and so we recursively generate the others:
+$$(3,2)\rightarrow (17,12)\rightarrow (577,408)\cdots.$$
+Thus, $(a,b)=(577,408)$ is our solution.
+
+Right, so there's that. But how do we know these are \textit{all} the solutions? In fact, they are not! The user can readily verify that $(99,70)$ is indeed a solution that is omitted through our recursion. Why did our "generator" miss this?
+
+We first show something more general:
+\begin{lemma}[Generating Solutions to Pell's Equation]
+    For a general Pell's Equation
+    $$x^2-Dy^2=1,$$
+    where $D$ is not a square, then the equation has solutions generated by 
+    $$(u_{n+1},v_{n+1})=(u_1u_n+Dv_1v_n, v_1u_n+u_1v_n).$$
+    Here, $(u_1,v_1)$ is the \textit{fundamental solution}, so to say, the solution with the smallest $v_1>0$.
+\end{lemma}
+\begin{proof}
+    We work by induction. By definition, $(u_1,v_1)$ is a solution to the equation. Now, suppose $(u_k,v_k)$ is a solution to the equation for some $k\geq 1$. Then, we see that
+    \begin{align*}
+        u_{n+1}^2-Dv_{n+1}^2&=(u_1u_n+Dv_1v_n)^2-D(v_1u_n+u_1v_n)^2 \\
+        &=(u_1^2-Dv_1^2)(u_n^2-Dv_n^2) \\
+        &=1\cdot1=1.
+    \end{align*}
+    Hence, $(u_{n+1},v_{n+1})$ is also a solution to the equation.
+\end{proof}
+
+Now, onto the chase for the missing solution. We \textit{squared} the equation when moving from one solution to the next. However, we missed the solutions generated by "odd powers". To wit, observe that we have, by considering the difference of squares, that
+\begin{align*}
+    3^2-2\cdot2^2&=1 \\
+    (3+2\sqrt{2})(3-2\sqrt{2})=1. 
+\end{align*}
+Squaring this initial relation, we get
+\begin{align*}
+    (3+2\sqrt{2})^2(3-2\sqrt{2})^2&=1 \\
+    (17+12\sqrt{2})(17-12\sqrt{2})&=1 \\
+    17^2-2\cdot12^2&=1.
+\end{align*}
+This agrees with our initial recurrence that $(17,12)$ is indeed a solution. Now, cubing the initial relation gives
+\begin{align*}
+    (3+2\sqrt{2})^3(3-2\sqrt{2})^3&=1 \\
+    (27+54\sqrt{2}+72+16\sqrt{2})(27-54\sqrt{2}+72-16\sqrt{2})&=1 \\
+    (99+70\sqrt{2})(99-70\sqrt{2})&=1\\
+    99^2-2\cdot70^2&=1,
+\end{align*}
+and out comes $(99,70)$ as our solution.
+
+It now remains to show that the recurrence given by $(u_{n+1},v_{n+1})$ generates all the solutions to Pell's equation.
+\begin{lemma}
+    All solutions to Pell's equation are given by $(u_{n+1},v_{n+1})$.
+\end{lemma}
+\begin{proof}
+    By another induction argument, it is not hard to see that 
+    $$u_n+v_n\sqrt{D}=(u_1+v_1\sqrt{D})^n.$$
+    We leave this to the reader.
+    
+    Now, define $z_n\equiv u_n+v_n\sqrt{D}=(u_1+v_1\sqrt{D})^n$ for nonnegative $n$. Then, we crucially have
+    $$z_0<z_1<z_2<\cdots<z_n<\cdots.$$
+    
+    Suppose for the sake of contradiction that Pell's equation had a solution $z=u+v\sqrt{D}$ \textit{not} of the form in $(u_{n+1},v_{n+1})$. Then, there exists an integer $m$ such that $z_m<z<z_{m+1}$ so that
+    
+    \begin{align*}
+        &(u_m+v_m\sqrt{D})<(u+v\sqrt{D})<(u_{m+1}+v_{m+1}\sqrt{D}) \\
+        \implies& 1<(u+v\sqrt{D})(u_m-v_m\sqrt{D})<\frac{u_{m+1}+v_{m+1}\sqrt{D}}{u_m+v_m}<u_1+v_1\sqrt{D},
+    \end{align*}
+    and thus
+    $$1<(uu_m-Dvv_m)+(u_mv-uv_m)\sqrt{D}<u_1+v_1\sqrt{D}.$$
+    
+    However,
+    $$(uu_m-Dvv_m)^2-D(u_mv-uv_m)^2=(u^2-Dv^2)(u_m^2-Dv_m^2)=1,$$
+    so $(x,y)=(uu_m-Dvv_m,u_mv-uv_m)$ is a solution to Pell's equation, and is smaller than $(u_1,v_1)$. This contradicts our assumption that $(u_1,v_1)$ is the fundamental (or smallest) solution, and this means that there are no other unexpected solutions. The proof is now complete
+\end{proof}
 \end{document}

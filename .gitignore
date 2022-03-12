@@ -12,6 +12,9 @@
 *.cb2
 .*.lb
 
+## scrambledenvs hint files:
+*.hint
+
 ## Intermediate documents:
 *.dvi
 *.xdv

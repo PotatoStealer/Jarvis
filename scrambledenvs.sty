@@ -1,0 +1,172 @@
+%%
+%% This is file `scrambledenvs.sty',
+%% generated with the docstrip utility.
+%%
+%% The original source files were:
+%%
+%% scrambledenvs.dtx  (with options: `main')
+%% scrambledenvs.dtx  (with options: `helper')
+%% 
+%% This is a generated file.
+%% 
+%% Copyright (C) 2021 Dennis Chen <proofprogram@gmail.com>
+%% 
+%% This work may be distributed and/or modified under
+%% the conditions the LaTeX Project Public License (LPPL),
+%% either version 1.3 of this license or (at your option)
+%% any later version. The latest version of this license
+%% can be found in
+%% 
+%%     http://www.latex-project.org/lppl.txt
+%% 
+%% and version 1.3 or later is part of all distributions of LaTeX
+%% version 2005/12/01 or later.
+%% 
+%% To produce the documentation, run palette.dtx through pdflatex.
+%% 
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{scrambledenvs}[2021/09/26 v1.1.0 Create and print scrambled environments]
+\RequirePackage{ifthen}
+\RequirePackage{forloop}
+\RequirePackage{pgfmath}
+\pgfmathsetseed{2407}
+\newif\ifscrambledenvs@scramble\scrambledenvs@scrambletrue
+\DeclareOption{noscramble}{\scrambledenvs@scramblefalse}
+\ProcessOptions\relax
+\newcommand\newscrambledenv[1]{
+    \scrambledenvs@check@macrodefined{print#1}
+    \scrambledenvs@check@envdefined{#1s}
+    \scrambledenvs@check@envdefined{#1}
+    \newcounter{scrambledenvs@#1@count}
+    \newcounter{scrambledenvs@#1@tempcount}
+\newenvironment{#1s}{%
+    \setcounter{scrambledenvs@#1@tempcount}{0}%
+    \def\scrambledenvs@active{#1}%
+}
+{
+\ifnum\value{scrambledenvs@#1@tempcount}=0\relax
+\else
+    \ifnum\value{scrambledenvs@#1@tempcount}=1\relax
+        {\csname scrambledenvs@#1@labelfont\endcsname\csname scrambledenvs@#1@label\endcsname :}
+        {\csname scrambledenvs@#1@reffont\endcsname\csname scrambledenvs@#1@refprefix\endcsname\ref{#1:\the\numexpr\value{scrambledenvs@#1@count}}}%
+    \else
+        {\csname scrambledenvs@#1@labelfont\endcsname\csname scrambledenvs@#1@label\endcsname s:}
+        \forloop{scrambledenvs@loopcount}{\the\numexpr\value{scrambledenvs@#1@count}-\value{scrambledenvs@#1@tempcount}+1\relax}{\value{scrambledenvs@loopcount}<\the\numexpr\value{scrambledenvs@#1@count}+1\relax} {%
+            {\csname scrambledenvs@#1@reffont\endcsname\csname scrambledenvs@#1@refprefix\endcsname\ref{#1:\thescrambledenvs@loopcount}}
+        }
+    \fi
+\fi
+\setcounter{scrambledenvs@#1@tempcount}{0}%
+}
+\newenvironment{#1}{%
+    \stepcounter{scrambledenvs@#1@tempcount}%
+    \stepcounter{scrambledenvs@#1@count}%
+    \ifnum\pdfstrcmp{#1}{\scrambledenvs@active}=0\relax
+    \else
+        \PackageError{scrambledenvs}{The inner environment `#1' must be inside the outer environment `#1s'}{}
+    \fi
+    \unskip%
+    \filecontents[overwrite]{\jobname-\the\value{scrambledenvs@#1@count}.#1}%
+}
+{%
+    \endfilecontents
+}
+\expandafter\def\csname scrambledenvs@#1@start\endcsname{1}
+\expandafter\newcommand\csname print#1\endcsname{%
+    \ifscrambledenvs@scramble %\if
+        \ifcsname thescrambledenvs@#1@count\endcsname
+            \ifnum\value{scrambledenvs@#1@count}<\csname scrambledenvs@#1@start\endcsname\relax
+            \else
+                \expandafter\edef\csname pgfmath@randomlist@#1\endcsname{\numexpr\value{scrambledenvs@#1@count}-\csname scrambledenvs@#1@start\endcsname+1}
+                    \count@=1
+                    \loop
+                        \expandafter\edef\csname pgfmath@randomlist@#1@\the\count@\endcsname{\the\numexpr\count@+\csname scrambledenvs@#1@start\endcsname-1\relax}
+                    \ifnum\count@<\numexpr\value{scrambledenvs@#1@count}-\csname scrambledenvs@#1@start\endcsname+1\relax
+                    \advance\count@ 1
+                    \repeat
+                \begin{scrambledenvs@#1@printenv}
+                    \setcounter{scrambledenvs@loopcount}{\csname scrambledenvs@#1@start\endcsname}
+                    \whiledo{\value{scrambledenvs@loopcount}<\the\numexpr\value{scrambledenvs@#1@count}+1\relax}{%
+                    \stepcounter{scrambledenvs@loopcount}
+                    \pgfmathrandomitem\scrambledenvs@tempindex{#1}
+                    \csname scrambledenvs@#1@printitem\endcsname\label{#1:\scrambledenvs@tempindex}%
+                        \input{\jobname-\scrambledenvs@tempindex.#1}%
+                        \count@\pgfmath@randomtemp
+                        \loop
+                            \global\expandafter\let\csname pgfmath@randomlist@#1@\the\count@\expandafter\endcsname\csname pgfmath@randomlist@#1@\the\numexpr\the\count@+1\relax\endcsname%
+                        \advance\count@ 1
+                        \ifnum \count@ < \csname pgfmath@randomlist@#1\endcsname\relax
+                        \repeat
+                    \expandafter\xdef\csname pgfmath@randomlist@#1\endcsname{\the\numexpr\csname pgfmath@randomlist@#1\endcsname-1\relax}%
+                    }
+                \end{scrambledenvs@#1@printenv}
+                \expandafter\edef\csname scrambledenvs@#1@start\endcsname{\the\numexpr\value{scrambledenvs@#1@count}+1\relax}
+            \fi
+        \fi
+    \else
+        \ifcsname thescrambledenvs@#1@count\endcsname
+            \ifnum\value{scrambledenvs@#1@count}>0\relax
+                \begin{scrambledenvs@#1@printenv}%
+                    \forloop{scrambledenvs@loopcount}{\csname scrambledenvs@#1@start\endcsname}{\value{scrambledenvs@loopcount}<\the\numexpr\value{scrambledenvs@#1@count}+1\relax}{\csname scrambledenvs@#1@printitem\endcsname\label{#1:\thescrambledenvs@loopcount}\input{\jobname-\thescrambledenvs@loopcount.#1}}%
+                \end{scrambledenvs@#1@printenv}
+                \expandafter\edef\csname scrambledenvs@#1@start\endcsname{\the\numexpr\value{scrambledenvs@#1@count}+1\relax}
+            \fi
+        \fi
+    \fi
+}
+\expandafter\def\csname scrambledenvs@#1@label\endcsname{\MakeUppercase #1}
+\scrambledenvs@check@macrodefined{#1label}
+\expandafter\newcommand\csname #1label\endcsname[1]{\expandafter\def\csname scrambledenvs@#1@label\endcsname{\MakeUppercase ##1}}
+\expandafter\def\csname scrambledenvs@#1@labelfont\endcsname{\scrambledenvs@labelfont}
+\scrambledenvs@check@macrodefined{#1labelfont}
+\expandafter\newcommand\csname #1labelfont\endcsname[1]{\expandafter\def\csname scrambledenvs@#1@labelfont\endcsname{##1}}
+\expandafter\def\csname scrambledenvs@#1@refprefix\endcsname{\scrambledenvs@refprefix}
+\scrambledenvs@check@macrodefined{#1refprefix}
+\expandafter\newcommand\csname #1refprefix\endcsname[1]{\expandafter\def\csname scrambledenvs@#1@refprefix\endcsname{##1}}
+\expandafter\def\csname scrambledenvs@#1@reffont\endcsname{\scrambledenvs@reffont}
+\scrambledenvs@check@macrodefined{#1reffont}
+\expandafter\newcommand\csname #1reffont\endcsname[1]{\expandafter\def\csname scrambledenvs@#1@reffont\endcsname{##1}}
+\newenvironment{scrambledenvs@#1@printenv}{\begin{scrambledenvs@printenv}}{\end{scrambledenvs@printenv}}
+\scrambledenvs@check@envdefined{#1printenv}
+\expandafter\newcommand\csname #1printenv\endcsname[2]{\renewenvironment{scrambledenvs@#1@printenv}{##1}{##2}}
+\expandafter\def\csname scrambledenvs@#1@printitem\endcsname{\scrambledenvs@printitem}
+\scrambledenvs@check@macrodefined{#1printitem}
+\expandafter\newcommand\csname #1printitem\endcsname[1]{\expandafter\def\csname scrambledenvs@#1@printitem\endcsname{##1}}
+}
+
+
+\newcommand\scrambledenvs@check@macrodefined[1]{%
+    \ifcsname #1\endcsname
+    \PackageError{scrambledenvs}{The macro \@backslashchar #1\space cannot be defined,\MessageBreak
+    as the macro \@backslashchar #1 is already defined}{Remove any packages that define \@backslashchar #1,\MessageBreak
+    or choose a different name for your scrambled environment.}%
+    \fi
+}
+\newcommand\scrambledenvs@check@envdefined[1]{%
+    \ifcsname #1\endcsname
+    \PackageError{scrambledenvs}{The environment `#1' cannot be defined,\MessageBreak
+    as the macro \@backslashchar #1 is already defined}{Remove any packages that define `#1',\MessageBreak
+    or choose a different name for your scrambled environment.}%
+    \fi
+}
+\def\scrambledenvs@active{}
+\newcounter{scrambledenvs@loopcount}
+\newcounter{scrambledenvs@innerloopcount}
+\def\scrambledenvs@labelfont{\bfseries}
+\def\defaultlabelfont#1{\def\scrambledenvs@lineformat{#1}}
+\def\scrambledenvs@refprefix{}
+\def\defaultrefprefix#1{\def\scrambledenvs@refprefix{#1}}
+\def\scrambledenvs@reffont{}
+\def\defaultreffont#1{\def\scrambledenvs@reffont{#1}}
+\newenvironment{scrambledenvs@printenv}{\begin{enumerate}}{\end{enumerate}}
+\def\defaultprintenv#1#2{\renewenvironment{scrambledenvs@printenv}{#1}{#2}}
+\def\scrambledenvs@printitem{\item}
+\def\defaultprintitem#1{\def\scrambledenvs@printitem{#1}}
+%% 
+%% This package consists of the file scrambledenvs.dtx,
+%%           and the generated files scrambledenvs.sty,
+%%                                   scrambledenvs.pdf.
+%%
+%% End of file `scrambledenvs.sty'.
