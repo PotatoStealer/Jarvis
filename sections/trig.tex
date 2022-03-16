@@ -410,7 +410,6 @@ This idea is extremely useful to re-parametrise conditions and to maximise or mi
 \end{example}
 The "cross-term" $20xy$ suggests that we should complete the square. 
 
-
 \begin{proof}
     Write $$25x^2-20xy+40y^2=(25x^2-20xy+4y^2)+36y^2=(5x-2y)^2+36y^2=36.$$
     
@@ -453,6 +452,29 @@ The "cross-term" $20xy$ suggests that we should complete the square.
 \begin{hints}
     \begin{hint}
         $C=\pi-(A+B)$.
+    \end{hint}
+\end{hints}
+
+\problem[Parallelogram Law]Let $ABCD$ be a parallelogram. Prove that the sum of the lengths of the squares of four sides of $ABCD$ equals the sum of the squares of the length of its two diagonals.
+
+In other words, prove that
+$$2(AB^2+BC^2)=AC^2+BD^2.$$
+\begin{hints}
+    \begin{hint}
+        Apply the cosine rule to triangles $BAD$ and $ADC$.
+    \end{hint}
+\end{hints}
+\problem[Apollonius's Theorem]Let $ABC$ be a triangle and let $M$ be the midpoint of $BC$. Prove that 
+$$AB^2+AC^2=2(AM^2+\left(\frac{BC}{2}\right)^2).$$
+\begin{hints}
+    \begin{hint}
+        Extend $AM$ to a point $N$ so that $AM=MN$. Can you apply the parallelogram law?
+    \end{hint}
+\end{hints}
+\problem[Angle Bisector Theorem]Let $ABC$ be a triangle and let $D$ be a point on $BC$ such that $AD$ bisects $\angle BAC$. Prove that $$\frac{BD}{CD}=\frac{AB}{AC}.$$
+\begin{hints}
+    \begin{hint}
+        Apply the sine rule to triangles $ABD$ and $ACD$.
     \end{hint}
 \end{hints}
 \problem[Tangent Rule] Let $A,B,C$ be angles in a triangle and let $a,b,c$ denote the side length of the triangle opposite each respective angle. Prove that
@@ -508,6 +530,13 @@ $$\frac{\cot{\frac{A}{2}}}{s-a}=\frac{\cot{\frac{B}{2}}}{s-b}=\frac{\cot{\frac{C
 \end{enumerate}
 
 \subsection{Problems}
+\problem[2017 SMO(O) P13]Let $ABC$ be a triangle with $\angle A=30^{\circ}$. If $b^2=a^2+bc$, find $\angle C$.
+\begin{hints}
+    \begin{hint}
+        Use cosine rule.
+    \end{hint}
+\end{hints}
+
 \problem[2019 SMO(O) P18] In triangle $ABC$, $BC=10$, $CA=9$, $\cos{C}=\frac{5}{14}$. The angle bisector of $C$ meets the circumcircle again at $N$, the altitude from $A$ meets the circumcircle again at $L$ and $NL$ intersects $BC$ at $M$. Find the length of $MC$.
 \begin{hints}
     \begin{hint}
@@ -520,18 +549,6 @@ $$\frac{\cot{\frac{A}{2}}}{s-a}=\frac{\cot{\frac{B}{2}}}{s-b}=\frac{\cot{\frac{C
         Find $CD$.
     \end{hint}
 \end{hints} 
-\problem[2021 Taiwan APMO Preliminary I]In triangle $ABC$, $\angle A=23^{\circ}$ and $\angle B=46^{\circ}$. Let $\Gamma$ be a circle with center $C$ with radius $AC$ and let the angle bisector of $B$ intersect $\Gamma$ at $M$ and at $N$. Find $\angle MAN$.
-\begin{hints}
-    \begin{hint}
-        Let $D$ be the foot of perpendicular from C onto the angle bisector of $B$ and let $C'$ be the foot of perpendicular from C onto $BC$.
-    \end{hint}
-    \begin{hint}
-        Use the extended sine law to find $MN$. You may also note that $MN=2MC'$.
-    \end{hint}
-    \begin{hint}
-        Use the law of sines to find $\frac{BC}{AC}$.
-    \end{hint}
-\end{hints}
 \problem[2021 SMO(O) P8] Find the minimum value of $(x+7)^2+(x+4)^2$ subject to the constraint $(x-5)^2+(y-7)^2=4$.
 \begin{hints}
     \begin{hint}
@@ -540,12 +557,8 @@ $$\frac{\cot{\frac{A}{2}}}{s-a}=\frac{\cot{\frac{B}{2}}}{s-b}=\frac{\cot{\frac{C
 \end{hints}
 \problem[2021 SMO(O) P18] Let $ABC$ be a triangle with $AB=10$ and
 $$\frac{\cos{A}}{\cos{B}}=\frac{b}{a}=\frac{4}{3}.$$
-Let $P$ be a point on the incircle of $ABC$. Find the maximum value of 
-$$PA^2+PB^2+PC^2.$$
+Let $P$ be a point on the incircle of $ABC$. Find the maximum value of $$PA^2+PB^2+PC^2.$$
 \begin{hints}
-    \begin{hint}
-        Let $D$ be the foot of perpendicular from C onto the angle bisector of $B$ and let $C'$ be the foot of perpendicular from C onto $BC$.
-    \end{hint}
     \begin{hint}
         Prove that $ABC$ is a right-angled triangle.
     \end{hint}
@@ -555,8 +568,11 @@ $$PA^2+PB^2+PC^2.$$
     \begin{hint}
         Find the inradius of the incircle and hence parametrise $P$ in terms of sines and cosines.
     \end{hint}
+\end{hints}
+\problem[2016 SMO(O) P23]Let $ABC$ be an acute-angled triangle with circumcenter $O$. Suppose $AC=92$, $\tan{\angle OAB}=\frac{1}{7}$ and $\angle CAO=3\angle OAB$. Find the length of $AB$.
+\begin{hints}
     \begin{hint}
-        Find $PA^2+PB^2+PC^2$ in terms of sines and cosines and hence maximise this.
+        Find $\tan{\angle CAO}$.
     \end{hint}
 \end{hints}
 \problem[2022 AIME I/15] Let $x,y,z$ be positive reals satisfying the following system of equations:
@@ -570,17 +586,23 @@ Find the value of $[(1-x)(1-y)(1-z)]^2.$\begin{hints}
         What is the domain of $x,y,z$?
     \end{hint}
     \begin{hint}
-        Let $x=2\sin^2{\theta}$. Why is this so?
+        Let $x=2\sin^2{\theta}$. Why can we do this?
     \end{hint}
 \end{hints}
 
-\problem[2019 SMO(O) P17] Two circles are tangent to each other internally at point $T$. Let chord $AB$ of the larger circle be tangent to the smaller circle at $P$. If $AB=\frac{59}{\sqrt{3}}$, $TA=32$ and $TB=27$, find the length of $TP$.
+\subsection{Challenges}
+\problem[2017 SMO(O) P25]In a triangle $ABC$, $AB=AC$, $BC=22\sqrt{3}$ and $\cos{A}=-\frac{17}{225}$. Let $D$ be a point on $AC$ such that $AD<DC$ and $P$ be the point on the segment $BD$ such that $\angle APC=90^{\circ}$. Given that $\angle ABD=\angle BCP$, find the length of $BD$.
+
+\problem[2021 Taiwan APMO Preliminary I]In triangle $ABC$, $\angle A=23^{\circ}$ and $\angle B=46^{\circ}$. Let $\Gamma$ be a circle with center $C$ with radius $AC$ and let the angle bisector of $B$ intersect $\Gamma$ at $M$ and at $N$. Find $\angle MAN$.
 \begin{hints}
     \begin{hint}
-        Prove that $TP$ bisects $\angle ATB$. This is called the death star lemma or the shooting lemma (useful result, so google a proof if you have to!).
+        Let $D$ be the foot of perpendicular from C onto the angle bisector of $B$ and let $C'$ be the foot of perpendicular from C onto $BC$.
     \end{hint}
     \begin{hint}
-        Stewart's Theorem.
+        Use the extended sine law to find $MN$. You may also note that $MN=2MC'$.
+    \end{hint}
+    \begin{hint}
+        Use the law of sines to find $\frac{BC}{AC}$.
     \end{hint}
 \end{hints}
 \problem[2019 SMO(O) P15] In triangle $ABC$, $AB=209$, $BC=171$, $CA=190$ and $M$ is the midpoint of $BC$. Point $L$ lies on the extension of $BA$ and point $N$ lies on the extension of $MA$ such that points $C,L,N$ are collinear and $AL=NL$. Find the length of $AN$.
@@ -589,12 +611,58 @@ Find the value of $[(1-x)(1-y)(1-z)]^2.$\begin{hints}
         Construct a point $K$ such that $ABKC$ is a parallelogram.
     \end{hint}
     \begin{hint}
-        Use Apollonius' theorem (google it if you have to!).
+        Use Apollonius' theorem on a convenient triangle.
     \end{hint}
     \begin{hint}
         Find $NK$.
     \end{hint}
 \end{hints}
+\problem[2019 SMO(O) P17] Two circles are tangent to each other internally at point $T$. Let chord $AB$ of the larger circle be tangent to the smaller circle at $P$. If $AB=\frac{59}{\sqrt{3}}$, $TA=32$ and $TB=27$, find the length of $TP$.
+\begin{hints}
+    \begin{hint}
+        Prove that $TP$ bisects $\angle ATB$. This is called the death star lemma or the shooting lemma (This is a useful lemma, so google a proof if you have to!).
+    \end{hint}
+    \begin{hint}
+        Stewart's Theorem.
+    \end{hint}
+\end{hints}
 \section{Hints}
 \printhint
+\section{Solutions to Selected Problems}
+\paragraph{2017 SMO(O) P13} By cosine rule, 
+$$a^2=b^2+c^2-2bc\cos{A}=b^2+c^2-\sqrt{3}bc.$$
+Given that $b^2=a^2+bc$, we have
+\begin{align*}
+    a^2=a^2+bc+c^2-\sqrt{3}bc &\iff c^2+bc=\sqrt{3}bc \\
+    &\iff c=(\sqrt{3}-1)b. 
+\end{align*}
+This also gives $$a^2=(2-\sqrt{3})b^2 \implies a=\sqrt{2-\sqrt{3}}b=\sqrt{\left(\frac{\sqrt{3}-1}{2}\right)^2}b=\frac{\sqrt{3}-1}{\sqrt{2}}b.$$
+
+Hence, \begin{align*}
+    \cos{C}&=\frac{a^2+b^2-c^2}{2ab} \\
+        &=\frac{(2-\sqrt{3})+1-(4-2\sqrt{3})}{\sqrt{2}(\sqrt{3}-1)} \\
+        &=\frac{\sqrt{3}-1}{\sqrt{2}(\sqrt{3}-1)}=\frac{1}{\sqrt{2}}.
+\end{align*}
+Thus, $\angle C=\boxed{45^{\circ}}$.
+
+\paragraph{2017 SMO(O) P25}
+Now, we look for a way to tie in the two conditions, with the goal of eventually tying down $AD$:
+\begin{enumerate}
+    \item $\angle DPC=90^{\circ}$, and
+    \item $\angle ABD=\angle BCP$.
+\end{enumerate}
+This motivates us to draw the circumcircle of $APC$ and hence let $M$ be the circumcenter of $APC$. Then, $M$ is the midpoint of $AC$ since $APC$ is right-angled, implying $AC$ is the diameter. This then gives the convenient lengths:
+$$AM=MC=PM.$$
+
+We also have the angles $$\angle MCP=\angle MPC\quad\text{and}\quad \angle ABD=\angle BCP.$$
+Noting that $ABC$ is isosceles with $AB=BC$, it follows that $\angle CBP=\angle MCP=\angle MPC$, and that $\angle DPM=\angle ABD=\angle BCP$. Now, by sine rule on $ABD$ and $PDM$, we have
+$$\frac{AD}{AB}=\frac{\sin{\angle ABD}}{\sin{\angle ADB}}$$
+and 
+$$\frac{DM}{PM}=\frac{\sin{\angle DPM}}{\sin{\angle PDM}}=\frac{\sin{\angle DPM}}{\sin{\angle ADB}}=\frac{AD}{AB}.$$
+
+We now return to focus on $AD$:
+$$\frac{AD}{AC}=\frac{AD}{AB}=\frac{DM}{PM}=\frac{AM-AD}{MC}=\frac{AC-2AD}{AC},$$
+whence $AC=3AD$.
+
+Finally, by cosine rule on $ABC$ and $ABD$, $BD^2=\boxed{28}.$
 \end{document}
