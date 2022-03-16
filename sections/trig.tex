@@ -628,7 +628,8 @@ Find the value of $[(1-x)(1-y)(1-z)]^2.$\begin{hints}
 \end{hints}
 \section{Hints}
 \printhint
-\section{Solutions to Selected Problems}
+\section{Solutions to Selected Exercises}
+\subsection{Problems}
 \paragraph{2017 SMO(O) P13} By cosine rule, 
 $$a^2=b^2+c^2-2bc\cos{A}=b^2+c^2-\sqrt{3}bc.$$
 Given that $b^2=a^2+bc$, we have
@@ -645,6 +646,7 @@ Hence, \begin{align*}
 \end{align*}
 Thus, $\angle C=\boxed{45^{\circ}}$.
 
+\subsection{Challenges}
 \paragraph{2017 SMO(O) P25}
 Now, we look for a way to tie in the two conditions, with the goal of eventually tying down $AD$:
 \begin{enumerate}
@@ -654,8 +656,14 @@ Now, we look for a way to tie in the two conditions, with the goal of eventually
 This motivates us to draw the circumcircle of $APC$ and hence let $M$ be the circumcenter of $APC$. Then, $M$ is the midpoint of $AC$ since $APC$ is right-angled, implying $AC$ is the diameter. This then gives the convenient lengths:
 $$AM=MC=PM.$$
 
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{trig_sol_smoo_2017_p25.PNG}
+    \caption{Solution to 2017 SMO(O) P25}
+\end{figure}
+
 We also have the angles $$\angle MCP=\angle MPC\quad\text{and}\quad \angle ABD=\angle BCP.$$
-Noting that $ABC$ is isosceles with $AB=BC$, it follows that $\angle CBP=\angle MCP=\angle MPC$, and that $\angle DPM=\angle ABD=\angle BCP$. Now, by sine rule on $ABD$ and $PDM$, we have
+Noting that $ABC$ is isosceles with $AB=BC$, it follows that $\angle CBP=\angle MCP=\angle MPC$, and that $\angle DPM=\angle ABD=\angle BCP$. Now, by sine rule on triangles $ABD$ and $PDM$, we have
 $$\frac{AD}{AB}=\frac{\sin{\angle ABD}}{\sin{\angle ADB}}$$
 and 
 $$\frac{DM}{PM}=\frac{\sin{\angle DPM}}{\sin{\angle PDM}}=\frac{\sin{\angle DPM}}{\sin{\angle ADB}}=\frac{AD}{AB}.$$
@@ -664,5 +672,26 @@ We now return to focus on $AD$:
 $$\frac{AD}{AC}=\frac{AD}{AB}=\frac{DM}{PM}=\frac{AM-AD}{MC}=\frac{AC-2AD}{AC},$$
 whence $AC=3AD$.
 
-Finally, by cosine rule on $ABC$ and $ABD$, $BD^2=\boxed{28}.$
+Finally, by cosine rule on triangles $ABC$ and $ABD$, $BD^2=\boxed{28}.$
+\paragraph{2021 Taiwan APMO Preliminary I}
+Trivially, $\angle MAN$ depends on the length of $MN$ and to tie it to triangle $ABC$, it makes sense to consider its distance to the triangle. A convenient "pivot" is point $C$, and so we are motivated to work with it.
+
+Let $C'$ and $D$ be the foot of perpendicular of $C$ onto $MN$ and $C$ onto the \textit{internal} angle bisector of $\angle ABC$ respectively. Thus, $BC'DC$ is a rectangle.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.6]{trig_sol_taiwanapmo_2021.PNG}
+    \caption{Solution to 2021 Taiwan APMO Preliminary I}
+\end{figure}
+Let $R$ be the radius of $\Gamma$. By the extended law of sine and Pythagorean Theorem,
+\begin{align*}
+    2R\sin{\angle MAN}&=2AC\sin{\angle MAN}=MN=2MC'\\
+    &=2\sqrt{AC^2-(CC')^2}=2\sqrt{AC^2-BC^2\cos^2{23^{\circ}}}.
+\end{align*}
+This implies that $$\cos^2{\angle MAN}=\frac{BC}{AC}cos^2{23^{\circ}}.$$
+
+This is an exceedingly strong hint to consider the law of sines in triangle $ABC$:
+$$\frac{BC}{AC}=\frac{\sin{23^{\circ}}}{\sin{46^{\circ}}}=\frac{1}{2\cos{23^{\circ}}}.$$
+
+Now the problem instantly vanishes. We have
+$$\cos^2{\angle MAN}=\frac{1}{4} \implies \angle MAN=\boxed{60^{\circ}}.$$
 \end{document}
