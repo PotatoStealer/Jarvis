@@ -1,12 +1,109 @@
 \documentclass[../jarvis.tex]{subfiles}
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
-\subsection{Polynomials \med}
-Outside of quadratic polynomials, there are also cubics, quartics, quintics, sextics..., that most students assume are extinct. However, they can be found in a select number of natural hideouts!
+Outside of quadratic polynomials, there are also cubics, quartics, quintics, sextics..., that most students assume are extinct. However, they can be found in a select number of natural hideouts! In this handout, we look at the structures associated with polynomials, as well as the techniques to deal with them. 
 
-\subsubsection{Quadratics}
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=7]{xkcd_np_complete.png}
+    \caption{Comic from https://xkcd.com/287/}
+\end{figure}
+\section{Quadratics \ez}
 In this section, we will revisit the common quadratic polynomials.
-The techniques for quadratics aren't many. The usual few are the discriminant and completing the square, none of which are totally unexpected or inspiring. However, they are still useful-ish in extracting information from a given problem. We hope it suffices!
+The techniques for quadratics aren't many. The usual few are the discriminant and completing the square, none of which are totally unexpected or inspiring. However, they are still useful-ish in extracting information from a given problem.
+
+\subsection{Algebraic Properties of Quadratics \ez}
+We begin by stating some algebraic properties of the quadratic curve. In what follows, let $$P(x)=ax^2+bx+c=a\left(x+\frac{b}{2a}\right)^2+\left(c-\frac{b^2}{4a}\right).$$
+\begin{proposition}[Quadratic Formula]
+    The two (not necessarily distinct) roots of $P(x)$ is given by the \textit{quadratic formula}
+    $$x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}.$$
+\end{proposition}
+\begin{proof}
+    Consider the completed square form, then 
+    \begin{align*}
+        P(x)=0 &\iff a\left(x+\frac{b}{2a}\right)^2+\left(c-\frac{b^2}{4a}\right)=0 \\
+        &\iff a\left(x+\frac{b}{2a}\right)^2=\frac{b^2}{4a}-c \\
+        &\iff \left(x+\frac{b}{2a}\right)^2=\frac{b^2-4ac}{4a^2} \\
+        &\iff x+\frac{b}{2a}=\frac{\pm\sqrt{b^2-4ac}}{2a} \\
+        &\iff x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
+    \end{align*}
+\end{proof}
+\begin{proposition}[Discriminant]
+    The discriminant is given by $\Delta=b^2-4ac$.
+\end{proposition}
+Observe that $\Delta$ lies under the square root in the numerator of the quadratic formula. Hence, if $\Delta>0$, there are two distinct roots. If $\Delta=0$, the root is simply $x=-\frac{b}{2a}$.
+
+The special case is if $\Delta<0$, then we have two complex roots. This also says that complex roots come in \textit{conjugate pairs}, that is if
+$$x_1=\frac{-b}{2a}\pm\frac{\sqrt{|b^2-4ac|}}{2a}i$$
+is a root, then so is
+$$x_2=\frac{-b}{2a}\mp\frac{\sqrt{|b^2-4ac|}}{2a}i.$$
+
+\subsection{Geometric Properties of Quadratics}
+The quadratic is also miraculous in that it is symmetric about it's \textbf{vertex}.
+
+The graphical behaviour of a quadratic depends largely on its \textbf{leading coefficient}, that is the coefficient of the highest degree term. For $P(x)$, the leading coefficient is $a$.
+
+Indeed, for large values of $x$, $P(x)$ is \textbf{dominated} by the term $ax^2$. If $a>0$, then $P(x)$ tends to positive infinity, that is, the graph opens \textbf{upwards}. On the other hand, if $a<0$, then $P(x)$ tends to negative infinity, that is, the graph opens \textbf{downwards}.
+
+\begin{figure}
+    \centering
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{quadratic_up.png}
+      \caption{For $a>0$.}
+    \end{minipage}%
+    \begin{minipage}{.5\textwidth}
+      \centering
+      \includegraphics[width=.7\linewidth]{quadratic_down.png}
+      \caption{For $a<0$.}
+    \end{minipage}
+\end{figure}
+
+From the graph, one can also observe that the quadratic curve is \textbf{symmetric}. Crucially, it is symmetric about it's vertex, that is, the maximum or minimum point of the quadratic, depending on whether $a$ is positive or negative. We first discover the coordinates of the vertex.
+\begin{proposition}[Coordinates of the Vertex]
+    The vertex occurs at $x=\frac{b}{2a}$.
+\end{proposition}
+\begin{proof}
+    Consider again the completed square form. Then,
+   \begin{align*}
+        P(x)&=a\left(x-\frac{b}{2a}\right)^2+\left(c-\frac{b^2}{4a}\right) \\
+        &\geq c-\frac{b^2}{4a},
+   \end{align*}
+   because $\left(x-\frac{b}{2a}\right)^2\geq 0$. This leads us to the most important inequality for any polynomial: \textbf{the trivial inequality}.
+   \begin{proposition}[The Trivial Inequality]
+       For any real $x$, $x^2\geq 0$.
+   \end{proposition}
+   This is easily seen by considering the graph $y=x^2$, and noting that it is tangent to the line $y=0$. 
+   
+   Moreover, we make the crucial observation that \textbf{\textit{any} quadratic curve is simply a scaled and translated copy of the curve $y=x^2$}.
+
+   This means that the minimum value of the quadratic is $y=c-\frac{b^2}{4a}$, and this value is achieved when $$\left(x-\frac{b}{2a}\right)^2=0 \implies x=\frac{b}{2a}.$$
+
+   In other words, the coordinates of the vertex is $$\left(-\frac{b}{2a},c-\frac{b^2}{4a}\right).$$
+\end{proof}
+Moreover, the vertex is the point of symmetry. To illustrate, let $A$ and $C$ be two points that lie on the same horizontal line such that $A$ and $C$ are on different \textit{arms} of the curve. Then, the distance from $A$ to the line of symmetry and the distance from $C$ to the same line is equal.
+
+In other words, $|AB|=|BC|$.
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.5]{quadratic_symmetry.PNG}
+    \caption{Equidistance from the line of symmetry.}
+\end{figure}
+
+This property is independent of the constant term since the constant term only affects the \textit{upwards and downwards} shift of our quadratic graph. Hence, we shall ignore it and assume for convenience that the constant term is $0$. This means that for simplicity, we can simply assume that any quadratic curve has a vertex that lies exactly on the $x$-axis. And again, this is a legal assumption because the constant term does not affect our line of symmetry!
+
+We now make use of our crucial observation that any quadratic is simply a scaled and translated version of $y=x^2$. Henceforth, let $Q(x)=\left(x-\frac{b}{2a}\right)^2$ (this is $P(x)$ without a constant term).
+
+We note that the curve $y=x^2$ has a vertical line of symmetry at $x=0$. Thus, we obtain $Q(x)$ by \textbf{translating} the graph of $y=x^2$ by $\frac{b}{2a}$ units to the \textit{right} of the cartesian plane.
+
+In formal terms, we say that $Q(x)$ is obtained by \textbf{translating} the graph of $y=x^2$ by $\frac{b}{2a}$ units \textbf{in the direction of the positive $x$-axis}. 
+
+It is then a simple consequence of this symmetry that the $x$-coordinate of the vertex is the average of the roots of the quadratic. Indeed, let $r_1$ and $r_2$ be the roots, then
+\begin{align*}
+    r_1+r_2&=\left(-\frac{b}{2a}+\frac{\sqrt{\Delta}}{2a}\right)+\left(-\frac{b}{2a}-\frac{\sqrt{\Delta}}{2a}\right)=-\frac{b}{a}.
+\end{align*}
+\subsection{Roots of a Quadratic \ez}
+With the basics and fundamentals out of the way, let us see how the algebraic and geometric properties play together nicely.
 \begin{example}[2010-2011 Mandelbrot]
     Let $P(x)=x^3+ax^2+bx+c$ be a polynomial with three distinct roots. The polynomial P(Q(x)), where $Q(x)=x^2+x+2001$, has no real roots. Prove that $P(2001)>\frac{1}{64}$.
 \end{example}
@@ -31,15 +128,15 @@ Next, we consider a quadratic with coefficients that form an arithmetic progress
 \begin{example}[2013 AMC 10B P19]
     Let $c,b,a$ be real numbers form an arithmetic progression with $a\geq b\geq c\geq 0$. The quadratic $ax^2+bx+c=0$ has exactly one root. Find this root.
 \end{example}
-First step! The discriminant: $\Delta=b^2-4ac=0$, implying that the only root is $x=\frac{-b}{2a}$ by considering the quadratic formula.
+First step! Our only root is $x=\frac{-b}{2a}$.
 
 \begin{proof}
-    Since $c,b,a$ have common differences with $b$ being the median element, we may write $c=b+(b-a)=2b-a$ so that 
+    Since $c,b,a$ have common differences with $b$ being the median element, we may write $c=2b-a$ so that 
 $$b^2-4ac=b^2-4a(2b-a)=b^2-8ab+4a^2=0 \implies b=4a\pm2a\sqrt{3}.$$
 Yet, we are given that $a\geq b$, so surely $b=4a-2a\sqrt{3}$, giving $x=-\frac{b}{2a}=\boxed{-2+\sqrt{3}}.$
 \end{proof}
 
-\subsubsection{The Rare Types}
+\section{Vieta's Theorem and Higher Ordered Polynomials \med}
 Contrary to popular belief, there are higher degree polynomials in the wild. We first consider some identities associated with the coefficients of a general polynomial.
 
 Consider a general polynomial $$P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$$ with real coefficients $\{a_n\}$. Then, the
@@ -135,7 +232,7 @@ At this point, it's only complete if we also derive some common algebraic identi
         In general, $$\left(\sum x_i\right)^2=\sum x_i^2-2\left(\sum_{1\leq i\leq q\leq n}x_ix_j\right).$$
 
         \item $x^3+y^3+z^3-3xyz=\frac{1}{2}(x+y+z)[(x-y)^2+(y-z)^2+(z-x)^2]$.
-        This also implies $$x^3+y^3+z^3 \geq 3xyz$$, because
+        This also implies $$x^3+y^3+z^3 \geq 3xyz,$$ because
         $(x-y)^2+(y-z)^2+(z-x)^2\geq 0$.
         \item Sophie-Germain Identity: $a^4+4b^4=(a^2+2b^2+2ab)(a^2+2b^2-2ab)$.
         \item Lagrange's Identity: $(a^2+b^2)(c^2+d^2)=(ac-bd)^2+(ad+bc)^2=(ac+bd)^2+(ad-bc)^2$
@@ -196,4 +293,7 @@ For the final problem of this chapter, we shall prove identity 7.
     \end{align*}
     whence $$(a+b)^7-(a^7+b^7)=7ab(a+b)(a^2+ab+b^2)^2.$$
 \end{proof}
+
+\section{Exercises}
+\subsection{}
 \end{document}
