@@ -34,9 +34,9 @@ We begin by stating some algebraic properties of the quadratic curve. In what fo
 Observe that $\Delta$ lies under the square root in the numerator of the quadratic formula. Hence, if $\Delta>0$, there are two distinct roots. If $\Delta=0$, the root is simply $x=-\frac{b}{2a}$.
 
 The special case is if $\Delta<0$, then we have two complex roots. This also says that complex roots come in \textit{conjugate pairs}, that is if
-$$x_1=\frac{-b}{2a}\pm\frac{\sqrt{|b^2-4ac|}}{2a}i$$
+$$x_1=\frac{-b}{2a}\pm\frac{\sqrt{\abs{b^2-4ac}}}{2a}i$$
 is a root, then so is
-$$x_2=\frac{-b}{2a}\mp\frac{\sqrt{|b^2-4ac|}}{2a}i.$$
+$$x_2=\frac{-b}{2a}\mp\frac{\sqrt{\abs{b^2-4ac}}}{2a}i.$$
 
 \subsection{Geometric Properties of Quadratics}
 The quadratic is also miraculous in that it is symmetric about it's \textbf{vertex}.
@@ -83,7 +83,7 @@ From the graph, one can also observe that the quadratic curve is \textbf{symmetr
 \end{proof}
 Moreover, the vertex is the point of symmetry. To illustrate, let $A$ and $C$ be two points that lie on the same horizontal line such that $A$ and $C$ are on different \textit{arms} of the curve. Then, the distance from $A$ to the line of symmetry and the distance from $C$ to the same line is equal.
 
-In other words, $|AB|=|BC|$.
+In other words, $\abs{AB}=\abs{BC}$.
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.5]{quadratic_symmetry.PNG}
@@ -142,6 +142,156 @@ $$b^2-4ac=b^2-4a(2b-a)=b^2-8ab+4a^2=0 \implies b=4a\pm2a\sqrt{3}.$$
 Yet, we are given that $a\geq b$, so surely $b=4a-2a\sqrt{3}$, giving $x=-\frac{b}{2a}=\boxed{-2+\sqrt{3}}.$
 \end{proof}
 
+\section{Factor and Remainder Theorems \ez}
+In what follows, we establish the idea that polynomials can be long divided, just as we can divide numbers. We first start with the "numbers" analog of division.
+
+Suppose we want to divide $89$ by $3$, then trivially, $89=3\cdot 29+2$, where $3$ is the dividend, $29$ is the quotient and $2$ is the remainder. As it turns out, polynomials work in the same way!
+\begin{proposition}[Division Algorithm for Polynomials]
+    Let $f(x), d(x)$ be polynomials. Then, there exists polynomials $q(x)$ and $r(x)$ such that
+    $$f(x)=d(x)\cdot q(x)+r(x),$$
+    where $\deg r < \deg d$.
+\end{proposition}
+This can be proven by induction, which we defer to the end of this section.
+
+From this result, we derive our two important theorems:
+\begin{theorem}[Factor Theorem]
+    $x-r$ is a factor of $P(x)$ \textbf{if and only if} $P(r)=0$.
+\end{theorem}
+\begin{theorem}[Remainder Theorem]
+    $P(k)$ is the remainder when $P(x)$ is divided by $x-k$. 
+\end{theorem}
+\begin{remark}
+    Note that the remainder theorem \textit{implies} the factor theorem!
+\end{remark}
+
+We start with an example on dividing polynomials.
+\begin{example}[2011 SMO(O) P1]
+    Let $S$ be the set of all integers $n$ $$\frac{8n^3-96n^2+360n-400}{2n-7}$$ is an integer. Find $\sum_{n\in S}\abs{n}.$
+\end{example}
+Damn, that's a big polynomial! But as the word "algorithm" in division algorithm suggests, we can do this systematically. 
+
+\paragraph{Step 1}We begin with the term of the largest degree, just as we begin from the digit with the largest value when long dividing integers.
+
+To match the $8n^3$ term, we use $$4n^2(2n-7)=8n^3-28n^2\implies 8n^3=4n^2(2n-7)+28n^2.$$ This extra $n^2$ term is perfectly fine since we can simply defer it to the next step when we consider the quadratic term.
+
+For now, we have 
+\begin{align*}
+    8n^3-96n^2+360n-400&=\left[4n^2(2n-7)\right]+28n^2-96n^2+360n-400 \\
+    &=4n^2(2n-7)-68n^2+360n-400
+\end{align*}
+
+\paragraph{Step 2}We are done with dealing with the cubic term. Let us move on to the $n^2$ term now. To match the $-68n^2$ term, we use $$-34n(2n-7)=-68n^2+238n \implies -68n^2=-34n(2n-7)-238n.$$ Again, this extra $-238n$ term is fine.
+
+Now, we have
+\begin{align*}
+    8n^3-96n^2+360n-400&=4n^2(2n-7)-68n^2+360n-400 \\
+    &=4n^2(2n-7)+\left[-34n(2n-7)-238n\right]+360n-400\\
+    &=4n^2(2n-7)-34n(2n-7)+122n-400
+\end{align*}
+
+\paragraph{Step 3}Finally, we have the linear term in $122n$.
+As again, we use $$61(2n-7)=122n-427 \implies 122n=61(2n-7)+427.$$ Then, 
+\begin{align*}
+    8n^3-96n^2+360n-400 &= 4n^2(2n-7)-34n(2n-7)+122n-400 \\
+    &= 4n^2(2n-7)-34n(2n-7)+\left[61(2n-7)+427\right]-400 \\
+    &= 4n^2(2n-7)-34n(2n-7)+61(2n-7)+27.
+\end{align*}
+Now, we're home free!
+\paragraph{Ending}
+By factoring the common $(2n-7)$ terms, we get
+$$8n^3-96n^2+360n-400=(2n-7)(4n^2-34n+61)+27.$$ Now, we go back to our original problem: we wanted to divide by $(2n-7)$, so we do so:
+$$\frac{8n^3-96n^2+360n-400}{2n-7}=4n^2-34n+61+\frac{27}{2n-7}.$$
+This is the result of our polynomial \textit{long} division! It's simple, but it surely is long. In any case, we finish up the problem as such:
+
+\begin{proof}
+    We have that $$\frac{8n^3-96n^2+360n-400}{2n-7}=4n^2-34n+61+\frac{27}{2n-7}.$$
+    For the fraction to be an integer, we require $2n-7\mid 27$ (this means that $2n-7$ divides 27). Thus,
+    $$2n-7=\pm 1,\pm 3, \pm 9,\pm 27.$$
+    This corresponds to $n=3,4,2,5,-1,8,-10,17$ only. Hence,
+    $$\sum_{n\in S}\abs{n}=\boxed{50}.$$
+\end{proof}
+
+\begin{example}[2017 AMC12A P23]
+    For certain real numbers $a,b$ and $c$, the polynomial
+    $$g(x)=x^3+ax^2+x+10$$ has three distinct roots, and each root of $g(x)$ is also a root of the polynomial
+    $$f(x)=x^4+x^3+bx^2+100x+c.$$
+    Find $f(1)$.
+\end{example}
+This is a job for the factor theorem! ...if only we knew what the factors were. In any case, the problem implies that $g(x)$ is a factor of $f(x)$, and so we have
+$f(x)=g(x)h(x)$ for some polynomial $h(x)$. But, since $f(x)$ is quartic and $g(x)$ is a cubic, $h(x)$ must be linear, so let $h(x)=x+r$ for some real $r$.
+
+\begin{proof}
+    Then, $$x^4+x^3+bx^2+100x+c=(x^3+ax^2+x+10)(x+r).$$
+    Now, we should compare coefficients: there is nothing to work with for the quartic term, so we consider the $x^3$ term.
+    
+    Observe that on the right hand side, the only ways to contribute terms in $x^3$ is from $x^3\cdot r$ and $ax^2\cdot x$. This gives 
+    $$1=r+a.$$
+    Now, the quadratic term seems a bit messy, so we consider the linear term first: observe that the only ways to contribute terms in $x$ is $x\cdot r$ and $10\cdot x$, so
+    $$100=10+r.$$
+    Hence, $r=90$ and $a=-89$. 
+    
+    Finally, let us consider the quadratic term: the only ways to contribute terms in $x^2$ is $ax^2\cdot r$ and $x\cdot x$, so
+    $$b=ar+1,$$
+    but hmm, this is \textit{quite} big.
+    
+    When some numbers in our working gets a bit too big, it's usually a sign to relook our approach. In particular, what are we actually finding? We wanted $f(1)$,
+    so $$f(1)=(1+a+1+10)(1+r)=-77\cdot 91=\boxed{-7007}.$$
+\end{proof}
+
+\begin{example}[2018 SMO(O) P16]
+    Let $P(x)$ be a polynomial of degree $4$ such that $P(n)=\frac{120}{n}$ for $n=1,2,3,4,5$. Find the value of $P(6)$.
+\end{example}
+Firstly, we are told that the equation $nP(n)=120$ has 5 roots $n=1,2,3,4,5$. So, let us consider the polynomial
+$$g(n)=nP(n)-120=C(n-1)(n-2)(n-3)(n-4)(n-5),$$
+where $C$ is the leading coefficient of our expansion, and also the leading coefficient of $P(x)$.
+
+We should first determine the value of $C$ (we know it's positive by comparing the constant coefficients). We substitute $n=0$ so that $$-120=C\left(-1\cdot-2\cdot-3\cdot-4\cdot-5\right) \implies C=1.$$
+But wait, why are we allowed to do this? Isn't $P(0)$ undefined by since $P(n)=\frac{120}{n}$?
+
+Seen in that way, it is. However, $g(n)$ is a polynomial in $n$, and since it is defined for all values other than at $n=0$ (by the given relation), then it must be defined at $n=0$ as well, since polynomials are continuous throughout!
+
+Thus, $nP(n)-120=(n-1)(n-2)(n-3)(n-4)(n-5)$. Finally, $P(6)=\boxed{40}.$
+
+In short, polynomial makes most things easy. In fact, it also makes maximising and minimising tidier (we are civilised people, so we don't differentiate).
+\begin{example}[2019 SMO(S) P16]
+    Let $M$ be the maximum possible value of $$\frac{15x^2-x^3-39x-54}{x+1},$$ where $x$ is an integer. Find $9M$.
+\end{example}
+Of course, we should long divide! I leave that to you:
+$$\frac{15x^2-x^3-39x-54}{x+1}=-x^2+16x-55+\frac{1}{x+1}=(5-x)(x-11)+\frac{1}{x+1}.$$
+
+Observe that $(5-x)(x-11)$ is positive for $5<x<11$ and let $y=x+1$, so 
+    $$\frac{15x^2-x^3-39x-54}{x+1}=(6-y)(y-12)+\frac{1}{y}.$$
+Then, this is positive for $6<y<12$. Since we seek positive values of $x$ (and hence $y$), manual checking shows that $y=9$ gives $M=\frac{82}{9}$, achieved at $x=8$.
+
+Hence, $9M=\boxed{82}$.
+
+Before we go further, we note that sometimes a polynomial is  hard to factorise, especially if it has high degrees or have large coefficients. The Rational Root Theorem is extremely useful to help us discover any potential linear factors and rational roots.
+\begin{proposition}[Rational Root Theorem]
+For a polynomial $P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ with real coefficients $\{a_n\}=0$, if $P(x)$ \textit{has a rational root} $x=\frac{p}{q}$ where $\gcd(p,q)=1$, then
+\begin{itemize}
+    \item $p$ is an integer factor of the constant term $a_0$, and
+    \item $q$ is an integer factor of the leading coefficient $a_n$.
+\end{itemize}
+\end{proposition}
+It is important to point out that this \textbf{does not} guarantee that $P(x)$ has a rational root. It merely proposes that there are candidates.
+
+Let us see it in action.
+\begin{example}[2011 AIME I/9]
+    Suppose $x$ is in the interval $[0,\frac{\pi}{2}]$ and $$24\sin^3{x}=\cos^2{x}.$$
+    Find $24\cot^2{x}$.
+\end{example}
+\begin{proof}
+    We have $$24\sin{x}=24\cdot\frac{\cos^2{x}}{\sin^2{x}}=\cot^2{x}$$, so we simply need to find $24\cot^2{x}=576\sin{x}$.
+
+    Again, $$24\sin^3{x}=\cos^2{x}=1-\sin^2{x} \implies 24\sin^3{x}+\sin^2{x}-1=0.$$
+
+    By rational root theorem, the possible roots of the polynomial $24t^3+t^2-1=0$ are $$\pm 1,\pm \frac{1}{2},\pm \frac{1}{3},\pm \frac{1}{4},\pm \frac{1}{6},\pm \frac{1}{8},\pm \frac{1}{12},\pm \frac{1}{12}$$. This is a long list, but with some patience, we find that $t=\frac{1}{3}$ is a root. Hence, $$24t^3+t^2-1=(3t-1)(8t^2+3t+1).$$
+
+    However, the quadratic $8t^2+3t+1$ has no real roots (check using the discriminant), and so our only root is $\sin{x}=t=\frac{1}{3}$. 
+
+    Finally, $24\cot^2{x}=576\sin{x}=576\cdot\frac{1}{3}=\boxed{192}.$
+\end{proof}
+
 \section{Vieta's Theorem and Higher Ordered Polynomials \med}
 Contrary to popular belief, there are higher degree polynomials in the wild. We first consider some identities associated with the coefficients of a general polynomial.
 
@@ -187,7 +337,7 @@ At this point, it is only complete if we also derive some common algebraic ident
     \end{enumerate}
 \end{proposition}
 \begin{example}[2016 SMO(O) P15]
-    Let $p,q$ be integers such that the roots of the polynomial $f(x)=x^3+px^2+qx-343$ are real. Find the minimum value of $|p^2-2q|$.
+    Let $p,q$ be integers such that the roots of the polynomial $f(x)=x^3+px^2+qx-343$ are real. Find the minimum value of $\abs{p^2-2q}$.
 \end{example}
 This question reeks of Vieta's theorem... With some foresight, we first derive a corollary of the AM-GM inequality for three variables. From identity 2, we know that
     $$x^3+y^3+z^3 \geq 3xyz.$$
@@ -200,9 +350,9 @@ This question reeks of Vieta's theorem... With some foresight, we first derive a
     Let $a,b,c$ be the real roots of $f$, then by Vieta's theorem, $p=-(a+b+c)$, $q=ab+bc+ca$, and $abc=343$.
     Thus,
     \begin{align*}
-        |p^2-2q|&=|(a+b+c)^2-2(ab+bc+ca)| \\
-        &=|a^2+b^2+c^2| \\
-        &\geq |3\sqrt[3]{(abc)^2}| = |3\sqrt[3]{343^2}| \\
+        \abs{p^2-2q}&=\abs{(a+b+c)^2-2(ab+bc+ca)} \\
+        &=\abs{a^2+b^2+c^2} \\
+        &\geq \abs{3\sqrt[3]{(abc)^2}} = \abs{3\sqrt[3]{343^2}} \\
         &=\boxed{147}
     \end{align*}
 \end{proof}
@@ -229,7 +379,7 @@ $$(r+s+t)^3=r^3+s^3+t^3+3(r+s+t)(rs+st+rt)-3rst,$$
 whence upon arranging, we have
 \begin{align*}
     r^3+s^3+t^3
-    &=(\alpha+\beta+\gamma)^3-3(\alpha+\beta+\gamma)(\alpha\beta+\beta\gamma+\gamma\alpha)+3(\alpha+\beta+\gamma+\frac{1}{3})\\
+    &=(\alpha+\beta+\gamma)^3-3(\alpha+\beta+\gamma)(\alpha\beta+\beta\gamma+\gamma\alpha)+3\left(\alpha+\beta+\gamma+\frac{1}{3}\right)\\
     &=(\alpha+\beta+\gamma)^3-3(\alpha+\beta+\gamma)(\alpha\beta+\beta\gamma+\gamma\alpha)+3(\alpha+\beta+\gamma)+1 \\
     &=\alpha^3+\beta^3+\gamma^3+1 \\
     &=\boxed{170}
@@ -238,7 +388,7 @@ whence upon arranging, we have
 
 \begin{example}[2019 AIME I P10]
 For complex numbers $z_1, z_2,\cdots z_{673}$, the polynomial
-$$(x-z_1)^3(x-z_2)^3\cdots(x-z_673)^3$$
+$$(x-z_1)^3(x-z_2)^3\cdots(x-z_{673})^3$$
 can be expressed as $x^{2019}+20x^{2018}+19x^{2017}+g(x)$ where $g(x)$ is a polynomial with complex polynomials and of degree \textit{at most} $2016$. Find the value of 
 $$\sum_{1\leq j\leq k\leq 673}z_jz_k.$$
 \end{example}
@@ -298,64 +448,186 @@ For the final problem of this chapter, we shall prove identity 7.
     whence $$(a+b)^7-(a^7+b^7)=7ab(a+b)(a^2+ab+b^2)^2.$$
 \end{proof}
 
-\section{Geometric Properties of Polynomial Roots \hard}
-This section is completely optional as it covers some analytic results, which we think will only do justice to the topic at hand if we also include some impeccable analytic results.
+\section{Optional: Smoothness, Continuity and Roots \med}
+It would not be right if we fail to prove the most important property of a polynomial: polynomials are both \textbf{continuous} and \textbf{smooth}.
 
-To start off, we showcase some proofs of the useful \textbf{Cauchy-Schwarz} and \textbf{QM-AM-GM-HM} inequalities.
-
-\begin{theorem}[Cauchy-Schwarz Inequality]
-    Let $a_1,a_2,\cdots a_n$ and $b_1,b_2,\cdots b_n$ be two sequences of real numbers. Then,
-    $$\left(\sum a_i^2\right)\left(\sum b_i^2\right)\geq \left(\sum a_ib_i\right)^2.$$
-
-    Moreover, equality holds when $\frac{a_i}{b_i}$ is a constant for all $i$.
-\end{theorem}
-\begin{proof}
-    This is probably the shortest folklore proof. Consider the quadratic
-    $$f(x)=(a_1x-b_1)^2+(a_2x-b_2)^2+\cdots+(a_nx-b_n)^2 \geq 0.$$
-    Expanding, we see that
-    $$f(x)=\left(\sum a_i^2\right)x^2-2\left(\sum a_ib_i\right)x+\left(\sum b_i^2\right),$$
-    and since $f(x)$ is nonnegative,
-    it's discriminant is
-    $$\Delta=4\left(\sum a_ib_i\right)^2-4\left(\sum a_i^2\right)\left(\sum b_i^2\right)\leq 0 \iff \left(\sum a_i^2\right)\left(\sum b_i^2\right)\geq \left(\sum a_ib_i\right)^2.$$
-
-    Moreover, equality occurs when $f(x)=0$, i.e. $x=\frac{b_i}{a_i}$ for all $i$.
-\end{proof}
-
-Our second inequality is the \textbf{QM-AM-GM-HM} inequality. Out of laziness, we shall prove the \textbf{AM-GM} implication only, and we showcase a peculiar proof attributed to Cauchy.
-\begin{theorem}
-    Let $a_1,a_2,\cdots,a_n$ be positive real numbers, then
-    $$\frac{a_1+a_2+\cdots+a_n}{n}\geq \sqrt[n]{a_1a_2\cdots a_n}.$$
-
-    Moreover, equality holds if and only if all $a_i$ are equal.
-\end{theorem}
-\begin{proof}
-    Cauchy's proof is the so-called \textbf{forward-backward induction}, which is almost like our standard induction, only with a twist in the inductive step. In this case, Cauchy's inductive step has two parts. Let $P(n)$ denote the proposition as in the theorem. Then, we should prove two parts:
+\subsection{Continuity and Smoothness}
+We shall state the technical definitions of both terms and also outline a rudimentary proof of both properties.
+\begin{definition}[Continuity]
+    A function $f$ is said to be continuous at a point $c$ if 
+    $$\lim_{x\rightarrow c}f(x)=f(c).$$
+    In this vein, there are two conditions:
     \begin{enumerate}
-        \item $P(k)\implies P(2k)$. This is the "forward" part.
-        \item $P(k)\implies P(k-1)$. This is the "backward" part.
+        \item $f(c)$ is defined, and
+        \item the left and right limits of $x\rightarrow c$ are equal.
     \end{enumerate}
-    Before we begin, take a step to draw out some dominoes and convince yourself that this inductive step indeed covers all integers $n\geq 2$!
-
-    The case $n=1$ is trivially true and so we shall prove $P(2)$ for our base case:
-    $$\frac{a_1+a_2}{2}\geq \sqrt{a_1a_2}.$$
-    Fortunately, this is easily handled with an amusing application of completing the square:
-    $$\left(\sqrt{a_1}-\sqrt{a_2}\right)^2\geq 0.$$
-
-    For 1, we have
-    \begin{align*}
-        \prod_{k=1}^{2n} a_k&=\left(\prod_{k=1}^n a_k\right)\left(\prod_{k=n+1}^{2n}a_k\right) \\
-        &\leq\left(\sum_{k=1}^n \frac{a_k}{n}\right)^n\left(\sum_{k=n+1}^{2n}\frac{a_k}{n}\right)^n \quad\text{by inductive hypothesis} \\
-        &=\left(\sum_{k=1}^n \frac{a_k}{n}\cdot\sum_{k=n+1}^{2n}\frac{a_k}{n}\right)^n \\
-        &\leq \left(\frac{\sum_{k=1}^{2n}\frac{a_k}{n}}{2}\right)^{2n} =\left(\frac{\sum_{k=1}^{2n}a_k}{2n}\right)^{2n}
-    \end{align*}
-    For 2, write $A=\sum_{k=1}^{n}\frac{a_k}{n}$, so
-    \begin{align*}
-        \left(\prod_{k=1}^{n}a_k\right)A&\leq \left(\frac{\sum_{k=1}^{n}a_k+A}{n+1}\right)^{n+1} \\
-        &=\left(\frac{nA+A}{n+1}\right)^{n+1} \\
-        &=A^{n+1},
-    \end{align*}
-    and hence 
-    $$\prod_{k=1}^{n}a_k\leq A^{n}=\left(\frac{\sum_{k=1}^{n}a_k}{n}\right)^{n}.$$
+\end{definition}
+\begin{definition}[Smoothness]
+    A function $f$ is said to be smooth if it has derivatives of all orders. In other words,
+    $$f(x),f'(x),f''(x),\cdots$$
+    all exist. 
+    
+    Such a function is also rightfully said to be of class $\mathbf{C}^{\infty}.$
+\end{definition}
+\begin{proposition}[Polynomials are continuous]
+    Polynomials are continuous throughout.
+\end{proposition}
+\begin{proof}
+    We make a few observations.
+    \begin{enumerate}
+        \item $f(x)=x$ is continuous everywhere.
+        \item If $g(x)$ and $h(x)$ are continuous everywhere, then so is $g(x)h(x)$ by the algebra of limits.
+        \item Hence, $x^n$ is continuous for all positive integer $n$.
+        \item If $g(x)$ and $h(x)$ are continuous everywhere, then so is $g(x)+h(x)$ by the algebra of limits.
+    \end{enumerate}
 \end{proof}
-\subsection{}
+\begin{proposition}[Polynomials are smooth]
+    Polynomials are smooth throughout.
+\end{proposition}
+\begin{proof}
+    This follows since polynomials are infinitely differentiable.
+\end{proof}
+
+The following problem showcases the idea of "pushing the limits". By that, we mean the useful property of limits: let $P$ be continuous throughout, then
+$$\lim_{x\to a}P(x)=P\left(\lim_{x\to a}f(x)\right).$$
+
+\begin{example}[2021 SMO(O) P6]
+    Consider all polynomials $P(x,y)$ with two variables such that $P(0,0)=2020$ and for all $x$ and $y$, $P(x,y)=P(x+y,y-x)$. Find the largest possible value of $P(1,1)$.
+\end{example}
+It is always worthwhile to play around with special values of the polynomial before finally solving it. In any case, we should suspect that $P(1,1)=2020$ is our answer, as the constant polynomial $P\equiv 2020$ is a possible solution. While this is usually the case for an easily guessable problem, it is still wise to proceed carefully.
+
+We begin with $P(1,1)$, then we have
+$$\begin{cases}
+    x+y&=1 \\
+    y-x&=1
+\end{cases} \implies y=1,x=0,$$ so $P(1,1)=P(1,0)$.
+
+We also have that $x+y=1, y-x=0 \iff x=y=\frac{1}{2}$. Thus,
+$$P(1,1)=P(1,0)=P\left(\frac{1}{2},\frac{1}{2}\right)=P\left(\frac{1}{4},\frac{1}{4}\right)=\cdots.$$ Now, the key claim is clear.
+\begin{proof}
+    We have, for all positive integer $n$, $$P(x,y)=P\left(\frac{x}{2^n},\frac{y}{2^n}\right).$$
+
+    Since polynomials are continuous, we may take $n\to\infty$ whence $P(x,y)=P(0,0)$ for all $x,y$.
+
+    Hence $P(1,1)=\boxed{2020}$.
+\end{proof} 
+It wouldn't be fair if we didn't also include a proof on the (not so) Fundamental Theorem of Algebra.
+\begin{theorem}[Fundamental Theorem of Algebra]
+    Every non-constant single-variable polynomial with complex coefficients has at least one complex root.
+\end{theorem}
+This is slightly different from our usual statement that a polynomial has $n$ real and complex roots, but as we shall see, both statements are actually equivalent! We begin with a \textit{lemma}:
+\begin{lemma}[Maximum modulus principle]
+Let $D$ be a closed disk of radius $r$ centered at the origin such that $\abs{p(z)}>\abs{p(0)}$ whenever $\abs{z}\geq r$. Since $D$ is compact, the minimum of $\abs{p(z)}$ on $D$ is thus achieved at some point $z_0$ in the interior of $D$.
+
+Then, $p(z_0)=0$.
+\end{lemma}
+\begin{proof}
+    We proceed by a proof by contradiction. Suppose for the sake of contradiction that $p(z_0)=a\neq 0$. Then, expanding about $z=z_0$, we get
+    $$p(z)=a+c_k(z-z_0)^k+c_{k+1}(z-z_0)^{k+1}+\cdots+c_n(z-z_0)^n.$$ Here, $c_k$ are the coefficients of the polynomial after replacing $z$ with $z-z_0$ and expanding.
+
+    For sufficiently close to $z_0$, 
+    $p(z)\sim q(z)=a+c_k(z-z_0)^k.$ This means that $p(z)$ behaves asymptotically similar to $q(z)$.
+
+    Hence,
+    \begin{equation}\label{fta-bound}
+        \frac{p(z)-q(z)}{(z-z_0)^{k+1}}\leq M
+    \end{equation} for some positive $M$ in the neighbourhood of $z_0$. 
+    
+    Now, we wish to bound $p(z)$ in terms of $a$ and $M$. Our key ingredient is the root of unity: write $z-z_0=re^{i\theta}$ for some $\theta$. This traces a circle of radius $r$ about $z_0$, and so for a sufficiently small $r$ such that \eqref{fta-bound} holds,
+    \begin{align*}
+        \abs{p(z)}&=\abs{q(z)+p(z)-q(z)} \\
+            &\leq \abs{q(z)}+r^{k-1}\abs{\frac{p(z)-q(z)}{r^{k+1}}}\\
+            &\leq \abs{a+(-1)c_kr^ke^{ki\theta}}+Mr^{k+1} \\
+            &=\abs{a}-\abs{c_k}r^k+Mr^{k+1}
+    \end{align*}
+    For a sufficiently small $r$, $\abs{a}-\abs{c_k}r^k+Mr^{k+1}<\abs{a}$, contradicting our definition of $\abs{p(z_0)}$.
+\end{proof}
+Hence, for a complex $z_0$ satisfying our definition, it is a root of $p(z)$. Now, by repeated long division, $p(z)$ has $n$ (real and) complex roots.
+
+\section{Exercises}
+\subsection{Warmup}
+\problem[2012 SMO(S) P12]Find the sum of all positive integers $x$ such that $$\frac{x^3-x+120}{(x-1)(x+1)}$$ is an integer.
+\problem[2018 SMO(S) P8]The polynomial $p(x)=x^3+Ax^2+Bx-3$ has a factor $x^2+7x+1$. Find the remainder when $p(x)$ is divided by $x-4$.
+\problem[2021 SMO(S) P9]A quadratic polynomial $P(x)=ax^2+bx+c$ with $a\neq 0$ has the property that
+$$P(n)=\frac{1}{n^2} \quad\text{for all}\quad n=-1,2,3.$$
+Find the smallest positive value $k$ where $k\neq 2,3$ such that $P(k)=\frac{1}{k^2}$.
+\problem[2021 SMO(S) P24]Let $n$ be a positive integer such that
+$$\frac{2021n}{2021+n}$$ is also a positive integer. Find the smallest positive value $n$.
+\problem[2018 SMO(O) P8]For $x>2017$, find the minimum value of $$\frac{x^2+x+2018}{x-2017}.$$
+\problem[2019 SMO(O) P5]Let $(-1,0)$ lie on the curve $y=ax^2+bx+c$, where $a,b,c$ are three fixed reals not exceeding $\frac{1}{2}$. If the inequality $x\leq ax^2+bx+c\leq \frac{1}{2}(x^2+1)$ holds for all real $x$, find the value of $2020(a^2+b^2-c^2)$.
+\subsection{Problems}
+\problem[2019 SMO(O) P8]Among all reals $a,b,c$ satisfying $a+b+c=0$ and $abc=10$, find the largest possible value of $a^3+b^3+c^3$.
+\problem[2018 SMO(O) P11]Find the shortest distance from the point $(22,21)$ to the graph with equation $x^3+1=y(3x-y^2)$.
+\problem[2021 SMO(O) P9]Find the largest possible value of $a^4+b^4+c^4$ among all possible sets of $(a,b,c)$ satisfying
+\begin{align*}
+    a+b+c&=2\\
+    a^2+b^2+c^2&=14\\
+    a^3+b^3+c^3&=20
+\end{align*}
+
+\subsection{Challenges}
+\problem[2014 SMO(O) P3]Consider the quadratic polynomial $g(x)=Ax^2+Bx$, where $A$ and $B$ are constants. Suppose $u$ and $v$ are two real numbers such that $$g(u-3)=g(v+3), \quad u-v\neq 6.$$
+Find the largest possible value of $A(g(u+v))^2+B(g(u+v))$.\problem[2020 SMO(O) P16]Determine the smallest integer $p$ such that the system
+$$\begin{cases}
+    6x+4y+3z&=0 \\
+    4xy+2yz+pxz&=0
+\end{cases}$$
+has more than one set of real solutions in $x,y,z$.
+\problem[2017 SMO(O) P16]There are $674$ apples, $674$ oranges and $674$ pears to be packed into $2$ boxes such that both boxes contains $3$ types of fruits and the products of the number of apples, pears and oranges in both boxes are the same. Determine the number of ways this can be done.
+\problem[2017 SMO(O) P17]Let $S$ be the set of integers $x$ satisfying $2017x^2+(4036x-1)y+2019y^2=0$ for some integer $y$. Find the sum of all elements in $S$.
+
+
+\section{Solutions to Selected Problems}
+\paragraph{2014 SMO(O) P3}
+We have
+\begin{align*}
+    g(u-3)=g(v+3) &\iff A(u-3)^2+B(u-3)=A(v+3)^2+B(v+3) \\
+    &\iff A(u^2-6u+9)+B(u-3)=A(v^2+6v+9)+B(v+3)\\
+    &\iff A(u^2-v^2)-6A(u+v)+B(u-v)-6B=0 \\
+    &\iff A(u+v)((u-v)-6)+B(u-v-6)=0 \\
+    &\iff (A(u+v)+B)(u-v-6)=0.
+\end{align*}
+Since $u-v\neq 6$, $u+v=-\frac{B}{A} \implies g(u+v)=0$. Thus,
+$$A(g(u+v))^2+B(g(u+v))=g(g(u+v))=g(0)=\boxed{0}.$$
+\paragraph{2020 SMO(O) P16}Since the equations
+$$\begin{cases}
+    6x+4y+3z&=0 \\
+    4xy+2yz+pxz&=0
+\end{cases},$$
+have more than one set of real solutions, we expect at least one variable to be the free variable, say $x$. That is, we may express $y,z$ in terms of $x$.
+\begin{align*}
+    4y=-6x-3z &\iff x(-6x-3z)+\frac{z(-6x-3z)}{2}+pxz=0 \\ &\iff 12x^2+(12-2p)xz+3z^2=0. \\
+\end{align*}
+This is a quadratic equation in terms of $x$, so
+$$\Delta_{x}=(12-2p)^2z^2-144z^2=(12-2p)^2z^2-144z^2\geq 0.$$
+
+Hence, 
+$$(12-2p)^2-12^2\geq 0 \implies -2p(24-2p)\geq 0,$$
+giving $p\leq 0$ or $p\geq 12$.
+
+We now show that $p=12$ suffices. Firstly, $x,z$ are related by the quadratic $$12x^2-12xz+3z^2=0 \implies 3(2x-z)^2=0 \implies z=2x.$$
+Substituting these results into the first equation gives the solution $(x,y,z)=(t,-3t,2t)$ for all real $t$, which satisfies the second equation.
+
+Hence, $p=\boxed{12}$ is the required integer.
+
+\paragraph{2017 SMO(O) P16}Let $a,b,c$ be the number of apples, oranges and pears respectively in the first box. Then, we seek the number of triples of $(a,b,c)$ satisfying $1\leq a,b,c\leq 673$
+\begin{align*}
+    abc=(674-a)(674-b)(674-c) \iff 2abc=674^3-674^2(a+b+c)+674(ab+bc+ca) \\
+    \iff abc=4\cdot 337^3-2\cdot 337^2(a+b+c)+337(ab+bc+ca).
+\end{align*}
+This means that $337\mid abc$ and since $337$ is prime, at least one of $a,b,c$ is a multiple of $337$. However, since $a,b,c\leq 673$, one of $a,b,c$ is exactly $337$. Henceforth, suppose WLOG that $a=337$.
+
+Thus, we have $b+c=674$, giving $673$ solutions. By symmetry, each of $b=337$ and $c=337$ also gives $673$ solutions. However, we have triple counted the solution $x=y=z=337$, so the number of solutions to our system, and equivalently, the number of ways for such an arrangement is $673\cdot 3-2=\boxed{2017}.$
+
+\paragraph{2017 SMO(O) P17}We make the observation that $2017+2019=4036$, so we may rewrite the initial equation as
+$$2017x^2+(4036x-1)y+2019y^2=0 \implies (x+y)(2017x+2019y)=y.$$
+
+Define $d=x+y$, so $d(2017d+2y)=y \implies 2017d^2+2yd=y \implies y(1-2d)=2017d^2$. Now, we make the crucial observation that $1-2d$ and $d^2$ are relatively prime, that is, $\\gcd(1-2d,d^2)=1$.
+
+To see this, we consider their greatest common divisor: $$\gcd(d^2, 1-2d)=\gcd(4d^2, 1-2d)=\gcd(4d^2+2d(1-2d), 1-2d)=\gcd(2d,1-2d)=1.$$
+
+Thus, $1-2d\mid 2017$, but $2017$ is prime, so $1-2d=-1,1,-2017,2017$, giving $d=1,0,1009,-1008$. Correspondingly, $y=-2017,0,-1009^2,1008^2$ and $x=d-y=2018,0,1009+1009^2,-1008^2-1008$.
+
+The sum is thus 
+$$\sum_{S}=2018+(1009^2-1008^2)+(1009-1008)=2018+2017+1=\boxed{4036}.$$
 \end{document}

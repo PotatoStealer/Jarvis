@@ -274,41 +274,6 @@ Notice the use of proof by contradiction here! We assumed that $x=\sqrt{5}$ is a
 Similarly, suppose $a=x=\sqrt{6}$, then $a^9=1296\sqrt{6}=216\sqrt{6}+1080\sqrt{6}$, which is consistent. Hence, $a=\sqrt{6}$ is the solution we're after. Having exhausted all cases, and verified that our solution was correct, we can now confidently say that the only solutions to the original equation are $$\boxed{\text{$x=0$, $\sqrt{6}$ and $-\sqrt{6}$}}.$$
 \end{proof}
 
-Before we go further, we note that sometimes a polynomial is  hard to factorise, especially if it has high degrees or have large coefficients. The Rational Root Theorem is extremely useful to help us discover any potential linear factors and rational roots.
-\begin{proposition}[Rational Root Theorem]
-For a polynomial $P(x)=a_nx^n+a_{n-1}x^{n-1}+\cdots+a_1x+a_0$ with real coefficients $\{a_n\}=0$, if $P(x)$ \textit{has a rational root} $x=\frac{p}{q}$ where $\gcd(p,q)=1$, then
-\begin{itemize}
-    \item $p$ is an integer factor of the constant term $a_0$, and
-    \item $q$ is an integer factor of the leading coefficient $a_n$.
-\end{itemize}
-It is important to point out that this \textbf{does not} guarantee that $P(x)$ has a rational root. It merely proposes that there are candidates.
-\end{proposition}
-
-Let's see it in action:
-\begin{example}[2021 SMO(S) P22]
-Find all real solutions $(x,y)$ to the system
-\begin{align}
-    x^3+y^3+y^2&=0 \label{13-sys-1} \\
-    x^2+x^2y+xy^2&=0 \label{13-sys-2}
-\end{align}
-\end{example}
-This is a tough system: both equations are cubic in nature. As an initial scout, it's wise to guess a few solutions: since $x$ is the "lone variable" in equation 2, letting $x=0$ gives $y=0, -1$. We also see that $x=y$ is another solution. In particular, if $x=y$, we have $$2y^3+y^2=0 \implies y=0, -\frac{1}{2}.$$
-
-Thus, we immediately have the solutions $(0,0)$, $(0,-1)$ and $(0, -\frac{1}{2})$, and we know these are (likely) all the solutions because the system has degree 3 (we still need to verify whether there are other nontrivial classes of solution).
-
-\begin{proof}
-    To start, we see that \eqref{13-sys-2} is a quadratic in $x$, so $x^2(1+y)+xy^2=0.$ If $x=0$, then we get the three solutions as above. If $y=-1$ in \eqref{13-sys-1}, we have $x=0$, as above. So, suppose $x\neq 0, y\neq -1$, then
-$$x(1+y)+y^2=0 \implies x=-\frac{y^2}{1+y}.$$
-
-Putting this into \eqref{13-sys-1}, 
-$$-\frac{y^6}{(1+y)^3}+y^2(1+y)=0 \implies \frac{-y^6+y^2(1+y)^4}{(1+y)^3}=0 \implies 4y^3+6y^2+4y+1=0.$$
-
-To factorise this, we use the rational root theorem. The potential roots are thus $y=\pm 1, \pm \frac{1}{2}, \pm\frac{1}{4}$, and from our scouting, we know $y=-\frac{1}{2}$ is a root. Thus,
-$$4y^3+6y^2+4y+1=0=(2y+1)(2y^2+2y+1)=0,$$
-where the quadratic factor has no real solutions to it. Having exhausted all cases, we have recovered the solutions
-$$\boxed{(x,y)=(0,0), (0,-1), (0,-\frac{1}{2})}.$$
-\end{proof}
-
 This next problem showcases the mixing of algebra and a string of divisibility arguments. Keep an eye out for these, especially if we are solving over the integers!
 \begin{example}[2018 SMO(O) P9]
     Let $p(x)=x^3+ax^2+bx+c$ be a polynomial where $a,b,c$ are distinct non-zero integers. Suppose $p(a)=a^3$ and $p(b)=b^3$. Find $p(13)$.
