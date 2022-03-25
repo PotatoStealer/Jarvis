@@ -1,4 +1,7 @@
 \documentclass[../jarvis.tex]{subfiles}
+\usepackage{polynom}
+\usepackage{scrambledenvs}
+\newscrambledenv{hint}
 \graphicspath{{\subfix{../images/}}}
 \begin{document}
 Outside of quadratic polynomials, there are also cubics, quartics, quintics, sextics..., that most students assume are extinct. However, they can be found in a select number of natural hideouts! In this handout, we look at the structures associated with polynomials, as well as the techniques to deal with them. 
@@ -170,13 +173,16 @@ We start with an example on dividing polynomials.
 \end{example}
 Damn, that's a big polynomial! But as the word "algorithm" in division algorithm suggests, we can do this systematically. 
 
+We show two approaches, the first is a systematic approach which would be quick if you are confident with numbers, and the second is the standard long division. Either method works like a charm!
+
+\textit{Approach 1:}
 \paragraph{Step 1}We begin with the term of the largest degree, just as we begin from the digit with the largest value when long dividing integers.
 
 To match the $8n^3$ term, we use $$4n^2(2n-7)=8n^3-28n^2\implies 8n^3=4n^2(2n-7)+28n^2.$$ This extra $n^2$ term is perfectly fine since we can simply defer it to the next step when we consider the quadratic term.
 
 For now, we have 
 \begin{align*}
-    8n^3-96n^2+360n-400&=\left[4n^2(2n-7)\right]+28n^2-96n^2+360n-400 \\
+    8n^3-96n^2+360n-400&=4n^2(2n-7)+28n^2-96n^2+360n-400 \\
     &=4n^2(2n-7)-68n^2+360n-400
 \end{align*}
 
@@ -185,21 +191,29 @@ For now, we have
 Now, we have
 \begin{align*}
     8n^3-96n^2+360n-400&=4n^2(2n-7)-68n^2+360n-400 \\
-    &=4n^2(2n-7)+\left[-34n(2n-7)-238n\right]+360n-400\\
-    &=4n^2(2n-7)-34n(2n-7)+122n-400
+    &=4n^2(2n-7)-34n(2n-7)-238n+360n-400\\
+    &=(2n-7)(4n^2-34n)+122n-400
 \end{align*}
 
 \paragraph{Step 3}Finally, we have the linear term in $122n$.
 As again, we use $$61(2n-7)=122n-427 \implies 122n=61(2n-7)+427.$$ Then, 
 \begin{align*}
-    8n^3-96n^2+360n-400 &= 4n^2(2n-7)-34n(2n-7)+122n-400 \\
-    &= 4n^2(2n-7)-34n(2n-7)+\left[61(2n-7)+427\right]-400 \\
-    &= 4n^2(2n-7)-34n(2n-7)+61(2n-7)+27.
+    8n^3-96n^2+360n-400 &= (2n-7)(4n^2-34n)+122n-400 \\
+    &= (2n-7)(4n^2-34n)+61(2n-7)+427-400 \\
+    &= (2n-7)(4n^2-34n+61)+27.
 \end{align*}
 Now, we're home free!
 \paragraph{Ending}
 By factoring the common $(2n-7)$ terms, we get
-$$8n^3-96n^2+360n-400=(2n-7)(4n^2-34n+61)+27.$$ Now, we go back to our original problem: we wanted to divide by $(2n-7)$, so we do so:
+$$8n^3-96n^2+360n-400=(2n-7)(4n^2-34n+61)+27.$$ 
+
+\textit{Approach 2:}
+\begin{center}
+    \polyset{vars=XYZn}
+    \polylongdiv{8n^3-96n^2+360n-400}{2n-7}
+\end{center}
+    
+Now, we go back to our original problem: we wanted to divide by $(2n-7)$, so we do so:
 $$\frac{8n^3-96n^2+360n-400}{2n-7}=4n^2-34n+61+\frac{27}{2n-7}.$$
 This is the result of our polynomial \textit{long} division! It's simple, but it surely is long. In any case, we finish up the problem as such:
 
@@ -555,15 +569,41 @@ Find the smallest positive value $k$ where $k\neq 2,3$ such that $P(k)=\frac{1}{
 $$\frac{2021n}{2021+n}$$ is also a positive integer. Find the smallest positive value $n$.
 \problem[2018 SMO(O) P8]For $x>2017$, find the minimum value of $$\frac{x^2+x+2018}{x-2017}.$$
 \problem[2019 SMO(O) P5]Let $(-1,0)$ lie on the curve $y=ax^2+bx+c$, where $a,b,c$ are three fixed reals not exceeding $\frac{1}{2}$. If the inequality $x\leq ax^2+bx+c\leq \frac{1}{2}(x^2+1)$ holds for all real $x$, find the value of $2020(a^2+b^2-c^2)$.
+\begin{hints}
+    \begin{hint}
+        Apply the discriminant on both side of the given inequality.
+    \end{hint}
+\end{hints}
 \subsection{Problems}
 \problem[2019 SMO(O) P8]Among all reals $a,b,c$ satisfying $a+b+c=0$ and $abc=10$, find the largest possible value of $a^3+b^3+c^3$.
+\begin{hints}
+    \begin{hint}
+        Apply one of the identities found under Vieta's Theorem.
+    \end{hint}
+\end{hints}
 \problem[2018 SMO(O) P11]Find the shortest distance from the point $(22,21)$ to the graph with equation $x^3+1=y(3x-y^2)$.
+\begin{hints}
+    \begin{hint}
+        Apply one of the identities found under Vieta's Theorem.
+    \end{hint}
+    \begin{hint}
+        This is identity 2, for what choice of $z$ would it be convenient? 
+    \end{hint}
+\end{hints}
 \problem[2021 SMO(O) P9]Find the largest possible value of $a^4+b^4+c^4$ among all possible sets of $(a,b,c)$ satisfying
 \begin{align*}
     a+b+c&=2\\
     a^2+b^2+c^2&=14\\
     a^3+b^3+c^3&=20
 \end{align*}
+\begin{hints}
+    \begin{hint}
+        Find $a+b+c$, $ab+bc+ca$ and $abc$.
+    \end{hint}
+    \begin{hint}
+        Find a cubic equation that $a,b,c$ satisfies.
+    \end{hint}
+\end{hints}
 
 \subsection{Challenges}
 \problem[2014 SMO(O) P3]Consider the quadratic polynomial $g(x)=Ax^2+Bx$, where $A$ and $B$ are constants. Suppose $u$ and $v$ are two real numbers such that $$g(u-3)=g(v+3), \quad u-v\neq 6.$$
@@ -573,10 +613,35 @@ $$\begin{cases}
     4xy+2yz+pxz&=0
 \end{cases}$$
 has more than one set of real solutions in $x,y,z$.
+\begin{hints}
+    \begin{hint}
+        Begin by making a substitution into equation 2.
+    \end{hint}
+\end{hints}
 \problem[2017 SMO(O) P16]There are $674$ apples, $674$ oranges and $674$ pears to be packed into $2$ boxes such that both boxes contains $3$ types of fruits and the products of the number of apples, pears and oranges in both boxes are the same. Determine the number of ways this can be done.
+\begin{hints}
+    \begin{hint}
+        This is in fact an algebra problem! Define variables that represent the number of each type of fruits found in the first and second box.
+    \end{hint}
+    \begin{hint}
+        Make a divisibility argument. You may wish to know that $337$ is prime.
+    \end{hint}
+\end{hints}
+
 \problem[2017 SMO(O) P17]Let $S$ be the set of integers $x$ satisfying $2017x^2+(4036x-1)y+2019y^2=0$ for some integer $y$. Find the sum of all elements in $S$.
-
-
+\begin{hints}
+    \begin{hint}
+        Notice that $2017+2019=4036$. Can we factorise part of the equation?
+    \end{hint}
+    \begin{hint}
+        Substitute $z=x+y$.
+    \end{hint}
+    \begin{hint}
+        Another divisibility argument! Look out for things that are coprime.
+    \end{hint}
+\end{hints}
+\section{Hints to Exercises}
+\printhint
 \section{Solutions to Selected Problems}
 \paragraph{2014 SMO(O) P3}
 We have
