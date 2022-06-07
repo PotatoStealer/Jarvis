@@ -12,7 +12,7 @@ As it turns out, there's more to algebra than pure uninspiring symbol pushing. I
     \caption{Comic from https://xkcd.wtf/135/}
 \end{figure}
 
-\section{Many Manipulations \ez}
+\section{Many Manipulations}
 \subsection{Factorising and Re-expressing}
 Starting off easy, we will explore some funny-looking problems that solve themselves after some smart rearranging and rewriting.
 
@@ -238,7 +238,87 @@ Solving for $x$, we have $$x=\frac{1}{\cbrt{9}-1}.$$ We make the substitution $a
     &=\frac{\cbrt{81}+\cbrt{9}+1}{8}.
 \end{align*}
 
-\section{Solving \ez}
+\subsection{Exercises}
+\problem[2015 SMO(J) P9]Find the value of $\left(4\sqrt{4+2\sqrt{3}}-\sqrt{49+8\sqrt{3}}\right)^2.$
+\begin{hints}
+    \begin{hint}
+        Simplify the square roots.
+    \end{hint}
+\end{hints}
+\problem[2014 SMO(J) P13]Let $A$ be the solution of the equation
+$$\frac{x-7}{x-8}-\frac{x-8}{x-9}=\frac{x-10}{x-11}-\frac{x-11}{x-12}.$$
+\begin{hints}
+    \begin{hint}
+        Each numerator isn't \textit{that} different from it's denominator.
+    \end{hint}
+\end{hints}
+\problem[2016 SMO(J) P11]If the sum and product of two positive real numbers are both equal to $13$, find the sum of the squares of these two numbers.
+\problem[2022 SMO(J) P22]If we have $$\frac{\sqrt{15}+\sqrt{35}+\sqrt{21}+5}{\sqrt{3}+2\sqrt{5}+\sqrt{7}}=\frac{a\sqrt{7}+b\sqrt{5}+c\sqrt{3}}{2}$$ for some integers $a,b,c$, find their values.
+\begin{hints}
+    \begin{hint}
+        Note that $\sqrt{3}+2\sqrt{5}+\sqrt{7}=(3+\sqrt{5})+(\sqrt{5}+\sqrt{7})$
+    \end{hint}
+\end{hints}
+\problem[2014 SMO(J) P23]Let $a,b,c$ be non-zero reals satisfying $a+2b+3c=2014$ and $2a+3b+2c=2014$, find the value of 
+$$\frac{a^2+b^2+c^2}{ab+bc+ca}.$$
+\problem[2014 SMO(J) P26]Let $x$ be such that $\left(x+\frac{1}{x}\right)^2=3$. Evaluate $x^3+\frac{1}{x^3}.$
+\problem[2014/15 SDML 2A/P5]Let $a,b,c,d,e$ be five consecutive positive integers such that $a<b<c<d<e$. If $b+c+d$ is a perfect cube and $a+b+c+d+e$ is a perfect square, find the smallest possible value of $e$.
+\problem[2008 SMO(J) P23]Evaluate 
+$$\frac{(2020^2-20100)(20100^2-100^2)(2000^2+20100)}{2010^6-10^6}.$$
+\problem[2014 SMO(S) P23]Let $n$ be a positive integer and let
+$$x=\frac{\sqrt{n+2}-\sqrt{n}}{\sqrt{n+2}+\sqrt{n}},\quad y=\frac{\sqrt{n+2}+\sqrt{n}}{\sqrt{n+2}-\sqrt{n}}.$$
+
+If $14x^2+26xy+14y^2=2014$, find the value of $n$.
+\begin{hints}
+    \begin{hint}
+        What is the relationship between $x$ and $y$?
+    \end{hint}
+\end{hints}
+\problem[2018 SMO(J) P2]Find the value of \begin{align*}
+    &\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right) \\
+    &-\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right).
+\end{align*}
+\begin{hints}
+    \begin{hint}
+        Find two good substitutions to make.
+    \end{hint}
+\end{hints}
+\problem[2014 SMO(S) P20]Let $x=\sqrt{37-20\sqrt{3}}$. Find the value of 
+$$\frac{x^4-9x^3+5x^2-7x+68}{x^2-10x+19}.$$
+\problem[2022 SMO(J) P21]If $x=\cbrt{4}+\cbrt{2}+1$, what is the value of
+$$2022+\frac{3}{x}+\frac{3}{x^2}+\frac{1}{x^3}?$$
+\problem[2017 SMO(S) P29]Find the least positive integer $n$ such that
+$$5(3^2+2^2)(3^4+2^4)\cdots(3^{2^n}+2^{2^n})>9^{256}.$$
+\begin{hints}
+    \begin{hint}
+        Write $5$ as a difference of two squares.
+    \end{hint}
+\end{hints}
+\problem[2014 SMO(J) P30]Find the following sum
+\begin{align*}
+    \left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\cdots+\frac{1}{29}\right)&+\left(\frac{2}{3}+\frac{2}{4}+\frac{2}{5}+\cdots+\frac{2}{29}\right) \\
+    &+\left(\frac{3}{4}+\frac{3}{5}+\cdots+\frac{3}{29}\right) \\
+    &+\cdots \\
+    &+\left(\frac{27}{28}+\frac{27}{29}\right) \\
+    &+\frac{28}{29}.
+\end{align*}
+\begin{hints}
+    \begin{hint}
+        Write the sums in a nicer way... They really should resemble a triangular pyramid.
+    \end{hint}
+    \begin{hint}
+        How many times are fractions with the same denominator summed?
+    \end{hint}
+\end{hints}
+\problem[2017 SMO(J) P24]Let $a$ be an integer such that $a+2$ and $a+79$ are both perfect squares. Find the largest possible value of $a$.
+\problem[2021 SMO(J) P25]Let $x$ be a positive integer satisfying the equation
+$$\sqrt[5]{x+76638}-\sqrt[5]{x-76637}=5.$$
+Find the value of $x$.
+\problem[2014 SMO(J) P32]For $a\geq\frac{1}{8}$, define
+$$g(a)=\sqrt[3]{a+\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}+\sqrt[3]{a-\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}.$$
+Find the maximum value of $g(a)$.
+
+\section{Solving}
 Many questions will demand you to "find all X satisfying condition Y", the keyword being \textbf{find all}. These problems come in solving equations, functional equations, inequalities, etc. This implies that there are two parts to the problem: 
 \begin{enumerate}
     \item Find the solutions and show that no other solutions exist.
@@ -246,35 +326,7 @@ Many questions will demand you to "find all X satisfying condition Y", the keywo
 \end{enumerate}
 It will be more instructive for us to work through a problem.
 
-\begin{example}[2021 SMO(O) P10]
-Find all real roots to the equation
-$$\sqrt[9]{x^7+30x^5}=\sqrt[7]{x^9-30x^5}.$$
-\end{example}
-As a first scout, we see that $x=0$ is a solution. Moreover, if $x=k$ is a solution, then so is $x=-k$, so we may consider only $x > 0$.
-\begin{proof}
-Let $a=\sqrt[9]{x^7+30x^5}$, $b=\sqrt[7]{x^9-30x^5}$ so that
-$$\begin{cases}
-    a-b=0 \\
-    a^9+b^7=x^{16}
-\end{cases}
-\implies
-a^{16}=x^{16} \implies a=\pm x.$$
-
-If $a=x$, then $a^9=a^7+30a^5.$ 
-
-Aha! This gives our first solution $a=0$, corresponding to $x=0$. In what follows, we assume $x\neq 0 \implies a\neq 0$.
-
-Thus, $a^4=a^2+30 \implies (a^2-6)(a^2-5)=0 \implies a=\pm \sqrt{5}, a=\pm \sqrt{6}$.
-
-Now, are all of these valid solutions? We should verify so. Suppose $a=x=\sqrt{5}$ (since we have $x>0$), then 
-$$a^9=625\sqrt{5}=125\sqrt{5}+750\sqrt{5}=875\sqrt{5},$$ which is a contradiction. Thus $x\neq \sqrt{5}$.
-\begin{remark}
-Notice the use of proof by contradiction here! We assumed that $x=\sqrt{5}$ is a solution, and then derived the absurd statement that $625\sqrt{5}=875\sqrt{5}$.
-\end{remark}
-Similarly, suppose $a=x=\sqrt{6}$, then $a^9=1296\sqrt{6}=216\sqrt{6}+1080\sqrt{6}$, which is consistent. Hence, $a=\sqrt{6}$ is the solution we're after. Having exhausted all cases, and verified that our solution was correct, we can now confidently say that the only solutions to the original equation are $$\boxed{\text{$x=0$, $\sqrt{6}$ and $-\sqrt{6}$}}.$$
-\end{proof}
-
-This next problem showcases the mixing of algebra and a string of divisibility arguments. Keep an eye out for these, especially if we are solving over the integers!
+This problem showcases the mixing of algebra and a string of divisibility arguments. Keep an eye out for these, especially if we are solving over the integers!
 \begin{example}[2018 SMO(O) P9]
     Let $p(x)=x^3+ax^2+bx+c$ be a polynomial where $a,b,c$ are distinct non-zero integers. Suppose $p(a)=a^3$ and $p(b)=b^3$. Find $p(13)$.
 \end{example}
@@ -328,38 +380,7 @@ Is that all? Not quite! Don't forget that we are told to solve the given equatio
 $$\boxed{x=n^3+3n^2-1\quad\text{and}\quad y=-n^3+3n+1},$$
 and permutations (note that the equation is symmetric in $x$ and $y$!).
 \end{proof}
-
-\section{Exercises}
-\subsection{Warmup}
-\problem[2015 SMO(J) P9]Find the value of $\left(4\sqrt{4+2\sqrt{3}}-\sqrt{49+8\sqrt{3}}\right)^2.$
-\begin{hints}
-    \begin{hint}
-        Simplify the square roots.
-    \end{hint}
-\end{hints}
-\problem[2014 SMO(J) P13]Let $A$ be the solution of the equation
-$$\frac{x-7}{x-8}-\frac{x-8}{x-9}=\frac{x-10}{x-11}-\frac{x-11}{x-12}.$$
-\begin{hints}
-    \begin{hint}
-        Each numerator isn't \textit{that} different from it's denominator.
-    \end{hint}
-\end{hints}
-\problem[2016 SMO(J) P11]If the sum and product of two positive real numbers are both equal to $13$, find the sum of the squares of these two numbers.
-\problem[2014 SMO(J) P23]Let $a,b,c$ be non-zero reals satisfying $a+2b+3c=2014$ and $2a+3b+2c=2014$, find the value of 
-$$\frac{a^2+b^2+c^2}{ab+bc+ca}.$$
-\problem[2014 SMO(J) P26]Let $x$ be such that $\left(x+\frac{1}{x}\right)^2=3$. Evaluate $x^3+\frac{1}{x^3}.$
-\problem[2014/15 SDML 2A/P5]Let $a,b,c,d,e$ be five consecutive positive integers such that $a<b<c<d<e$. If $b+c+d$ is a perfect cube and $a+b+c+d+e$ is a perfect square, find the smallest possible value of $e$.
-\problem[2008 SMO(J) P23]Evaluate 
-$$\frac{(2020^2-20100)(20100^2-100^2)(2000^2+20100)}{2010^6-10^6}.$$
-\problem[2014 SMO(S) P23]Let $n$ be a positive integer and let
-$$x=\frac{\sqrt{n+2}-\sqrt{n}}{\sqrt{n+2}+\sqrt{n}},\quad y=\frac{\sqrt{n+2}+\sqrt{n}}{\sqrt{n+2}-\sqrt{n}}.$$
-
-If $14x^2+26xy+14y^2=2014$, find the value of $n$.
-\begin{hints}
-    \begin{hint}
-        What is the relationship between $x$ and $y$?
-    \end{hint}
-\end{hints}
+\subsection{Exercises}
 \problem[2014 SMO(S) P29]Solve the following system in real numbers:
 \begin{align*}
     x^2&=4y+4 \\
@@ -377,37 +398,6 @@ If $14x^2+26xy+14y^2=2014$, find the value of $n$.
         Complete the square.
     \end{hint}
 \end{hints}
-\problem[2018 SMO(J) P2]Find the value of \begin{align*}
-    &\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right) \\
-    &-\left(1+\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2018}\right)\left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\cdots+\frac{1}{2017}\right).
-\end{align*}
-\begin{hints}
-    \begin{hint}
-        Find two good substitutions to make.
-    \end{hint}
-\end{hints}
-
-\subsection{Problems}
-\problem[2014 SMO(J) P29]Let $x,y$ be real values with $xy<0$, such that
-$$x+y=\frac{1}{3}\quad\text{and}\quad\frac{1}{x^2}+\frac{1}{y^2}=40.$$
-Find the value of $\frac{1}{x^4}+\frac{1}{y^4}$.
-\problem[2014 SMO(S) P20]Let $x=\sqrt{37-20\sqrt{3}}$. Find the value of 
-$$\frac{x^4-9x^3+5x^2-7x+68}{x^2-10x+19}.$$
-\problem[2017 SMO(S) P29]Find the least positive integer $n$ such that
-$$5(3^2+2^2)(3^4+2^4)\cdots(3^{2^n}+2^{2^n})>9^{256}.$$
-\problem[2005 AIME II/7]Let 
-$$x=\frac{4}{(\sqrt{5}+1)(\sqrt[4]{5}+1)(\sqrt[8]{5}+1)(\sqrt[16]{5}+1)}.$$
-Find $(x+1)^{48}.$
-\begin{remark}
-    This problem and the above are solved by a similar idea. What is this idea?
-\end{remark}
-\problem[2017 SMO(J) P24]Let $a$ be an integer such that $a+2$ and $a+79$ are both perfect squares. Find the largest possible value of $a$.
-\problem[2020 SMO(J) P25]Let $x$ be a positive integer satisfying the equation
-$$\sqrt[5]{x+76638}-\sqrt[5]{x-76637}=5.$$
-Find the value of $x$.
-\problem[2014 SMO(J) P32]For $a\geq\frac{1}{8}$, define
-$$g(a)=\sqrt[3]{a+\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}+\sqrt[3]{a-\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}.$$
-Find the maximum value of $g(a)$.
 \problem[2016 SMO(J) P28]Let $x,y,z$ be positive integers such that
 $$x^2+y-z=124\quad\text{and}\quad x+y^2-z=100.$$
 Find the value of $x+y+z$.
@@ -441,22 +431,6 @@ Find the smallest possible value of $mn$.
         This is a quadratic in terms of some variable. Solve the quadratic in terms of this variable.
     \end{hint}
 \end{hints}
-\problem[2014 SMO(J) P30]Find the following sum
-\begin{align*}
-    \left(\frac{1}{2}+\frac{1}{3}+\frac{1}{4}+\frac{1}{5}+\cdots+\frac{1}{29}\right)&+\left(\frac{2}{3}+\frac{2}{4}+\frac{2}{5}+\cdots+\frac{2}{29}\right) \\
-    &+\left(\frac{3}{4}+\frac{3}{5}+\cdots+\frac{3}{29}\right) \\
-    &+\cdots \\
-    &+\left(\frac{27}{28}+\frac{27}{29}\right) \\
-    &+\frac{28}{29}.
-\end{align*}
-\begin{hints}
-    \begin{hint}
-        Write the sums in a nicer way... They really should resemble a triangular pyramid.
-    \end{hint}
-    \begin{hint}
-        How many times are fractions with the same denominator summed?
-    \end{hint}
-\end{hints}
 \problem[2018 SMO(S) P25]Suppose $x,y,z$ are positive reals satisfying the following system of equations:
 \begin{align*}
     \frac{\sqrt{xyz}}{x+y}&=3,\\
@@ -475,8 +449,6 @@ Find the value of $\frac{1}{x}+\frac{1}{y}+\frac{1}{z}.$
         What do we know about $\frac{x}{y}$ and the like?
     \end{hint}
 \end{hints}
-
-\subsection{Challenges}
 \problem[1990 AIME P15]Let $a,b,x,y$ be real numbers satisfying
 \begin{align*}
     ax+by&=3 \\
@@ -515,8 +487,6 @@ If $500<a+b<1000,$ find the value of $a$ and of $b$.
         Given a solution, we expect to be able to generate more solutions. Find a way to generate these solutions, and a starting point for your generation.
     \end{hint}
 \end{hints}
-\section{Hints to Problems}
-\printhint
 \subsection{Tangent: Pell's Equation}
 I'll admit, the last challenge is slightly gimmicky in the sense that it is a focus in number theory. In general, for a positive integer $n$ such that $n$ is not a perfect square,
 the equation $$a^2-nb^2=1$$
@@ -607,4 +577,28 @@ It now remains to show that the recurrence given by $(u_{n+1},v_{n+1})$ generate
     so $(x,y)=(uu_m-Dvv_m,u_mv-uv_m)$ is a solution to \eqref{tangent-pell-eq}, and is smaller than $(u_1,v_1)$. This contradicts our assumption that $(u_1,v_1)$ is the fundamental (or smallest) solution, and this means that there are no other unexpected solutions. The proof is now complete.
 \end{proof}
 \paragraph{Question:} How do we know that there exists a fundamental solution to \eqref{tangent-pell-eq}?
+
+\section{Binomial Expansions}
+In this section, we explore the surprisingly clumsy and ugly thing that is the binomial expansion.
+
+\begin{proposition}[Binomial Theorem]
+    For $n\in \mathbb{Z^+}$,
+    $$(x+y)^n=\sum_{k=0}^n\binom{n}{k}x^ny^{n-k}=\sum_{k=0}^nx^{n-k}y^k.$$
+\end{proposition}
+This gives rise to the two familiar identities (although we'll see more later)
+\begin{enumerate}
+    \item $(x+y)^2=x^2+2xy+y^2$
+    \item $(x+y)^3=x^3+3x^2y+3xy^2+y^3$.
+\end{enumerate}
+Of note are the coefficients: they arise from the Pascal's triangle, almost as known as its Egyptian counterpart. As it turns out, we can tell a lot about the sums of the coefficients. For simplicity, we first consider the expansions in one variable. Written in the form
+$(x+p)^n=a_0+a_1x+a_2x^2+\cdots+a_nx^n$ for some constant $p$. Then, observe that by substituting
+\begin{enumerate}
+    \item $x=0$, $a_0=p^n$.
+    \item $x=1$, $a_0+a_1+\cdots+a_n=(p+1)^n$.
+    \item $x=-1$, $a_0-a_1+\cdots+(-1)^{n+1}a_n=(p-1)^n$.
+\end{enumerate}
+\problem Suppose $(x+1)^{2k}=a_0+a_1x+a_2x^2+\cdots+a_{2k}x^{2k}$.Find $$a_0+a_2+a_4+\cdots+a_{2k}$$ and $$a_0-a_2+a_4+\cdots+(-1)^{2k+1}a_{2k}.$$
+
+\section{Hints to Problems}
+\printhint
 \end{document}

@@ -1,0 +1,6 @@
+{
+    "files.exclude": {
+        "*.hint": true,
+        "**/.hint": true
+    }
+}
