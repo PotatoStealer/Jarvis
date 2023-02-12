@@ -1,5 +1,5 @@
 \documentclass[../jarvis.tex]{subfiles}
-\usepackage{scrambledenvs}
+\usepackage{hyperref}
 \newscrambledenv{hint}
 \graphicspath{{\subfix{../images/}}}
 
@@ -14,7 +14,7 @@ As it turns out, there's more to algebra than pure uninspiring symbol pushing. I
 
 \section{Many Manipulations}
 \subsection{Factorising and Re-expressing}
-Starting off easy, we will explore some funny-looking problems that solve themselves after some smart rearranging and rewriting.
+These techniques are most useful when we are faced with some funny-looking problems that solve themselves after some smart rearranging and rewriting.
 
 \begin{example}[2013 SMO(J) P15]
     If $a=1.69$, $b=1.73$ and $c=0.48$, find the value of
@@ -35,6 +35,25 @@ $$a^2-ac-ab+bc=a(a-c)-b(a-c)=(a-b)(a-c).$$
 \end{align*}
 \end{proof}
 
+\begin{example}[2013 SMO(J) P20]
+    Let $a,b,c$ be real numbers such that $\frac{ab}{a+b}=\frac{1}{3}$, $\frac{bc}{b+c}=\frac{1}{4}$ and $\frac{ca}{c+a}=\frac{1}{5}$. Find the value of $\frac{24abc}{ab+bc+ca}$.
+\end{example}
+Of course, taking the given equations as-is gives us no room to work with. We do want to split up the fractions somehow though, and the denominators seem easy for us to work with: lets bring them to the numerator instead.
+
+Indeed, we observe that $\frac{a+b}{ab}=\frac{1}{a}+\frac{1}{b}$.
+\begin{proof}
+    Taking reciprocals, we have
+    $$
+    \begin{cases*}
+        \frac{1}{a}+\frac{1}{b} &= 3\\
+        \frac{1}{b}+\frac{1}{c} &= 4\\
+        \frac{1}{c}+\frac{1}{a} &= 5 \\
+    \end{cases*}
+    \implies \frac{1}{a}+\frac{1}{b}+\frac{1}{c}=6.$$
+    
+    Let $S$ denote our desired expression. With a similar idea, 
+    $$\frac{1}{S}=\frac{1}{24}\left(\frac{1}{a}+\frac{1}{b}+\frac{1}{c}\right)=\frac{1}{4} \implies S=\boxed{6}.$$
+\end{proof}
 
 \begin{example}[2013 SMO(J) P32]
     If $a$ and $b$ are positive integers such that $a^2+2ab-3b^2-41=0$, find $a^2+b^2$.
@@ -258,6 +277,9 @@ $$\frac{x-7}{x-8}-\frac{x-8}{x-9}=\frac{x-10}{x-11}-\frac{x-11}{x-12}.$$
     \begin{hint}
         Note that $\sqrt{3}+2\sqrt{5}+\sqrt{7}=(3+\sqrt{5})+(\sqrt{5}+\sqrt{7})$
     \end{hint}
+    \begin{hint}
+        Use one of the first few examples for an inspiration.
+    \end{hint}
 \end{hints}
 \problem[2014 SMO(J) P23]Let $a,b,c$ be non-zero reals satisfying $a+2b+3c=2014$ and $2a+3b+2c=2014$, find the value of 
 $$\frac{a^2+b^2+c^2}{ab+bc+ca}.$$
@@ -318,13 +340,226 @@ Find the value of $x$.
 $$g(a)=\sqrt[3]{a+\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}+\sqrt[3]{a-\frac{a+1}{3}\sqrt{\frac{8a-1}{3}}}.$$
 Find the maximum value of $g(a)$.
 
+\section{A Splurge of Inequalities}
+In this chapter we develop a few tools that should be part of any problem-solving toolbox! To make this more accessible, we defer any form of formal proofs till god knows when.
+
+\subsection{Completing the Square}
+A large part of completing the square is recognising where the squares may arise, which may be unusually challenging to the uninspired. That is part of the charm though: once we complete the square, it is usually a breeze to work through the remaining problem. 
+
+For starters, the common completed-square forms are $(2x+y)^2=4x^2+4xy+y^2$ and the univariate ones like $(2x+1)^2=4x^2+4x+1$.
+
+\begin{proposition}[The Trivial Inequality]
+    For real $a$, $a^2 \geq 0$ with equality if and only if $a=0$.
+\end{proposition}
+\begin{proposition}[The Trivial Equality]
+    Let $a,b$ be reals. If $a^2+b^2=0$, then $a=b=0$.
+\end{proposition}
+
+\begin{example}[2013 SMO(J) P18]
+    Let $x,y$ be real numbers satisfying the inequality
+    $$5x^2+y^2-4xy+24\leq 10x-1.$$ Find the value of $x^2+y^2$.
+\end{example}
+For convenience, we rewrite the inequality as
+$$y^2-4xy+5x^2-10x+25\leq 0$$
+Noticing the cross term $4xy$, we suspect that one of the "squares" should contain two variables, and also conveniently that $25=5^2$. This should give us some hints on how to rewrite the expression. Indeed, the single $y^2$ term gives the whole question away.
+\begin{proof}
+    \begin{align*}
+        y^2-4xy+5x^2-10x+25&= (y^2-4xy+4x^2)+(x^2-10x+25) \\
+        &=(y-2x)^2+(x-5)^2 \leq 0.
+    \end{align*}
+    However, we also have that $(y-2x)^2\geq 0$ and $(x-5)^2\geq 0$. This could only mean that we have equality throughout.
+
+    Thus, $x=5$ and $y=10$, so $x^2+y^2=\boxed{125}$.
+\end{proof}
+
+In this next example, we showcase the common trap of all sorts of inequalities. We must ensure that our equality case is \textbf{achievable}. For example, if we claim that $S\geq k$ for some value $k$, then we must show that equality is possible, that is, there exists some input such that the $S=k$.
+\begin{example}[2019 SMO(J) P20]
+    If $x$ is a nonnegative real number, find the minimum value of
+    $$\sqrt{x^2+4}+\sqrt{x^2-24x+153}.$$
+\end{example}
+The presence of quadratics and the buzzword "minimum" inspires us to complete the square yet again. Let $E$ denote the expression, then
+$$E=\sqrt{x^2+2^2}+\sqrt{(x-12)^2+3^2}.$$
+
+And now what..? We might flaunder around and consider $x^2\geq 0$ and $(x-12)^2\geq 0$, giving $E\geq 2+3=5$, but clearly this is not \textbf{achievable}: when $x=0$, $x-12\neq 0$, so we must be more precise.
+
+On a closer look, $E$ is reminiscent of the distance formula. Consider the points $O=(0,0)$, $P=(x,2)$. Clearly $\sqrt{x^2+2^2}$ represents $\abs{OP}$. 
+
+The second term is trickier: we should choose a point $Q$ so that $PQ=\sqrt{(x-12)^2+3^2}=\sqrt{(12-x)^2+3^2}$. But which term should it be? Suppose we take $x \geq 12$, then $E$ grows without bound: so really, we want to work with the latter expression. Now, it becomes apparent that we should choose $Q=(12,5)$.
+
+With this concept in mind, we are home free: $E$ represents $\abs{OP}+\abs{PQ}$, but this sum is minimised when $OQ$ is a straight line. Hence, by the Pythagorean theorem,
+\begin{proof}
+    \begin{align*}
+        E&=\sqrt{x^2+2^2}+\sqrt{(12-x)^2+(5-2)^2} \\
+    &\geq\sqrt{12^2+5^2}\\
+    &=\sqrt{169}=\boxed{13},
+    \end{align*}
+    with equality at $x=\frac{24}{5}$.
+\end{proof}
+\begin{remark}
+    The generalisation of this concept is the Minkowski Inequality.
+\end{remark}
+
+\subsection{Discriminant}
+This is probably self-explanatory. The discriminant arises as an inequality that involves the coefficients of quadratics, so most of its use case will surround quadratic expressions (duh).
+
+\begin{proposition}[(Number) Discrimination]
+    Recall that for a quadratic equation $ax^2+bx+c=0$, the quadratic formula is given by
+    $$x=\frac{-b\pm\sqrt{\Delta}}{2a}$$
+    where $\Delta=b^2-4ac$ is the discriminant.
+
+    Since $\Delta$ lies under the square root, we have three cases that arise:
+    \begin{enumerate}
+        \item $\Delta > 0$: there are two real and distinct values of $x$.
+        \item $\Delta = 0$: there is one real value of $x$.
+        \item $\Delta < 0$: there are no real values of $x$.
+    \end{enumerate}
+\end{proposition}
+
+\begin{example}[2016 SMO(S) P12]
+    Find the largest positive integer $p$ such that $-x^2+2(1+2p)x-2p-31$ is always negative.
+\end{example}
+\begin{proof}
+    The condition implies $\Delta < 0$.
+    \begin{align*}
+        \Delta &= [2(1+2p)]^2-4(-1)(-2p-31) \\
+        &= 4(4p^2+4p+1)-8p-124 \\
+        &=16p^2+8p-120 < 0 \\
+        &\implies 2p^2+p-15<0 \implies (2p-5)(p+3) < 0 \\
+        &-3 < p < \frac{5}{2}
+    \end{align*}
+    The largest integral value of $p$ is thus $\boxed{2}$.
+\end{proof}
+\begin{example}[2019 SMO(O) P1]
+    Find the largest positive integer $k$ such that $\frac{x(k-x)-400}{x^2-x+k-38}$ is always negative for all real values of $x$.
+\end{example}
+The only reason this is in the Open section is probably to fill up an approachable first question.
+
+\begin{proof}
+    For convenience, let $p(x), q(x)$ denote the numerator and denominator respectively. The key claim is that $p$ and $q$ do not intersect. Indeed, if they did intersect, then both must intersect at either the positive or negative half of the plane, or on the $x$-axis. Each of these cases show that $\frac{p(x)}{q(x)}\geq 0$, contradicting the problem condition. 
+    
+    Now, we simply work cases. Since $p(x)$ has a negative leading coefficient, it must be negative. Similarly, $q(x)$ is positive. Computing the discriminants (they must be negative),
+    $$
+    \begin{cases}
+        \Delta_{p}=k^2-1600 < 0 \implies -40 < k < 40 \\
+        \Delta_{q}=-4k+151 < 0 \implies k > \frac{151}{4}=37+\frac{3}{4}
+    \end{cases}.$$
+    The largest $k$ is thus $\boxed{39}$.
+\end{proof}
+
+\begin{example}[Textbook]
+    Find the range of the values of $y$ where $$y=\frac{x^2+2x+1}{1-2x}.$$
+\end{example}
+\begin{proof}
+    We notice that upon cross-multiplying and rearranging, the resulting equation is a quadratic in $x$. For the sake of clarity, we replace $y$ with $k$.
+
+    Thus, $x^2+2(1+k)x+(1-k)=0$. We now consider the discriminant: for each value $k$ in the range of the function, the line $y=k$ intersects the graph of the function at some points (or none at all). Since we seek the valid values of $k$, we consider $\Delta$ when it is nonnegative. Hence, \begin{align*}
+         \Delta&=4(1+k)^2-4(1-k)\\
+                &=4k^2+12k\geq 0 \implies k\leq-3\quad\text{or}\quad k\geq 0. 
+    \end{align*}
+    Thus, the range of $y$ is $\boxed{(-\infty,-3]\cup[0,\infty]}$.
+\end{proof}
+\subsection{Exercises}
+\problem[2021 SMO(O) P4]The solution to $\sqrt{81-x^4}\leq kx+1$, where $k$ is positive, is $a\leq x\leq b$ with $b-a=2$. Find $k$.
+\begin{hints}
+    \begin{hint}
+        Find $a$ and $b$.
+    \end{hint}
+    \begin{hint}
+        Equality must occur at $x=a, b$.
+    \end{hint}
+\end{hints}
+\problem[2022 SMO(S) P16]If $\frac{12}{x}+\frac{48}{y}=1$, find the smallest possible value of $x+y$.
+\begin{hints}
+    \begin{hint}
+        Substitute $y=k-x$ and find an inequality in $k$.
+    \end{hint}
+\end{hints}
+\problem[2022 SMO(O) P8]Let $x$ and $y$ be reals such that $(x-2)^2+(y-3)^2=4$. Find the maximum value of $x^2+y^2$.
+\begin{hints}
+    \begin{hint}
+        Find the geometric significance of the equation and the expression.
+    \end{hint}
+\end{hints}
+\problem[2022 SMO(O) P9]Let $w$ satisfy $w^4+9\leq 10w^2$. Find the maximum value of $w^3-3w$.
+\begin{hints}
+    \begin{hint}
+        Nothing inspiring. Solve the inequality directly.
+    \end{hint}
+\end{hints}
+\problem[2022 SMO(O) P12]Find the largest value of $|a|+|b|$ such that $\frac{a}{b}$ is a solution of
+$$\sqrt{4x+5-4\sqrt{x+1}}+\sqrt{x+2-2\sqrt{x+1}}=1.$$
+\begin{hints}
+    \begin{hint}
+        Substitute $u=\sqrt{x+1}$.
+    \end{hint}
+    \begin{hint}
+        Complete the square under both square roots.
+    \end{hint}
+\end{hints}
+\problem[2022 SMO(O) P13] Solve the system over the reals:
+\begin{align*}
+    \frac{4x^2}{1+4x^2}&=y\\
+    \frac{4y^2}{1+4y^2}&=z\\
+    \frac{4z^2}{1+4z^2}&=x.
+\end{align*}
+\begin{remark}
+    Here, $f(x)=\frac{4x^2}{1+4x^2}$ is periodic with period $3$, that is, $f(f(f(x)))=x$.
+\end{remark}
+\begin{hints}
+    \begin{hint}
+        Show that $f$ is decreasing.
+    \end{hint}
+    \begin{hint}
+        Can $f(x)<x$ or $f(x)>x$ happen?
+    \end{hint}
+\end{hints}
+\problem[2021 SMO(S) P14]Let $$D=\sqrt{\sqrt{(x-1)^2+y^2}+\sqrt{(x-1)^2}+y^2},$$ where $x$ and $y$ are reals. Find the minimum value of $D^8$.
+\begin{hints}
+    \begin{hint}
+        Consider the points $(x,y)$ and $(0,1)$. What's the significance of $D$?
+    \end{hint}
+\end{hints}
+\problem[2022 SMO(S) P17]Find the largest value of $40x+60y$ if $x-y\leq 2$, $5x+y\geq 5$ and $5x+3y\leq 15$.
+\begin{hints}
+    \begin{hint}
+    Solve for 40x+60y=m(x-y)-n(5x+y)+p(5x+3y).
+    \end{hint}
+    \begin{hint}
+        Explain why $m=0$ is most optimal.
+    \end{hint}
+\end{hints}
+\problem[2021 SMO(O) P16]Let $a_1,a_2,\cdots$ be a sequence of reals and let $S_n=a_1+a_2+\cdots+a_n$. Given that $a_1=1$ and 
+$$a_{n+1}=\frac{n+2}{n}S_n,$$ find the least integer $n$ such that $a_n\geq 2021$.
+
+\problem[2022 SMO(J) P24]Let $x$ and $y$ be real numbers. Find the minimum value of 
+$$2x^2+4xy+5y^2+4x+10y+13.$$
+\begin{hints}
+    \begin{hint}
+        Consider this as a quadratic in $x$.
+    \end{hint}
+\end{hints}
+\problem[2018 AMC12B P17]Let $p$ and $q$ be positive integers such that 
+$$\frac{5}{9} < \frac{p}{q} < \frac{4}{7}$$ and $q$ is as small as possible. Find $p$ and $q$.
+\begin{hints}
+    \begin{hint}
+        The chain of inequalities give you bounds on $p$ and $q$.
+    \end{hint}
+    \begin{hint}
+        $\frac{1}{63}=\left(\frac{p}{q}-\frac{5}{9}\right)+\left(\frac{4}{7}-\frac{p}{q}\right)$
+    \end{hint}
+\end{hints}
+\begin{remark}
+    See also: the \href{https://en.wikipedia.org/wiki/Mediant_(mathematics)}{Mediant}.
+\end{remark}
 \section{Solving}
-Many questions will demand you to "find all X satisfying condition Y", the keyword being \textbf{find all}. These problems come in solving equations, functional equations, inequalities, etc. This implies that there are two parts to the problem: 
+Many questions will demand you to "find all X satisfying condition Y", the keyword being \textbf{find all}. These problems come in solving equations, functional equations, inequalities, etc. This implies that there are two parts to the problem:
 \begin{enumerate}
     \item Find the solutions and show that no other solutions exist.
     \item Prove that your solutions satisfy the condition (this is part of the problem!).
 \end{enumerate}
-It will be more instructive for us to work through a problem.
+
+\subsection{Polynomial Equations}
+It will be more instructive for us to work through a problem, and we start off with some polynomials as our familiar territory.
 
 This problem showcases the mixing of algebra and a string of divisibility arguments. Keep an eye out for these, especially if we are solving over the integers!
 \begin{example}[2018 SMO(O) P9]
@@ -577,27 +812,6 @@ It now remains to show that the recurrence given by $(u_{n+1},v_{n+1})$ generate
     so $(x,y)=(uu_m-Dvv_m,u_mv-uv_m)$ is a solution to \eqref{tangent-pell-eq}, and is smaller than $(u_1,v_1)$. This contradicts our assumption that $(u_1,v_1)$ is the fundamental (or smallest) solution, and this means that there are no other unexpected solutions. The proof is now complete.
 \end{proof}
 \paragraph{Question:} How do we know that there exists a fundamental solution to \eqref{tangent-pell-eq}?
-
-\section{Binomial Expansions}
-In this section, we explore the surprisingly clumsy and ugly thing that is the binomial expansion.
-
-\begin{proposition}[Binomial Theorem]
-    For $n\in \mathbb{Z^+}$,
-    $$(x+y)^n=\sum_{k=0}^n\binom{n}{k}x^ny^{n-k}=\sum_{k=0}^nx^{n-k}y^k.$$
-\end{proposition}
-This gives rise to the two familiar identities (although we'll see more later)
-\begin{enumerate}
-    \item $(x+y)^2=x^2+2xy+y^2$
-    \item $(x+y)^3=x^3+3x^2y+3xy^2+y^3$.
-\end{enumerate}
-Of note are the coefficients: they arise from the Pascal's triangle, almost as known as its Egyptian counterpart. As it turns out, we can tell a lot about the sums of the coefficients. For simplicity, we first consider the expansions in one variable. Written in the form
-$(x+p)^n=a_0+a_1x+a_2x^2+\cdots+a_nx^n$ for some constant $p$. Then, observe that by substituting
-\begin{enumerate}
-    \item $x=0$, $a_0=p^n$.
-    \item $x=1$, $a_0+a_1+\cdots+a_n=(p+1)^n$.
-    \item $x=-1$, $a_0-a_1+\cdots+(-1)^{n+1}a_n=(p-1)^n$.
-\end{enumerate}
-\problem Suppose $(x+1)^{2k}=a_0+a_1x+a_2x^2+\cdots+a_{2k}x^{2k}$.Find $$a_0+a_2+a_4+\cdots+a_{2k}$$ and $$a_0-a_2+a_4+\cdots+(-1)^{2k+1}a_{2k}.$$
 
 \section{Hints to Problems}
 \printhint

@@ -1,20 +1,12 @@
 \documentclass{article}
-\usepackage{amsmath}
-\usepackage{mathtools}
-\usepackage[utf8]{inputenc}
 \usepackage{float}
 \usepackage{scrambledenvs}
+\usepackage[sexy]{evan}
 \allowdisplaybreaks
 \AddToHook{cmd/section/before}{\clearpage}
-\newcommand{\fallfac}[2]{{#1}^{\underline{#2}}}
-\newcommand{\diff}{\includegraphics[width=1em, height=0.9em]{images/star.jpg}}
-\newcommand{\ez}{(\diff)}
-\newcommand{\med}{(\diff\diff)}
-\newcommand{\hard}{(\diff\diff\diff)}
 
 \usepackage{graphicx}
 \graphicspath{{images/}}
-\usepackage[sexy]{evan}
 
 \usepackage{blindtext}
 
@@ -26,5 +18,5 @@
 
 \begin{document}
 \maketitle
-
+\subfile{sections/algebra.tex}
 \end{document}
